@@ -4,10 +4,7 @@ angular.module('funLearning', [
   'funLearning.dashboard',
   'funLearning.game',
   'funLearning.profile',
-<<<<<<< HEAD
   'funLearning.results',
-=======
->>>>>>> App updated to include basic front end modules and server functionality. Still need to incorporate databases.
   'ngRoute'
   ])
 .config(function ($routeProvider, $locationProvider) {

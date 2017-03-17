@@ -4,3 +4,4 @@ node_modules/
 .flooignore
 npm-debug.log
 untitled
+node_modules/

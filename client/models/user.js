@@ -3,10 +3,10 @@
 
   var userSchema = new Schema({
     name: String, //primary key here ==> connects to Picture.user_id
-    password: String,
+    // password: String,
     age: Number,
-    grade: Number,
-    gameResults: Array
+    grade: Number
+    // gameResults: Array
   });
 
   var User = mongoose.model("User", userSchema);
