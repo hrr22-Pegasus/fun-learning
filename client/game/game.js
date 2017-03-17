@@ -1,4 +1,5 @@
 angular.module('funLearning.game', [])
+<<<<<<< HEAD
   .controller('GameCtrl', function($scope, $interval, $http, ResultsFactory){
     var interval;
 
@@ -81,5 +82,8 @@ angular.module('funLearning.game', [])
     //   })
     }
 
+=======
+  .controller('GameCtrl', function($scope){
+>>>>>>> App updated to include basic front end modules and server functionality. Still need to incorporate databases.
 
   })
