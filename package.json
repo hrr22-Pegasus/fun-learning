@@ -1,0 +1,31 @@
+{
+  "name": "fun-learning",
+  "version": "1.0.0",
+  "description": "Learning by playing fun games.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JH108/fun-learning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JH108/fun-learning/issues"
+  },
+  "homepage": "https://github.com/JH108/fun-learning#readme",
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-chart": "^0.5.0",
+    "angular-route": "^1.6.3",
+    "body-parser": "^1.17.1",
+    "chartjs": "^0.3.24",
+    "express": "^4.15.2"
+  }
+}
