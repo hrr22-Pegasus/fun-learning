@@ -1,13 +1,13 @@
-<div>
+<div ng-controller="LoginCtrl">
   <h2> Login.html </h2>
 
-    <form class="text-center">
-    Username:
-    <br><input type="text" ng-model="username"><br>
+  <form class="text-center" ng-submit=validateLogin()>
+    Username:<br>
+    <input type="text" ng-model="username"><br>
+    Password:<br>
+    <input type="text" ng-model="password"><br>
     <input type="submit" value="Login">
-
   </form>
 
-  <p>hello world!</p>
-
 </div>
+

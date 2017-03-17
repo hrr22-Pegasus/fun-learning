@@ -56,19 +56,28 @@ angular.module('funLearning.game', [])
 
     $scope.addUser = function(data){
       console.log("adding user");
-
       return ResultsFactory.addNewUser(data);
-
     }
 
-    $scope.getPlayerHighScore = function(){
+    $scope.getAllUsers = function(){
+      return ResultsFactory.getUsers()
+      .then(function(users) {
+        console.log('getAllUsers in game.js', ResultsFactory.allUsers);
+        console.log('users', users); //unecessary
 
-      // $http({
-      //   method: GET;
-      //   url:  ;       //todo
-      // }).then(func tion(){
+        $scope.allUsers = [];
 
-      // })
+        for (var i = 0; i< ResultsFactory.allUsers[0].length; i++) {
+          console.log(i);
+          var userObject = ResultsFactory.allUsers[i];
+          console.log(userObject);
+
+          $scope.allUsers.push(userObject);
+
+        }
+
+
+      });
     }
 
     $scope.getLeaderBoard = function(){
@@ -80,7 +89,4 @@ angular.module('funLearning.game', [])
 
     //   })
     }
-
-  .controller('GameCtrl', function($scope){
-
-  })
+});

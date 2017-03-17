@@ -1,4 +1,78 @@
-<div>
+<div ng-controller="GameCtrl">
   <h2> signup.html </h2>
 
+    <form class="text-center" novalidate ng-submit="addUser({firstName: firstName, lastName: lastName, username: username, password: password, birthday: birthday, gender: gender, administator: isAdministator, letterGrade: letterGrade, teacher: teacher, school: school})">
+
+
+      First Name:<br>
+      <input type="text" ng-model="firstName"><br>
+      Last Name:<br>
+      <input type="text" ng-model="lastName"><br>
+      Username:<br>
+      <input type="text" ng-model="username"><br>
+      Password:<br>
+      <input type="text" ng-Model="password"><br>
+      Birthday:<br>
+      <input type="number" ng-model="birthday"><br>
+      Gender:<br>
+      <input type="text" ng-model="gender"><br>
+      Are you an admin?:<br>
+      <input type="text" ng-model="isAdministator"><br>
+     <!--  <div class="btn-group">
+        <br>Are you an Admin?<br>
+        <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Yes'">Yes</label>
+        <label class="btn btn-primary" ng-model="radioModel" uib-btn-riadio="'No'">No</label>
+      </div><br><br> -->
+      Grade:<br>
+      <input type="string" ng-model="letterGrade"><br>
+      Teacher:<br>
+      <input type="text" ng-Model="teacher"><br>
+      School:<br>
+      <input type="text" ng-Model="school"><br>
+
+
+
+ <!--      <div ng-controller=>
+  <h4>Formatting codes playground</h4>
+  <p class="form-group">
+    <label>Define your format</label>
+    <input type="text" ng-model="format"
+  </p>
+  <p class="form-group">
+    <label>Result</label>
+    <input type="text" uib-datepicker-popup="{{format}}" ng-model="date" />
+  </p>
 </div>
+ --><br>
+      <input type="submit" class="btn btn-primary value="Give me yo data!">
+    </form>
+
+</div>
+
+
+
+<!--     firstName: String,
+    lastName: String,
+    username: String,
+    password: String,
+    birthday: Number,
+    gender: String,
+    isAdministrator: Boolean,
+    letterGrade: Number,
+    teacher: String,
+    school: String,
+    dateJoined: Date,
+    avatar: Array,
+
+
+    gameResults: Array,
+    badges: Array,
+    friends: Array,
+    sessionLength: Array -->
+
+
+
+
+
+
+

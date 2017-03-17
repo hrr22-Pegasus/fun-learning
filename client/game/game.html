@@ -5,19 +5,12 @@
     <p>Score: {{score}}</p>
     <p> Highscore: {{highScore}} </p>
 
-    <form class="text-center" novalidate ng-submit="addUser({name: firstName, age: age, grade: grade})">
-      Name:<br>
-     <input type="text" ng-model="firstName"><br>
-      Age:<br>
-      <input type="text" ng-Model="age"><br>
-      Grade:<br>
-      <input type="text" ng-Model="grade"><br>
-      <input type="submit" value="Click me!">
-    </form>
-
-
     <button ng-click="start()">
       Start Game
+    </button><br><br>
+
+    <button ng-click="getAllUsers()">
+      Get all users
     </button>
 
     <div>
@@ -30,6 +23,11 @@
     <p> input sum: {{input_sum}} </p>
     <p> actual sum: {{sum}}
     <p> points: {{points}} </p>
+
+<!--     <div>
+      <ul ng-repeat="user in allUsers track by $index"><li> {{ user }}</li></ul>
+
+    </div> -->
 
   </div>
 

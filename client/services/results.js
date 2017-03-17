@@ -36,9 +36,11 @@ angular.module('funLearning.results', [])
       return $http({
         method: 'GET',
         url: '/api/users',    //1234567890ag
-      }).then(function(){
-        console.log('post request succeeded! :)')
-
+      }).then(function(res){
+        console.log('results js users', res);
+        console.log('results for Users.data', res.data);
+        console.log('GET request succeeded! :)')
+        allUsers.push(res.data);
       })
     };
 

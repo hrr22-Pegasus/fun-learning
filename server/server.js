@@ -1,5 +1,5 @@
 var express = require('express');
-var User = require('../client/models/user.js');
+var User = require('../db/models/user.js');
 var bodyParser = require('body-parser');
 var path = require("path");
 var mongoose = require('mongoose');
@@ -54,7 +54,16 @@ app.post("/api/users", function(req, res){
   });
 });
 
-
+app.get('/api/users', function(req, res) {
+  User.find({}, function(err, users) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).send(users);
+    }
+    res.end();
+  });
+});
 
 
 module.exports = app;
