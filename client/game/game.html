@@ -1,3 +1,35 @@
 <div>
   <h2> game.html </h2>
+  <div ng-controller = "GameCtrl">
+    <p> Timer: {{timer}} </p>
+    <p>Score: {{score}}</p>
+    <p> Highscore: {{highScore}} </p>
+
+    <form class="text-center" novalidate ng-submit="submitPlayerInfo({name: firstName, age: age, grade: grade})">
+      Name:<br>
+     <input type="text" ng-model="firstName"><br>
+      Age:<br>
+      <input type="text" ng-Model="age"><br>
+      Grade:<br>
+      <input type="text" ng-Model="grade"><br>
+      <input type="submit" value="Click me!">
+    </form>
+
+
+    <button ng-click="setRandomNumbers()">
+      Start Timer
+    </button>
+
+    <div>
+      <form ng-submit="checkAnswer(input_sum)">
+        <p> {{variable1}} + {{variable2 }} = </p><input type="number" ng-model="input_sum">
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <p> input sum: {{input_sum}} </p>
+    <p> actual sum: {{sum}}
+    <p> points: {{points}} </p>
+
+  </div>
 </div>
