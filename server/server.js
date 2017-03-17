@@ -10,7 +10,18 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
 console.log("directoy name: ", __dirname);
-mongoose.connect();
+
+//mongodb://<dbuser>:<dbpassword>@ds133340.mlab.com:33340/teampegasus
+mongoose.connect('mongodb://test:test@ds133340.mlab.com:33340/teampegasus', function(err) {
+  if(err) {
+    console.log('connection error', err);
+  }
+  else {
+    console.log('connection with database successful');
+  }
+});
+
+
 var port = process.env.PORT || 1337;
 
 app.listen(port);
