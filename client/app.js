@@ -4,6 +4,7 @@ angular.module('funLearning', [
   'funLearning.dashboard',
   'funLearning.game',
   'funLearning.profile',
+  'funLearning.results',
   'ngRoute'
   ])
 .config(function ($routeProvider, $locationProvider) {

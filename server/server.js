@@ -28,30 +28,12 @@ app.listen(port);
 console.log('Hey!');
 console.log("Listening on port: ", port);
 
-
-
-
 ////////SERVER going to be routing///////////
 
-// var User = require('./app/models/user');
-
-// app.get("api/users", function(req, res){
-//   User.find({}, function(err, result){
-//     if (err) {
-//       console.log('Error fetching records', err);
-//     }
-//     res.status(200).send(result);
-//     console.log("Completed user get request")
-//   });
-// });
-
 app.post("/api/users", function(req, res){
-  console.log("Inside Post FUNCTION: @@@@@@@@@@@");
-  // var newUser = new User({
-  //   name: String,
-  //   age: Number,
-  //   grade: Number
-  // });
+  console.log("Inside Post FUNCTION: ");
+  //req.body = {user: Ryan, age: 10, grade: 5} //from game.html
+  console.log("Data being added: ", req.body);
 
   var userInfo = req.body;
   var newUser = new User(userInfo);
@@ -64,14 +46,6 @@ app.post("/api/users", function(req, res){
     console.log("user saved successfully")
   });
 });
-
-
-
-
-
-
-
-
 
 
 

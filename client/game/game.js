@@ -1,5 +1,5 @@
-angular.module('funLearning.game', ['ngRoute'])
-  .controller('GameCtrl', function($scope, $interval, $http){
+angular.module('funLearning.game', [])
+  .controller('GameCtrl', function($scope, $interval, $http, ResultsFactory){
     var interval;
 
     $scope.points = 0;
@@ -54,15 +54,11 @@ angular.module('funLearning.game', ['ngRoute'])
       }
     };
 
-    $scope.submitPlayerInfo = function(data){
+    $scope.addUser = function(data){
+      console.log("adding user");
 
-      $http({
-        method: 'POST',
-        url: '/api/users',    //1234567890ag
-        data: data
-      }).then(function(){
-        console.log('post request succeeded! :)')
-      })
+      return ResultsFactory.addNewUser(data);
+
     }
 
     $scope.getPlayerHighScore = function(){
