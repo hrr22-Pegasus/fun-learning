@@ -1,1 +1,6 @@
 node_modules/
+.DS_Store
+.floo
+.flooignore
+npm-debug.log
+untitled

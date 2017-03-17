@@ -5,7 +5,7 @@
     <p>Score: {{score}}</p>
     <p> Highscore: {{highScore}} </p>
 
-    <form class="text-center" novalidate ng-submit="submitPlayerInfo({name: firstName, age: age, grade: grade})">
+    <form class="text-center" novalidate ng-submit="addUser({name: firstName, age: age, grade: grade, gameResults: gameResults})">
       Name:<br>
      <input type="text" ng-model="firstName"><br>
       Age:<br>
@@ -16,8 +16,8 @@
     </form>
 
 
-    <button ng-click="setRandomNumbers()">
-      Start Timer
+    <button ng-click="start()">
+      Start Game
     </button>
 
     <div>

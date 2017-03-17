@@ -1,5 +1,10 @@
 var handler = require('request-handler');
 var app = require('server.js');
+var User = require('../client/models/user.js');
+var mongoose = require('mongoose');
+
+
+
 
 /*
   API endpoints have a / http requests have method name
