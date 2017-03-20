@@ -1,17 +1,24 @@
 angular.module('funLearning.login', [])
-  .controller('LoginCtrl', function($scope, $interval, $http, ResultsFactory){
+  .controller('LoginCtrl',['$scope', 'UsersFactory', function($scope, UsersFactory){
     var interval;
 
-    $scope.validateUser = function() {
 
-    }
+    // $scope.setUser = function(username, password) {
+    //   console.log("setUser in scope")
+    //   return UsersFactory.set(username, password); //return UsersFactory.currentUser
+    // };
 
+    $scope.getSingleUser = function(username, password) {
+      $scope.username = '';
+      $scope.password = '';
+      return UsersFactory.getCurrentUser(username, password);
+    };
 
     $scope.getLeaderBoard = function(){
 
 
-    }
-});
+    };
+}]);
 
 
       // $scope.validateUser = function(){

@@ -1,92 +1,86 @@
 angular.module('funLearning.game', [])
-  .controller('GameCtrl', function($scope, $interval, $http, ResultsFactory){
-    var interval;
+  .controller('GameCtrl', ['$scope', 'UsersFactory', 'GameResultsFactory' ,function($scope, UsersFactory, GameResultsFactory){
 
-    $scope.points = 0;
-    $scope.highScore = 0;
-    $scope.timer = 10;
-
-    $scope.startTimer = function() {
-        interval = $interval(function(){
-          console.log("in interval", $scope.timer);
-          if($scope.timer > 0){
-            $scope.timer = $scope.timer - 1;
-          } else {
-            console.log("ending game");
-            $scope.endGame();
-          }
-        }, 1000);
-      }
-
-    $scope.setRandomNumbers = function(){
-      $scope.variable1 = Math.floor(Math.random() * 10);
-      $scope.variable2 = Math.floor(Math.random() * 10);
-      $scope.sum = $scope.variable1 + $scope.variable2;
-    };
-
-    $scope.startGame = function(){
-      $scope.timer = 10;
-      $scope.points = 0;
-      $scope.setRandomNumbers();
-      $scope.startTimer();
-    }
-
-    $scope.endGame = function(){
-      $interval.cancel(interval);
-      interval = undefined;
-      $scope.score = $scope.points;
-      if ($scope.score > $scope.highScore){
-        $scope.highScore = $scope.score;
-      }
-    };
-
-    $scope.checkAnswer = function(input){
-      console.log("input", input);
-      if($scope.timer > 0){
-        if(input === $scope.sum){
-          console.log("input", input);
-          $scope.points += 1;
-          $scope.setRandomNumbers();
-        } else {
-          $scope.points -= 1;
-        }
-        $scope.input_sum = "";
-      }
-    };
-
-    $scope.addUser = function(data){
-      console.log("adding user");
-      return ResultsFactory.addNewUser(data);
-    }
-
-    $scope.getAllUsers = function(){
-      return ResultsFactory.getUsers()
-      .then(function(users) {
-        console.log('getAllUsers in game.js', ResultsFactory.allUsers);
-        console.log('users', users); //unecessary
-
-        $scope.allUsers = [];
-
-        for (var i = 0; i< ResultsFactory.allUsers[0].length; i++) {
-          console.log(i);
-          var userObject = ResultsFactory.allUsers[i];
-          console.log(userObject);
-
-          $scope.allUsers.push(userObject);
-
-        }
+  $scope.getUser = function(){
+    $scope.username = GameResultsFactory.get();
+    $scope.password = UsersFactory.getPassword();
+  }
 
 
-      });
-    }
+  // $scope.test = 0;
+  // if($scope.test ===1){
+  var game = new Phaser.Game(600, 410, Phaser.CANVAS, 'game-canvas', null, false);
 
-    $scope.getLeaderBoard = function(){
+  Game.MainMenu.prototype.saveResults = function(results){
+    GameResultsFactory.set(results);
+  }
 
-    //   $http({
-    //     method: GET;
-    //     url:  ;       //todo
-    //   }).then(function(){
+  Game.MainMenu.prototype.sendResults = function(){
+    GameResultsFactory.test();
+    $scope.username = GameResultsFactory.get();
+    console.log("cat")
+  };
 
-    //   })
-    }
-});
+  console.log("game");
+  game.state.add('MainMenu', Game.MainMenu);
+  game.state.start('MainMenu');
+// }
+  // var menuState = {
+  //   preload: function(){
+  //     this.load.image( 'background', '../assets/forrest_background.png');
+  //     this.load.image( 'zero', '../assets/mnist-digits-0.png');
+
+  //     this.fallingTimer = 0;
+  //     this.countDownClock = 10;
+  //     this.kanyeScoreText;
+
+  //     this.variable1;
+  //     this.variable2;
+  //     this.sum;
+  //     this.points = 0;
+
+  //   },
+  //   create: function(){
+  //     this.background = game.add.sprite(0, 0, 'background');
+  //     this.zero = game.add.sprite(100, 100, 'zero');
+  //     this.zero.enableBody = true;
+  //     game.physics.enable(this.zero, Phaser.Physics.ARCADE);
+
+
+  //     this.cursors = game.input.keyboard.createCursorKeys(); //arrow keys
+  //     console.log(this.cursors);
+
+
+
+  //     this.kanyeScoreText = game.add.text(16, 16, 'Timer: 0', { fontSize: '14px', fill: '#000' });
+  //     this.scopeIncrementText = game.add.text(16, 40, '$scope: ', { fontSize: '14px', fill: '#000' });
+  //   },
+
+  //   update: function(){
+
+  //     if(this.cursors.right.isDown){
+  //       this.zero.body.velocity.x = 10;
+  //     };
+
+  //     if(this.fallingTimer < 20000){
+  //       if (game.time.now > this.fallingTimer){
+  //         console.log(this.fallingTimer);
+  //         this.kanyeScoreText.text = "Timer: " + this.countDownClock;
+  //         this.scopeIncrementText.text = "$Scope: ";
+  //         this.fallingTimer += 1000;
+  //         this.countDownClock -= 1;
+
+  //       }
+  //     } else {
+  //       console.log("times up");
+  //     }
+  //     // game.animations.play('walkleft');
+
+  //   }
+
+  // };
+
+  // game.state.add('MainMenu', menuState)
+  // game.state.start('MainMenu')
+
+}]);

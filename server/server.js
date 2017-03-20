@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
 console.log("directoy name: ", __dirname);
 
+var isAuthenticated = false;
+
 
 //mongodb://<dbuser>:<dbpassword>@ds133340.mlab.com:33340/teampegasus
 mongoose.connect('mongodb://test:test@ds133340.mlab.com:33340/teampegasus', function(err) {
@@ -27,8 +29,7 @@ mongoose.connect('mongodb://test:test@ds133340.mlab.com:33340/teampegasus', func
 });
 
 
-
-var port = process.env.PORT || 1337;
+var port = process.env.PORT || 1339;
 
 app.listen(port);
 console.log('Hey!');
@@ -60,6 +61,29 @@ app.get('/api/users', function(req, res) {
       console.log(err);
     } else {
       res.status(200).send(users);
+    }
+    res.end();
+  });
+});
+
+app.get('/api/users/:username/:password', function(req, res) {
+  var currentUsername = req.params.username;
+  var currentPassword = req.params.password;
+
+  console.log("Server - req.params.username", req.params.username);
+  console.log("Server - req.params.password", req.params.password);
+
+  User.findOne({"username": currentUsername, "password": currentPassword}, function(err, users) { //TODO
+    if (err) {
+      console.log(err);
+    } else if (users) {
+      console.log("User and Password is in the database!");
+      console.log("Users return object: ", users);
+      res.status(200).send(users);
+      // res.redirect(301, '#/dashboard');
+    } else {
+      console.log("This user and/or password not in database or is incorrect");
+      // res.redirect(301, '#/signup');
     }
     res.end();
   });

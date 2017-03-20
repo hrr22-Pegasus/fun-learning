@@ -5,6 +5,7 @@ angular.module('funLearning', [
   'funLearning.game',
   'funLearning.profile',
   'funLearning.results',
+  'funLearning.users',
   'ngRoute'
   ])
 .config(function ($routeProvider, $locationProvider) {
@@ -23,15 +24,25 @@ angular.module('funLearning', [
     })
     .when('/game', {
       templateUrl: 'game/game.html',
-      controller: 'GameCtrl'
+      // template: '<div>\
+      //   <div id="gameCanvas" game-canvas="players" map-id="mapId"></div>\
+      // </div>',
+      controller: 'GameCtrl',
+      onEnter: function(Game) {
+        Game.playing = true;
+      },
+      onExit: function(Game) {
+        Game.playing = false;
+      }
     })
     .when('/profile', {
       templateUrl: 'profile/profile.html',
       controller: 'ProfileCtrl'
     })
     .otherwise({
-      templateUrl: 'login/login.html',
-      controller: 'LoginCtrl'
+      templateUrl: 'signup/signup.html',
+      controller: 'SignupCtrl'
     });
   $locationProvider.hashPrefix('');
+
 });
