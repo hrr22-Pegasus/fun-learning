@@ -1,7 +1,7 @@
 var express = require('express');
 var User = require('../db/models/user.js');
 var bodyParser = require('body-parser');
-var routes = require('./router.js')
+var routes = require('./router.js');
 var path = require("path");
 var mongoose = require('mongoose');
 
