@@ -6,16 +6,6 @@ angular.module('funLearning.users', [])
     var allUsers = [];
     var allTeachers = []; //dont need(?)
 
-    var addNewUser = function(data) {
-      return $http({
-        method: 'POST',
-        url: '/api/users',
-        data: data
-      }).then(function(){
-        console.log('usersFactory.js - post request succeeded! :)');
-        $location.path('/game');
-      });
-    };
 
     var getAllUsers = function() {
       return $http({
@@ -46,7 +36,19 @@ angular.module('funLearning.users', [])
         console.log(currentUser);
         return currentUser;
       });
-    }
+    };
+
+    var addNewUser = function(data) {
+      return $http({
+        method: 'POST',
+        url: '/api/users',
+        data: data
+      }).then(function(res){
+        getCurrentUser(res.data.username, res.data.password);
+        console.log('usersFactory.js - post request succeeded! :)');
+        //$location.path('/game');
+      });
+    };
 
     return {
       currentUser: currentUser,
