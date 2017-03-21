@@ -1,23 +1,23 @@
 <div ng-controller="SignupCtrl">
   <h2> signup.html </h2>
 
-    <form class="text-center" novalidate ng-submit="addUser()">
+    <form class="text-center" ng-submit="addUser()">
 
 
       First Name:<br>
-      <input type="text" ng-model="firstName"><br>
+      <input type="text" ng-model="firstName" required><br>
       Last Name:<br>
-      <input type="text" ng-model="lastName"><br>
+      <input type="text" ng-model="lastName" required><br>
       Username:<br>
-      <input type="text" ng-model="username"><br>
+      <input type="text" ng-model="username" required><br>
       Password:<br>
-      <input type="password" ng-Model="password"><br>
+      <input type="password" ng-Model="password" required><br>
       Birthday:<br>
-      <input type="date" ng-model="birthday"><br>
+      <input type="date" ng-model="birthday" required><br>
       Gender:<br>
-      <input type="text" ng-model="gender"><br>
+      <input type="text" ng-model="gender" required><br>
       Are you an admin?:<br>
-      <input type="text" ng-model="isAdministrator"><br>
+      <input type="text" ng-model="isAdministrator" required><br>
      <!--  <div class="btn-group">
         <br>Are you an Admin?<br>
         <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Yes'">Yes</label>
@@ -26,9 +26,9 @@
       Grade:<br>
       <input type="string" ng-model="letterGrade"><br>
       Teacher:<br>
-      <input type="text" ng-Model="teacher"><br>
+      <input type="text" ng-Model="teacher" required><br>
       School:<br>
-      <input type="text" ng-Model="school"><br>
+      <input type="text" ng-Model="school" required><br>
 
 
 

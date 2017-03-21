@@ -10,7 +10,7 @@ angular.module('funLearning.signup', [])
     //   $scope.username = '';
     //   $scope.birthday = '';
     //   $scope.gender = '';
-    //   $scope.isAdministator = '';
+    //   $scope.isAdministrator = '';
     //   $scope.letterGrade = '';
     //   $scope.teacher = '';
     //   $scope.school = '';
@@ -24,7 +24,7 @@ angular.module('funLearning.signup', [])
         username: $sanitize($scope.username),
         birthday: $sanitize($scope.birthday),
         gender: $sanitize($scope.gender),
-        isAdministator: $sanitize($scope.isAdministator),
+        isAdministator: $sanitize($scope.isAdministrator),
         letterGrade: $sanitize($scope.letterGrade),
         teacher: $sanitize($scope.teacher),
         school: $sanitize($scope.school)
@@ -35,7 +35,7 @@ angular.module('funLearning.signup', [])
       $scope.username = '';
       $scope.birthday = '';
       $scope.gender = '';
-      $scope.isAdministator = '';
+      $scope.isAdministrator = '';
       $scope.letterGrade = '';
       $scope.teacher = '';
       $scope.school = '';

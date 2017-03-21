@@ -9,8 +9,12 @@ router.post("/api/users", function(req, res){
   // console.log("Inside Post FUNCTION: ");
   //req.body = {user: Joe, age: 10, grade: 5} //from game.html
   // console.log("Data being added: ", req.body);
-
-  var userInfo = req.sanitize(req.body);
+  var userInfo = {};
+  for(var key in req.body) {
+    userInfo[key] = req.sanitize(req.body[key]);
+  }
+  //var userInfo = req.sanitize(req.body);
+  //var userInfo = req.body;
   // console.log('sanitized', userInfo);
   var newUser = new User(userInfo);
 
@@ -26,9 +30,9 @@ router.post("/api/users", function(req, res){
 
 router.get('/api/users/:username/:password', function(req, res) {
   // console.log('sanitized', req.sanitize(req.params.username));
-  var currentUsername = req.params.username;
+  var currentUsername = req.sanitize(req.params.username);
   // console.log('unsanitary!!!', currentUsername);
-  var currentPassword = req.params.password;
+  var currentPassword = req.sanitize(req.params.password);
 
   // console.log("Server - req.params.username", req.params.username);
   // console.log("Server - req.params.password", req.params.password);
