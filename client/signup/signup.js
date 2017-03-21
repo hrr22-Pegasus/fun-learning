@@ -1,7 +1,34 @@
 angular.module('funLearning.signup', [])
-  .controller('SignupCtrl', function($scope, UsersFactory) {
+  .controller('SignupCtrl', function($scope, UsersFactory, $sanitize) {
 
-    $scope.addUser = function(user) {
+
+    // {firstName: firstName, lastName: lastName, username: username, password: password, birthday: birthday, gender: gender, administrator: isAdministrator, letterGrade: letterGrade, teacher: teacher, school: school}
+    // $scope.addUser = function(user) {
+    //   $scope.firstName = '';
+    //   $scope.lastName = '';
+    //   $scope.password = '';
+    //   $scope.username = '';
+    //   $scope.birthday = '';
+    //   $scope.gender = '';
+    //   $scope.isAdministator = '';
+    //   $scope.letterGrade = '';
+    //   $scope.teacher = '';
+    //   $scope.school = '';
+    //   UsersFactory.addNewUser(user);
+    // };
+    $scope.addUser = function() {
+      var user = {
+        firstName: $sanitize($scope.firstName),
+        lastName: $sanitize($scope.lastName),
+        password: $sanitize($scope.password),
+        username: $sanitize($scope.username),
+        birthday: $sanitize($scope.birthday),
+        gender: $sanitize($scope.gender),
+        isAdministator: $sanitize($scope.isAdministator),
+        letterGrade: $sanitize($scope.letterGrade),
+        teacher: $sanitize($scope.teacher),
+        school: $sanitize($scope.school)
+      };
       $scope.firstName = '';
       $scope.lastName = '';
       $scope.password = '';

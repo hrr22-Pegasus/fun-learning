@@ -6,6 +6,7 @@ angular.module('funLearning', [
   'funLearning.profile',
   'funLearning.results',
   'funLearning.users',
+  'ngSanitize',
   'ngRoute'
   ])
 .config(function ($routeProvider, $locationProvider) {
