@@ -23,10 +23,7 @@ angular.module('funLearning', [
       controller: 'DashboardCtrl'
     })
     .when('/game', {
-      templateUrl: 'game1/game.html',
-      // template: '<div>\
-      //   <div id="gameCanvas" game-canvas="players" map-id="mapId"></div>\
-      // </div>',
+      templateUrl: 'games/game.html',
       controller: 'GameCtrl',
       onEnter: function(Game) {
         Game.playing = true;

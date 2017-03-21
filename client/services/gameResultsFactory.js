@@ -18,7 +18,8 @@ angular.module('funLearning')
     },
 
     test: function(){
-      console.log("game factory is working")
+      console.log("Game Factory test - holding: ", gameResults)
+
     }
 
   };
