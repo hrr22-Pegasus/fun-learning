@@ -11,8 +11,8 @@ angular.module('funLearning.game', [])
   game.state.add('MainMenu', GameState.MainMenu);
   game.state.add('Level1', GameState.Level1);
 
-  var avatar = UsersFactory.currentUser.lastName;
-  console.log(avatar, "asdfa")
+  var avatar = UsersFactory.currentUser[0]["lastName"];
+  console.log(avatar, "user from game.js")
 
   game.state.start('Boot', null, null, '../assets/bear_animation_test.png');
   // game.state.start('Boot', null, null, '../assets/bear_animation_test_real_panda.png');

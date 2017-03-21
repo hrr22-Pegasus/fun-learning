@@ -1,0 +1,74 @@
+[
+  {
+    "firstName": "Samy",
+    "lastName": "Kebaish",
+    "username": "SK",
+    "password": "1234",
+    "age": "26",
+    "gender": "m",
+    "isAdministrator": "true",
+    "grade": "12",
+    "teacher": "Tre",
+    "school": "Hrr",
+    "dateJoined": "03-25-2017",
+    "avatar": ["../assets/bear_animation_test.png"],
+    "gameResults": [
+      {"livesUsed": 3, "time": 15, "pointsScored": 2, "pointsAvailable": 14, "feeling": 3},
+      {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 5},
+      {"livesUsed": 2, "time": 28, "pointsScored": 12, "pointsAvailable": 14, "feeling": 4 },
+      {"livesUsed": 3, "time": 20, "pointsScored": 9, "pointsAvailable": 14, "feeling": 1},
+      {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+    ],
+    "badges": [],
+    "friends": [],
+    "sessionLength": []
+  },
+  {
+    "firstName": "Samy",
+    "lastName": "Kebaish",
+    "username": "SK",
+    "password": "1234",
+    "age": "26",
+    "gender": "m",
+    "isAdministrator": "true",
+    "grade": "12",
+    "teacher": "Tre",
+    "school": "Hrr",
+    "dateJoined": "03-25-2017",
+    "avatar": ["../assets/bear_animation_test.png"],
+    "gameResults": [
+      {"livesUsed": 3, "time": 15, "pointsScored": 2, "pointsAvailable": 14, "feeling": 3},
+      {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 5},
+      {"livesUsed": 2, "time": 28, "pointsScored": 12, "pointsAvailable": 14, "feeling": 4 },
+      {"livesUsed": 3, "time": 20, "pointsScored": 9, "pointsAvailable": 14, "feeling": 1},
+      {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+    ],
+    "badges": [],
+    "friends": [],
+    "sessionLength": []
+  },
+  {
+    "firstName": "Samy",
+    "lastName": "Kebaish",
+    "username": "SK",
+    "password": "1234",
+    "age": "26",
+    "gender": "m",
+    "isAdministrator": "true",
+    "grade": "12",
+    "teacher": "Tre",
+    "school": "Hrr",
+    "dateJoined": "03-25-2017",
+    "avatar": ["../assets/bear_animation_test.png"],
+    "gameResults": [
+      {"livesUsed": 3, "time": 15, "pointsScored": 2, "pointsAvailable": 14, "feeling": 3},
+      {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 5},
+      {"livesUsed": 2, "time": 28, "pointsScored": 12, "pointsAvailable": 14, "feeling": 4 },
+      {"livesUsed": 3, "time": 20, "pointsScored": 9, "pointsAvailable": 14, "feeling": 1},
+      {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+    ],
+    "badges": [],
+    "friends": [],
+    "sessionLength": []
+  }
+]

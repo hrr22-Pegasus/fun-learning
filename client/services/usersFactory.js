@@ -1,7 +1,7 @@
 angular.module('funLearning.users', [])
   .factory('UsersFactory', function($http, $location) {
 
-    var currentUser = {};
+    var currentUser = [];
     var currentTeacher = {}; //dont need (?)
     var allUsers = [];
     var allTeachers = []; //dont need(?)
@@ -12,8 +12,9 @@ angular.module('funLearning.users', [])
         url: '/api/users',
         data: data
       }).then(function(){
-        console.log('usersFactory.js - post request succeeded! :)')
-      })
+        console.log('usersFactory.js - post request succeeded! :)');
+        $location.path('/game');
+      });
     };
 
     var getAllUsers = function() {
@@ -36,14 +37,15 @@ angular.module('funLearning.users', [])
         // allUsers.push(res.data);
         //
         if (res.data) {
-          this.currentUser = res.data
+          currentUser.push(res.data);
           $location.path('/game');
         } else {
           alert('login didn\'t work! If you haven\'t created account, please create!');
           $location.path('/login');
         }
-        console.log(this.currentUser);
-      })
+        console.log(currentUser);
+        return currentUser;
+      });
     }
 
     return {
