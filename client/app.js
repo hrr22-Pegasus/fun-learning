@@ -23,7 +23,7 @@ angular.module('funLearning', [
       controller: 'DashboardCtrl'
     })
     .when('/game', {
-      templateUrl: 'game/game.html',
+      templateUrl: 'game1/game.html',
       // template: '<div>\
       //   <div id="gameCanvas" game-canvas="players" map-id="mapId"></div>\
       // </div>',

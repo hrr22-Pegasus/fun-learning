@@ -11,19 +11,26 @@ angular.module('funLearning.game', [])
   // if($scope.test ===1){
   var game = new Phaser.Game(600, 410, Phaser.CANVAS, 'game-canvas', null, false);
 
-  Game.MainMenu.prototype.saveResults = function(results){
-    GameResultsFactory.set(results);
-  }
+  // GameState.Level1.prototype.saveResults = function(results){
+  //   GameResultsFactory.set(results);
+  // }
 
-  Game.MainMenu.prototype.sendResults = function(){
-    GameResultsFactory.test();
-    $scope.username = GameResultsFactory.get();
-    console.log("cat")
-  };
+  // GameState.Level1.prototype.sendResults = function(){
+  //   GameResultsFactory.test();
+  //   $scope.username = GameResultsFactory.get();
+  //   console.log("cat")
+  // };
 
-  console.log("game");
-  game.state.add('MainMenu', Game.MainMenu);
-  game.state.start('MainMenu');
+  console.log("GameState", GameState);
+  // game.state.add('MainMenu', Game.MainMenu);
+
+  game.state.add('Boot', GameState.Boot);
+  game.state.add('Preload', GameState.Preload);
+  game.state.add('MainMenu', GameState.MainMenu);
+  game.state.add('Level1', GameState.Level1);
+
+
+  game.state.start('Boot');
 // }
   // var menuState = {
   //   preload: function(){
