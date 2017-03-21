@@ -1,15 +1,11 @@
 <div ng-controller="LoginCtrl">
   <h2> Login.html </h2>
-  <p>
-  {{username}}
-  {{password}}
-  </p>
 
   <form class="text-center" ng-submit="getSingleUser(username, password)">
     Username:<br>
     <input type="text" ng-model="username"><br>
     Password:<br>
-    <input type="text" ng-model="password"><br>
+    <input type="password" ng-model="password"><br>
     <input type="submit" value="Login">
   </form>
 
