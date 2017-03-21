@@ -2,7 +2,7 @@ var GameState = GameState || {};
 GameState.MainMenu = function(game){};
 
 
-GameState.MainMenu = {
+GameState.MainMenu.prototype = {
   // preload: function(){}, //already did this
   create: function(){
     this.background = this.game.add.sprite(0,0, 'background');

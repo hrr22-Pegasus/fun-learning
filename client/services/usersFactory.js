@@ -36,13 +36,13 @@ angular.module('funLearning.users', [])
         // allUsers.push(res.data);
         //
         if (res.data) {
-          currentUser = res.data
+          this.currentUser = res.data
           $location.path('/game');
         } else {
           alert('login didn\'t work! If you haven\'t created account, please create!');
           $location.path('/login');
         }
-        console.log(currentUser);
+        console.log(this.currentUser);
       })
     }
 

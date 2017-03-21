@@ -1,7 +1,7 @@
 var GameState = GameState || {};
 GameState.Level1 = function(game){};
 
-GameState.Level1 = {
+GameState.Level1.prototype = {
   // preload: function(){}, //already did this
   create: function(){
     this.background = this.game.add.sprite(0, 0, 'background');
@@ -19,17 +19,47 @@ GameState.Level1 = {
     this.timer.start();
 
 
-    this.variable1_text = this.game.add.text(this.game.width/2, this.game.height/2, this.variable1, { fontSize: '14px', fill: '#000' });
+    this.variable1_text = this.game.add.text(
+      this.game.width/2,
+      this.game.height/2,
+      this.variable1,
+      { fontSize: '14px', fill: '#000' }
+    );
 
-    this.operator_text = this.game.add.text(this.game.width/2 + 15, this.game.height/2, '+', { fontSize: '14px', fill: '#000' });
+    this.operator_text = this.game.add.text(
+      this.game.width/2 + 15,
+      this.game.height/2,
+      '+',
+      { fontSize: '14px', fill: '#000' }
+    );
 
-    this.variable2_text = this.game.add.text(this.game.width/2 + 30, this.game.height/2, this.variable2, { fontSize: '14px', fill: '#000' });
+    this.variable2_text = this.game.add.text(
+      this.game.width/2 + 30,
+      this.game.height/2,
+      this.variable2,
+      { fontSize: '14px', fill: '#000' }
+    );
 
-    this.equals_text = this.game.add.text(this.game.width/2 + 45, this.game.height/2, '=', { fontSize: '14px', fill: '#000' });
+    this.equals_text = this.game.add.text(
+      this.game.width/2 + 45,
+      this.game.height/2,
+      '=',
+      { fontSize: '14px', fill: '#000' }
+    );
 
-    this.userAnswer_text = this.game.add.text(this.game.width/2 + 60, this.game.height/2, this.guess, { fontSize: '14px', fill: '#000' });
+    this.userAnswer_text = this.game.add.text(
+      this.game.width/2 + 60,
+      this.game.height/2,
+      this.guess,
+      { fontSize: '14px', fill: '#000' }
+    );
 
-    this.score_text = this.game.add.text(this.game.width/2, this.game.height/2 + 100, 'Score:' + this.score, { fontSize: '14px', fill: '#000' });
+    this.score_text = this.game.add.text(
+      this.game.width/2,
+      this.game.height/2 + 100,
+      'Score:' + this.score,
+      { fontSize: '14px', fill: '#000' }
+    );
 
   },
 
@@ -85,9 +115,14 @@ GameState.Level1 = {
         this.score += 1;
         this.shuffleFunction();
         this.updateText();
+        this.guess = '';
         console.log("MATCH");
+      } else {
+        this.guess = '';
+        this.score -= 1;
+        console.log("Wrong answer");
+
       }
-      this.guess = '';
 
     } else {
       this.guess = '';
@@ -99,9 +134,15 @@ GameState.Level1 = {
     this.clearText();
     this.timer.stop();
     //send results off
-
-
   }
+};
 
+GameState.Level1.prototype.saveResults = function(results){
+  GameResultsFactory.set(results);
+}
 
+GameState.Level1.prototype.sendResults = function(){
+  GameResultsFactory.test();
+  $scope.username = GameResultsFactory.get();
+  console.log("cat")
 };
