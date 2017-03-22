@@ -2,6 +2,9 @@
   var UserData = require('./data.json');
   var User = require('./db/models/user.js');
 
+  // var TestData = require('./data')
+  // var Test =require(_)
+
 
   var mongoose = require('mongoose');
   mongoose.connect('mongodb://test:test@ds133340.mlab.com:33340/teampegasus');
@@ -22,3 +25,17 @@
   // console.log(User.collection);
 // Step 2: Add data from `data.json`
   User.collection.insertMany(UserData);
+
+
+  // Test.collection.drop();
+  // Test.collection.insertMany(TestData)
+
+
+
+// [
+//   {
+//     "teacher": "Tre",
+//     "games": { game1: { test1: [[0,1], [5,5], [3,3], [0,0]] }, game2: { test1: [[0,1], [5,5], [3,3], [0,0]]} }
+
+//   }
+// ]

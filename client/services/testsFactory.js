@@ -1,4 +1,4 @@
-angular.module('funLearning.tests', []) //NEED TO ADD TO APP.JS
+angular.module('funLearning.tests', [])
   .factory('TestsFactory', function($http, $location) {
 
     var currentTest = [];

@@ -6,6 +6,7 @@ angular.module('funLearning', [
   'funLearning.profile',
   'funLearning.results',
   'funLearning.users',
+  'funLearning.tests',
   'ngSanitize',
   'funLearning.analytics',
   'ngRoute'
