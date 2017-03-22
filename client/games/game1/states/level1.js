@@ -4,13 +4,17 @@ GameState.Level1 = function(game){};
 GameState.Level1.prototype = {
   // preload: function(){}, //already did this
   create: function(){
+    this.gameName = 'game1'
     this.background = this.game.add.sprite(0, 0, 'background');
     this.kanye = new Player(this.game, 500, 350, 'kanye');
 
     // this.teacher = this.getTeacher();
-    // this.test = this.getTest(this.teacher);
+    // console.log("first import of teacher", this.teacher);
 
-    this.test = [[0,1], [5,5], [3,3], [0,0]];
+    this.test = this.getTestByTeacher()
+    console.log("first import of test", this.test);
+
+    // this.test = [[0,1], [5,5], [3,3], [0,0]];
 
     this.textStyle = { font: '25px Desyrel', align: 'center'}
     this.time = this.game.add.text(0, 40, '0', this.textStyle);

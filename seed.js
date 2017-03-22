@@ -2,8 +2,8 @@
   var UserData = require('./data.json');
   var User = require('./db/models/user.js');
 
-  // var TestData = require('./data')
-  // var Test =require(_)
+  var TestData = require('./testData.json')
+  var Test =require('./db/models/test.js')
 
 
   var mongoose = require('mongoose');
@@ -16,19 +16,14 @@
     console.log(db.collection);
   });
 
+  //Step 1: Drop old data
   User.collection.drop();
-
-  // Step 1: Drop old data
-  // TODO
-
-// db.collection.drop();
-  // console.log(User.collection);
-// Step 2: Add data from `data.json`
+  // Step 2: Add data from `data.json`
   User.collection.insertMany(UserData);
 
 
-  // Test.collection.drop();
-  // Test.collection.insertMany(TestData)
+  Test.collection.drop();
+  Test.collection.insertMany(TestData)
 
 
 

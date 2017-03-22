@@ -1,11 +1,13 @@
 angular.module('funLearning.game', [])
-  .controller('GameCtrl', ['$scope', 'UsersFactory', 'GameResultsFactory' ,function($scope, UsersFactory, GameResultsFactory){
+  .controller('GameCtrl', ['$scope', 'UsersFactory', 'GameResultsFactory', 'TestsFactory' ,function($scope, UsersFactory, GameResultsFactory, TestsFactory){
 
 
   var game = new Phaser.Game(600, 410, Phaser.CANVAS, 'game-canvas', null, false);
 
 
   GameState.Preload.prototype.getAvatar = function(){
+    TestsFactory.getTest("Cheng");
+
     return UsersFactory.currentUser[0]["avatar"][0];
   };
 
@@ -13,8 +15,8 @@ angular.module('funLearning.game', [])
     return UsersFactory.currentUser[0]["teacher"] //returns teacher to be used to get test
   };
 
-  GameState.Level1.prototype.getTest = function(teacher){
-    return TestsFactory.getTest(teacher);
+  GameState.Level1.prototype.getTestByTeacher = function(){
+    return TestsFactory.currentTest[0]['games']['game1']['test1']
   };
 
 
@@ -25,6 +27,9 @@ angular.module('funLearning.game', [])
   //   GameResultsFactory.test();
   // };
 
+  ///////////////////////////////////////////////////////////////////////////
+  //Refactor above to have time to process promist before getting test //////
+  ///////////////////////////////////////////////////////////////////////////
 
   console.log("GameState", GameState);
   game.state.add('Boot', GameState.Boot);
