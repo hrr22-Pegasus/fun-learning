@@ -1,21 +1,20 @@
 var express = require('express');
 var User = require('../db/models/user.js');
+var expressSanitizer = require('express-sanitizer');
 var bodyParser = require('body-parser');
 var routes = require('./router.js');
 var path = require("path");
 var mongoose = require('mongoose');
 
 
-var bodyParser = require('body-parser');
-var path = require("path");
-
 
 var app = express();
 
 app.use(bodyParser.json());
+app.use(expressSanitizer());
 app.use(express.static(__dirname + '/../client'));
 app.use(routes);
-console.log("directoy name: ", __dirname);
+console.log("directory name: ", __dirname);
 
 var isAuthenticated = false;
 
