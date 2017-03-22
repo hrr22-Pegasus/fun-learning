@@ -7,6 +7,7 @@ angular.module('funLearning', [
   'funLearning.results',
   'funLearning.users',
   'ngSanitize',
+  'funLearning.analytics',
   'ngRoute'
   ])
 .config(function ($routeProvider, $locationProvider) {
@@ -36,6 +37,10 @@ angular.module('funLearning', [
     .when('/profile', {
       templateUrl: 'profile/profile.html',
       controller: 'ProfileCtrl'
+    })
+    .when('/analytics', {
+      templateUrl: 'analytics/analytics.html',
+      controller: 'AnalyticsCtrl'
     })
     .otherwise({
       templateUrl: 'signup/signup.html',
