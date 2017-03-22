@@ -138,16 +138,16 @@ GameState.Level1.prototype = {
     this.renderText();
 
     console.log("Game Over");
-    this.saveResults(
-      {
-        "time": this.time,
-        "pointsScored": this.pointsScored,
-        "pointsAvailable": this.pointsAvailable,
-        "answers": this.answers,
-        "feeling": 3
-      }
-      );
-    this.sendResults()
+    // this.saveResults(
+    //   {
+    //     "time": this.time,
+    //     "pointsScored": this.pointsScored,
+    //     "pointsAvailable": this.pointsAvailable,
+    //     "answers": this.answers,
+    //     "feeling": 3
+    //   }
+    //   );
+    // this.sendResults()
 
   }
 
