@@ -13,7 +13,7 @@ angular.module('funLearning.users', [])
         url: '/api/users',
       }).then(function(res){
         console.log('usersFactory.js - results for (Users) res.data', res.data);
-        console.log('usersFactory.js - GET request succeeded! :)')
+        // console.log('usersFactory.js - GET request succeeded! :)')
         allUsers.push(res.data);
       })
     };

@@ -1,0 +1,135 @@
+<div ng-controller="AnalyticsCtrl" class="analytics text-center">
+  <h2> Teacher Analytics </h2>
+  <br><br>
+  <h1 ng-repeat="compare in comparisons">{{compare}}</h1>
+  <h3>{{subject}}</h3>
+  <h4>Evaluating {{parameter}}</h4>
+
+  <div style="display: inline-block; width: 40%; height: 25%;">
+  <canvas id="line" class="chart chart-line"  chart-data="data"
+  chart-labels="labels" chart-series="series" chart-options="options"
+  chart-dataset-override="datasetOverride" chart-click="onClick" >
+  </canvas>
+ </div>
+
+  <div style="display: inline-block; width: 40%; height: 25%;">
+  <canvas id="line" class="chart chart-line"  chart-data="data"
+  chart-labels="labels" chart-series="series" chart-options="options"
+  chart-dataset-override="datasetOverride" chart-click="onClick" >
+  </canvas>
+ </div>
+
+
+
+  <br>
+  <br>
+  <div class= "text-center">
+  <div class="dropdown">
+  <button class="dropbtn">Which game would you like data on?</button>
+  <div class="dropdown-content">
+    <a value = "Ryan's Algebra Adventure!" ng-click= "setGame($event)">Ryan's Algebra Adventure</a>
+    <a value = "Samy's Science Something" ng-click= "setGame($event)">Samy's Science Something</a>
+    <a value = "Jesse's Geography Bee!" ng-click= "setGame($event)">Jesse's Geograph Bee</a>
+    <a  value = "Misaki's Math Mojo" ng-click= "setGame($event)">Misaki's Math Mojo</a>
+    <a  value = "barChart" ng-click= "setChart($event)">barChart</a>
+  </div>
+
+</div>
+
+
+  <div class="dropdown">
+
+    <button class="dropbtn">What scope of data would you like to see?</button>
+     <div class="dropdown-content">
+       <a value = "all" ng-click= "setDataViewType($event)">All Class</a>
+      <a value = "combined" ng-click= "setDataViewType($event)">Combined</a>
+    </div>
+  </div>
+  <div class="dropdown">
+
+  <button class="dropbtn">What Parameter would you like to evaluate?</button>
+  <div class="dropdown-content">
+    <a value = "time" ng-click="setParameter($event)">Points</a>
+    <a value = "feeling" ng-click= "setParameter($event)">Feeling</a>
+    <a value = "points" ng-click= "setParameter($event)">Time</a>
+  </div>
+</div>
+
+<div class="dropdown">
+
+ <button class="dropbtnCompare">Compare Against: Game?</button>
+  <div class="dropdown-content">
+    <a value = "Ryan's Algebra Adventure!" ng-click= "setGame($event)">Ryan's Algebra Adventure</a>
+    <a value = "Samy's Science Something" ng-click= "setGame($event)">Samy's Science Something</a>
+    <a value = "Jesse's Geography Bee!" ng-click= "setGame($event)">Jesse's Geograph Bee</a>
+    <a  value = "Misaki's Math Mojo" ng-click= "setGame($event)">Misaki's Math Mojo</a>
+    <a  value = "barChart" ng-click= "setChart($event)">barChart</a>
+  </div>
+
+</div>
+
+  <div class="dropdown">
+
+    <button class="dropbtnCompare">Compare Against: Data View?</button>
+     <div class="dropdown-content">
+       <a value = "all" ng-click= "setDataViewType($event)">All Class</a>
+      <a value = "combined" ng-click= "setDataViewType($event)">Combined</a>
+    </div>
+  </div>
+  <div class="dropdown">
+
+  <button class="dropbtnCompare">Compare Against: Parameter</button>
+  <div class="dropdown-content">
+    <a value = "time" ng-click="setParameter($event)">Points</a>
+    <a value = "feeling" ng-click= "setParameter($event)">Feeling</a>
+    <a value = "points" ng-click= "setParameter($event)">Time</a>
+  </div>
+</div>
+
+
+<br><br><br>
+
+
+    <div class='text-center'>
+    <table class="table table-bordered table-striped">
+   <thead>
+      <tr>
+        <td>
+          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+            Name
+            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-down"></span>
+          </a>
+        </td>
+        <td>
+          <a href="#" ng-click="sortType = 'subject'; sortReverse = !sortReverse">
+          <span ng-show="sortType == 'subject' && sortReverse " class="fa fa-caret-down"></span>
+          Age
+          </a>
+        </td>
+      <td>
+          <a href="#" ng-click="sortType = 'feeling'; sortReverse = !sortReverse">
+          <span ng-show="sortType == 'feeling' && sortReverse" class="fa fa-caret-down"></span>
+          Grade
+          </a>
+        </td>
+      <td>
+          <a href="#" ng-click="sortType = 'grade'; sortReverse = !sortReverse">
+          <span ng-show="sortType == 'grade' && sortReverse" class="fa fa-caret-down"></span>
+          Performance
+          </a>
+        </td>
+      </tr>
+    </thead>
+  <tbody>
+  <tr ng-repeat='data in dataTable | orderBy:sortType:sortReverse | filter:searchNames'>
+    <td>
+      {{data.studentName}}</td>
+    <td>{{data.studentGrade}}</td>
+    <td>{{data.studentAge}}</td>
+    <td>{{data.studentPerformance}}</td>
+  </tr>
+  </tbody>
+</table>
+    </div>
+</div>
+</div>

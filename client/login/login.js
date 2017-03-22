@@ -8,13 +8,8 @@ angular.module('funLearning.login', [])
     //   return UsersFactory.set(username, password); //return UsersFactory.currentUser
     // };
 
-    $scope.getSingleUser = function() {
-      var username = $sanitize($scope.username);
-      var password = $sanitize($scope.password);
-      $scope.username = '';
-      $scope.password = '';
-      return UsersFactory.getCurrentUser(username, password);
-    };
+   $scope.getSingleUser = function() { var username = $sanitize($scope.username); var password = $sanitize($scope.password); $scope.username = ''; $scope.password = ''; return UsersFactory.getCurrentUser(username, password); };
+
 
     $scope.getLeaderBoard = function(){
 
