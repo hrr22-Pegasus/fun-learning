@@ -1,157 +1,153 @@
 var GameState = GameState || {};
-GameState.Level1 = function(game){};
 
-GameState.Level1.prototype = {
+GameState.Level1 = {
   // preload: function(){}, //already did this
   create: function(){
     this.background = this.game.add.sprite(0, 0, 'background');
     this.kanye = new Player(this.game, 500, 350, 'kanye');
-
-    // this.teacher = this.getTeacher();
-    // this.test = this.getTest(this.teacher);
-
-    this.test = [[0,1], [5,5], [3,3], [0,0]];
-
-    this.textStyle = { font: '25px Desyrel', align: 'center'}
-    this.time = this.game.add.text(0, 40, '0', this.textStyle);
-    this.seconds = 0;
+    // this.ghost = new Ghost(this.game, 0, 350, 'ghost');
 
 
-    this.gameStarted = false;
-    this.gameEnded = false;
+    this.test = [
+    [0,1], [5,5], [3,3], [0,0],
+    [0,2], [5,4], [6,3], [8,0]
+    // [1,1], [4,5], [5,3], [6,0],
+    // [0,4], [5,5], [3,3], [0,0],
+    // [0,1], [5,5], [3,3], [0,0],
+    // [0,1], [5,5], [3,3], [0,0],
+    // [0,1], [5,5], [3,3], [0,0],
+    // [0,1], [5,5], [3,3], [0,0],
+    ];
+    this.fallingTimer = 0;
 
-    this.variable1 = this.test[0][0];
-    this.variable2 = this.test[0][1];
-    this.sum = this.variable1 + this.variable2
-    this.answers = [];
-
-
-    this.equation = "";
     this.guess = "";
     this.pointsScored = 0;
     this.pointsAvailable = this.test.length;
 
-
-    this.equation_text = this.game.add.text(
-      this.game.width/2,
-      this.game.height/2,
-      this.equation,
-      { fontSize: '14px', fill: '#000' }
-    );
-
-    this.guess_text = this.game.add.text(
-      this.game.width/2 + 50,
-      this.game.height/2,
-      this.guess,
-      { fontSize: '14px', fill: '#000' }
-    );
-
     this.pointsScored_text = this.game.add.text(
-      this.game.width/2,
-      this.game.height/2 + 100,
+      100,
+      100,
       "Score: " + this.pointsScored,
       { fontSize: '14px', fill: '#000' }
     );
+
+
+    this.ghostsGroup = new GhostsGroup(this.game, this.test);
+    console.log("ghostsGroup", this.ghostsGroup);
+
+
+    this.myInput = this.createInput(this.game.world.centerX, 50);
+    this.myInput.anchor.set(0.5);
+    this.myInput.canvasInput.value('');
+
+
+    // this.testText = this.myInput.canvasInput.selectText();
+
   },
 
   update: function(){
-    this.updateTimer();
+    // console.log("canvas text", this.myInput.canvasInput._value);
+    this.game.physics.arcade.overlap(this.kanye, this.ghost, this.ghostCollisionHandler);
+    this.game.physics.arcade.overlap(this.kanye, this.ghostsGroup, this.ghostCollisionHandler);
 
-    if(this.input.keyboard.pressEvent && !this.gameEnded){
-      if(!this.gameStarted){
-        this.setVariables();
-        this.createEquation();
-        this.gameStarted = true;
-      } else {
+    if (this.game.time.now > this.fallingTimer){
+      this.reviveFruit();
+      this.fallingTimer += 3000;
+    };
 
-        this.ev = this.input.keyboard.pressEvent
-        this.addKeyToGuessString(this.ev.key);
-
-        if(this.guess.length === this.sum.toString().length){
-          if(this.correctAnswer()){
-            this.pointsScored += 1;
-            this.answers.push(1);
-          } else {
-            this.answers.push(0);
-          }
-          this.guess = "";
-          this.test.shift();
-          console.log("test array", this.test);
-          this.setVariables();
-          this.createEquation();
-        }
+    for (var i = 0; i < this.ghostsGroup.children.length; i++) {
+      // console.log(this.ghostsGroup.children[i]);
+      // console.log(this.kanye)
+      var ghost = this.ghostsGroup.children[i]
+      if(ghost.alive && ghost.moving === false){
+        ghost.moveToPlayer(this.kanye);
+        ghost.moving = true;
       }
+
+    }
+
+    if(this.input.keyboard.pressEvent){
+      // this.enemyFires();
+      // this.enemyFires(this.ghost);
+      // this.ghost.moveToPlayer(this.kanye);
+
+          for (var i = 0; i < this.ghostsGroup.children.length; i++) {
+            // console.log(this.ghostsGroup.children[i]);
+            // console.log(this.kanye)
+            var ghost = this.ghostsGroup.children[i]
+            if(ghost.moving){
+              this.guess = this.myInput.canvasInput.value();
+              ghost.checkValue(this.guess);
+            }
+          }
     }
     this.input.keyboard.pressEvent = null;
   },
 
-  correctAnswer: function(){
-    return parseInt(this.guess) === this.sum;
+  addKeyToGuessString: function(keyPressed){
+    this.guess += keyPressed;
+    console.log("current guess: ", this.guess);
+
+  },
+  endTimer: function() {
+    // Stop the timer when the delayed event triggers
+    console.log("Times Up");
+    this.clearText();
+    this.timer.stop();
+    //send results off
   },
 
-
-  updateTimer: function(){
-    var seconds = Math.floor(this.game.time.time / 1000) % 60
-    this.time.text = seconds;
-    this.renderText()
-  },
-
-  createEquation: function(){
-    if(this.test[0]){
-      this.equation = "" + this.variable1 + " + " + this.variable2 + " = ";
-      this.sum = this.variable1 + this.variable2;
-      this.equation_text.text = this.equation;
-      this.renderText();
-    }
-  },
-
-  // randomizeVariables: function(){
-  //   this.variable1 = Math.floor(Math.random() * 10);
-  //   this.variable2 = Math.floor(Math.random() * 10);
+  // enemyFires: function(){
+  //   this.game.physics.arcade.moveToObject(this.ghost,this.kanye,120);
   // },
+  enemyFires: function(ghost){
+    this.game.physics.arcade.moveToObject(ghost,this.kanye,60);
+  },
+  ghostCollisionHandler: function(player, ghost){
+    console.log("player in collision", player);
+    console.log("ghost in collision", ghost);
+    ghost.destroy();
 
-  setVariables: function(){
-    if(this.test[0]){
-      this.variable1 = this.test[0][0];
-      this.variable2 = this.test[0][1];
-      this.renderText();
-    } else {
-      this.gameOver();
+  },
+
+  reviveFruit: function(){
+  //  Get a dead item
+    var ghost = this.ghostsGroup.getFirstDead();
+    if (ghost){
+      // fruit.reset(game.world.randomX, 10);
+      // ghost.moving = false;
+      ghost.reset(80, 300);
+      // this.game.physics.arcade.moveToObject(this.ghost,this.kanye,120);
     }
   },
 
-  addKeyToGuessString: function(key){
-    this.guess += key;
-    console.log("this.guess after adding key: ", this.guess)
-    this.renderText()
+  inputFocus: function(sprite){
+    sprite.canvasInput.focus();
   },
-  renderText: function(){
-    this.equation_text.text = this.equation;
-    this.guess_text.text = this.guess;
-    this.pointsScored_text.text = "Score: " + this.pointsScored;
-  },
+  createInput: function(x, y){
+    var bmd = this.add.bitmapData(400, 50);
+    var myInput = this.game.add.sprite(x, y, bmd);
 
-  gameOver: function(){
-    this.gameEnded = true;
-    this.equation_text.text = "YOU WON";
-    this.guess_text.text = "";
-    this.renderText();
+    myInput.canvasInput = new CanvasInput({
+      canvas: bmd.canvas,
+      fontSize: 30,
+      fontFamily: 'Arial',
+      fontColor: '#212121',
+      fontWeight: 'bold',
+      width: 400,
+      padding: 8,
+      borderWidth: 1,
+      borderColor: '#000',
+      borderRadius: 3,
+      boxShadow: '1px 1px 0px #fff',
+      innerShadow: '0px 0px 5px rgba(0, 0, 0, 0.5)',
+      placeHolder: 'Press "Space" to submit: '
+    });
+    myInput.inputEnabled = true;
+    myInput.input.useHandCursor = true;
+    myInput.events.onInputUp.add(this.inputFocus, this);
 
-    console.log("Game Over");
-    // this.saveResults(
-    //   {
-    //     "time": this.time,
-    //     "pointsScored": this.pointsScored,
-    //     "pointsAvailable": this.pointsAvailable,
-    //     "answers": this.answers,
-    //     "feeling": 3
-    //   }
-    //   );
-    // this.sendResults()
-
+    return myInput;
   }
 
-
-
 };
-

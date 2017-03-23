@@ -19,8 +19,10 @@ angular.module('funLearning.tests', [])
         console.log('testsFactory.js - getCurrentTest result', res);
         if (res.data) {
           currentTest.push(res.data); //****** this may need to be currentTest = res.data
+        } else {
+          alert('This teacher does not exist');
         }
-        console.log(currentTest);
+        console.log("currentTest to be returned: ", currentTest);
         return currentTest;
       });
     }
@@ -29,6 +31,7 @@ angular.module('funLearning.tests', [])
       currentTest: currentTest,
       addNewTest: addNewTest,
       getTest: getTest
+
     };
 
   });
