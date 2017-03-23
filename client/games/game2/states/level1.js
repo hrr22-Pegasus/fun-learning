@@ -3,13 +3,16 @@ GameState2.Level1 = function(game) {};
 
 GameState2.Level1.prototype = {
   create: function () {
+
     // set the data for the game
     this.testArray = [[1, 2], [1, 3], [3, 4]];
     this.choices = [['1/2', '3/4', '1/3'], ['5/8', '3/4', '1/3'], ['4/7', '3/4', '2/3']];
     this.answerArray = ['1/2', '1/3', '3/4'];
     this.graphics = this.game.add.graphics(this.game.world.centerX, this.game.world.centerY);
 
+    // create function for rendering the game
     this.renderGame = function() {
+
       // remove old choices from display
       if (this.game.choice1) {
         this.game.choice1.destroy();
@@ -26,6 +29,7 @@ GameState2.Level1.prototype = {
       // add answer to game object to retain access once click event fires
       this.game.answer = this.answerArray[0];
       this.answerArray.shift();
+
       // add click events to choices
       this.game.choice1.inputEnabled = true;
       this.game.choice1.events.onInputDown.add(this.picked1, this);
@@ -56,18 +60,34 @@ GameState2.Level1.prototype = {
     this.renderGame();
   },
   picked1: function() {
-    console.log(this.game.answer);
+
     if (this.game.choice1._text === this.game.answer) {
-      alert('correct!');
+      this.game.score++;
+      this.game.choice1.addColor('#128511', 0);
+    } else {
+      this.game.choice1.addColor('#e31423', 0);
     }
+
   },
   picked2: function() {
-    console.log(game.choice2);
-    alert('you chose: ' + this.game.choice2._text);
+
+    if (this.game.choice2._text === this.game.answer) {
+      this.game.score++;
+      this.game.choice2.addColor('#128511', 0);
+    } else {
+      this.game.choice2.addColor('#e31423', 0);
+    }
+
   },
   picked3: function() {
-    console.log(game.choice3);
-    alert('you chose: ' + this.game.choice3._text);
+
+    if (this.game.choice3._text === this.game.answer) {
+      this.game.score++;
+      this.game.choice3.addColor('#128511', 0);
+    } else {
+      this.game.choice3.addColor('#e31423', 0);
+    }
+
   },
   render: function () {
   }
