@@ -7,6 +7,7 @@ angular.module('funLearning.users', [])
     var allTeachers = []; //dont need(?)
 
 
+    // TODO: function to add a game to the users gameResults array
     var getAllUsers = function() {
       return $http({
         method: 'GET',
