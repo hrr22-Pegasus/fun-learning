@@ -9,6 +9,9 @@ GameState2.Level1.prototype = {
     this.choices = [['1/2', '3/4', '1/3'], ['5/8', '3/4', '1/3'], ['4/7', '3/4', '2/3']];
     this.answerArray = ['1/2', '1/3', '3/4'];
     this.graphics = this.game.add.graphics(this.game.world.centerX, this.game.world.centerY);
+    this.game.score = 0;
+    this.game.correctAnswers = 0;
+    this.game.incorrectAnswers = 0;
 
     // create function for rendering the game
     this.renderGame = function() {
@@ -64,8 +67,10 @@ GameState2.Level1.prototype = {
     if (this.game.choice1._text === this.game.answer) {
       this.game.score++;
       this.game.choice1.addColor('#128511', 0);
+      this.game.correctAnswers++;
     } else {
       this.game.choice1.addColor('#e31423', 0);
+      this.game.incorrectAnswers++;
     }
 
   },
@@ -74,8 +79,10 @@ GameState2.Level1.prototype = {
     if (this.game.choice2._text === this.game.answer) {
       this.game.score++;
       this.game.choice2.addColor('#128511', 0);
+      this.game.correctAnswers++;
     } else {
       this.game.choice2.addColor('#e31423', 0);
+      this.game.incorrectAnswers++;
     }
 
   },
@@ -84,8 +91,10 @@ GameState2.Level1.prototype = {
     if (this.game.choice3._text === this.game.answer) {
       this.game.score++;
       this.game.choice3.addColor('#128511', 0);
+      this.game.correctAnswers++;
     } else {
       this.game.choice3.addColor('#e31423', 0);
+      this.game.incorrectAnswers++;
     }
 
   },
