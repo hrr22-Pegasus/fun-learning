@@ -6,7 +6,32 @@ var express = require('express');
 
 var router = express.Router();
 
-router.post("/api/users", function(req, res){
+router.post('/api/results', function(req, res) {
+  var gameResults = {};
+  for(var key in req.body) {
+    gameResults[key] = req.sanitize(req.body[key]);
+  }
+  // find user, User.findOne()
+  // check for the game,
+  // add the game data User.update({'gameResults.game1'})
+});
+
+router.get('/api/results', function(req, res) {
+  User.find({}, function(err, users) {
+    if (err) {
+      console.log(err);
+    } else {
+      var gameData = [];
+      for (var i = 0; i < users.length; i++) {
+        gameData.push(users[i].gameResults);
+      }
+      res.status(200).send(gameData);
+    }
+    res.end();
+  });
+});
+
+router.post('/api/users', function(req, res){
   // console.log("Inside Post FUNCTION: ");
   //req.body = {user: Joe, age: 10, grade: 5} //from game.html
   // console.log("Data being added: ", req.body);
@@ -38,16 +63,16 @@ router.get('/api/users/:username/:password', function(req, res) {
   // console.log("Server - req.params.username", req.params.username);
   // console.log("Server - req.params.password", req.params.password);
 
-  User.findOne({"username": currentUsername, "password": currentPassword}, function(err, users) { //TODO
+  User.findOne({'username': currentUsername, 'password': currentPassword}, function(err, users) { //TODO
     if (err) {
       console.log(err);
     } else if (users) {
-      console.log("User and Password is in the database!");
-      console.log("Users return object: ", users);
+      console.log('User and Password is in the database!');
+      console.log('Users return object: ', users);
       res.status(200).send(users);
       // res.redirect(301, '#/dashboard');
     } else {
-      console.log("This user and/or password not in database or is incorrect");
+      console.log('This user and/or password not in database or is incorrect');
       // res.redirect(301, '#/signup');
     }
     res.end();
@@ -65,10 +90,10 @@ router.get('/api/users', function(req, res) {
   });
 });
 
-router.post("/api/tests", function(req, res){
-  console.log("Inside test Post FUNCTION: ");
+router.post('/api/tests', function(req, res){
+  console.log('Inside test Post FUNCTION: ');
   //req.body = {teacher: Tre}
-  console.log("Data being added: ", req.body);
+  console.log('Data being added: ', req.body);
 
   var testInfo = req.body;
   var newTest = new Test(testInfo);
@@ -78,7 +103,7 @@ router.post("/api/tests", function(req, res){
     console.log('Error fetching records', err);
   }
     res.status(200).send(result);
-    console.log("test saved successfully")
+    console.log('test saved successfully')
   });
 });
 
@@ -86,18 +111,18 @@ router.post("/api/tests", function(req, res){
 router.get('/api/tests/:teacher/', function(req, res) {
   var currentTeacher = req.params.teacher;
 
-  console.log("Server - req.params.teacher", req.params.teacher);
+  console.log('Server - req.params.teacher', req.params.teacher);
 
-  Test.findOne({"teacher": currentTeacher}, function(err, tests) { //TODO
+  Test.findOne({'teacher': currentTeacher}, function(err, tests) { //TODO
     if (err) {
       console.log(err);
     } else if (tests) {
-      console.log("Test is in the database!");
-      console.log("Tests return object: ", tests);
+      console.log('Test is in the database!');
+      console.log('Tests return object: ', tests);
       res.status(200).send(tests);
       // res.redirect(301, '#/dashboard');
     } else {
-      console.log("This teacher not in database or is incorrect");
+      console.log('This teacher not in database or is incorrect');
     }
     res.end();
   });
