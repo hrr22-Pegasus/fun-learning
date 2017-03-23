@@ -1,5 +1,5 @@
 angular.module('funLearning.dashboard', [])
-  .controller('DashboardCtrl', ['$scope', 'TestsFactory',function($scope, TestsFactory) {
+  .controller('DashboardCtrl', function($scope, TestsFactory) {
 
     // $scope.sendTest = function(){
 
@@ -12,5 +12,5 @@ angular.module('funLearning.dashboard', [])
       return TestsFactory.getTest("Tre");
     };
 
-  }])
+  });
 
