@@ -68,7 +68,7 @@ GameState2.Level1.prototype = {
     // set length of the game
     this.gameLengthTimer = this.game.time.create(false);
     this.gameLengthTimer.start();
-    this.gameLengthTimer.add(Phaser.Timer.SECOND * 3, this.endOfGame, this);
+    this.gameLengthTimer.add(Phaser.Timer.SECOND * 11, this.endOfGame, this);
 
     // function for when the game ends
 
@@ -123,6 +123,14 @@ GameState2.Level1.prototype = {
   },
   sendGameData: function () {
     console.log('game ended', this.game.correctAnswers, this.game.incorrectAnswers);
+    var data = {
+      'livesUsed': this.game.incorrectAnswers,
+      'time': 9,
+      'pointsScored': this.game.correctAnswers,
+      'pointsAvailable': this.game.correctAnswers - this.game.incorrectAnswers,
+      'feeling': 4
+    };
+    this.addResult('game2', 'jesseKingOfTheHill', data);
   }
 
 }

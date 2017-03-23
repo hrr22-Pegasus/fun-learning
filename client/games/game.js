@@ -39,6 +39,10 @@ angular.module('funLearning.game', [])
   GameState2.Level1.prototype.getTest = function(teacher){
     return TestsFactory.getTest(teacher);
   };
+  GameState2.Level1.prototype.addResult = function(gameName, userName, data) {
+    console.log('game: ', gameName, 'user: ', userName, 'data: ', data);
+    return GameResultsFactory.addNewResult(gameName, userName, data);
+  }
   game2.state.add('Boot', GameState2.Boot);
   game2.state.add('Preload', GameState2.Preload);
   game2.state.add('MainMenu', GameState2.MainMenu);

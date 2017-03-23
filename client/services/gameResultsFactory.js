@@ -4,14 +4,14 @@ angular.module('funLearning')
 
     var allGameData = [];
 
-    var addNewResult = function(data) {
+    var addNewResult = function(gameName, userName, data) {
       return $http({
         method: 'POST',
-        url: '/api/results/' + gameName,
+        url: '/api/results/' + gameName + '/' + userName,
         data: data
       }).then(function(){
         console.log('post request succeeded! :)')
-        getGamesResults();
+        getGameResults();
       })
     };
 
@@ -22,6 +22,7 @@ angular.module('funLearning')
       }).then(function(res){
         console.log('get request succeeded! :)')
         allGameData.push(res.data);
+        console.log(allGameData)
         return res.data;
       });
     };

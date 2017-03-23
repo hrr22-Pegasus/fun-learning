@@ -6,14 +6,26 @@ var express = require('express');
 
 var router = express.Router();
 
-router.post('/api/results', function(req, res) {
-  var gameResults = {};
+router.post('/api/results/:gameName/:userName', function(req, res) {
+  var gameName = req.sanitize(req.params.gameName);
+  var userName = req.sanitize(req.params.userName);
+
+  var gameData = {};
   for(var key in req.body) {
-    gameResults[key] = req.sanitize(req.body[key]);
+    gameData[key] = req.sanitize(req.body[key]);
   }
   // find user, User.findOne()
   // check for the game,
   // add the game data User.update({'gameResults.game1'})
+  User.findOneAndUpdate({'username': userName}, {$push: {'gameResults': gameData}}, function(err, data) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('data from server', data);
+      res.status(201).send(data);
+    }
+    res.end();
+  });
 });
 
 router.get('/api/results', function(req, res) {
