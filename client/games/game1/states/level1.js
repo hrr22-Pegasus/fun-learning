@@ -104,7 +104,7 @@ GameState.Level1.prototype = {
     if(this.test[0]){
       this.equation = "" + this.variable1 + " + " + this.variable2 + " = ";
       this.sum = this.variable1 + this.variable2;
-      this.equation_text.text = this.equation;
+      // this.equation_text.text = this.equation;
       this.renderText();
     }
   },

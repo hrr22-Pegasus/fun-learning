@@ -30,7 +30,7 @@ mongoose.connect('mongodb://test:test@ds133340.mlab.com:33340/teampegasus', func
 });
 
 
-var port = process.env.PORT || 1339;
+var port = process.env.PORT || 1338;
 
 app.listen(port);
 console.log('Hey!');
