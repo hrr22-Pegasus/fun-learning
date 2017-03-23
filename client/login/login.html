@@ -1,5 +1,5 @@
 <div ng-controller="LoginCtrl">
-  <form class="container" ng-submit='addNewTest()'>
+  <form class="container" ng-submit='getSingleUser()'>
     <div class="row main">
       <div class="main-login main-center">
         <h5>Fun Learning!</h5>
@@ -11,7 +11,7 @@
               <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" ng-model="username"/>
             </div>
           </div>
-        
+
           <label for="password" class="cols-sm-2 control-label">Password</label>
           <div class="cols-sm-10">
             <div class="input-group">
@@ -19,12 +19,12 @@
               <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" ng-model="password"/>
             </div>
           </div>
-            
+
           <input type="submit" value = 'Login' id="button" class="btn btn-primary btn-lg btn-block login-button">
       </div>
     </div>
   </form>
-  <form class="text-center" ng-submit="addNewTest()">
+<!--   <form class="text-center" ng-submit="addNewTest()">
     Username:<br>
     <input type="text" ng-model="username"><br>
     Password:<br>
@@ -33,6 +33,6 @@
   </form>
   <a href="#/game">
     <span>Go to game</span>
-  </a>
+  </a> -->
 </div>
 

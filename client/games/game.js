@@ -1,7 +1,7 @@
 angular.module('funLearning.game', [])
   .controller('GameCtrl', ['$scope', 'UsersFactory', 'GameResultsFactory' ,function($scope, UsersFactory, GameResultsFactory){
 
-  //var game = new Phaser.Game(600, 410, Phaser.CANVAS, 'game-canvas', null, false);
+  var game = new Phaser.Game(600, 410, Phaser.CANVAS, 'game-canvas', null, false);
 
   GameState.Preload.prototype.getAvatar = function(){
     return UsersFactory.currentUser[0]["avatar"][0];
