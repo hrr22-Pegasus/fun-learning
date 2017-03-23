@@ -10,7 +10,7 @@ GameState.Preload.prototype = {
     //place all the booted items on the screen
     this.load.image('background', 'assets/forrest_background.png');
     this.load.spritesheet('kanye', this.avatarPath, 870/10, 166, 20,1,1);
-    //this.load.setPreloadSprite(this.preloadBar);
+    this.load.image('ghost', 'assets/apple.png');
 
   },
   create: function(){

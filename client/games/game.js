@@ -6,18 +6,18 @@ angular.module('funLearning.game', [])
 
 
   GameState.Preload.prototype.getAvatar = function(){
-    TestsFactory.getTest("Cheng");
+    // TestsFactory.getTest("Cheng");
 
     return UsersFactory.currentUser[0]["avatar"][0];
   };
 
-  GameState.Level1.prototype.getTeacher = function(){
-    return UsersFactory.currentUser[0]["teacher"] //returns teacher to be used to get test
-  };
+  // GameState.Level1.prototype.getTeacher = function(){
+  //   return UsersFactory.currentUser[0]["teacher"] //returns teacher to be used to get test
+  // };
 
-  GameState.Level1.prototype.getTestByTeacher = function(){
-    return TestsFactory.currentTest[0]['games']['game1']['test1']
-  };
+  // GameState.Level1.prototype.getTestByTeacher = function(){
+  //   return TestsFactory.currentTest[0]['games']['game1']['test1']
+  // };
 
 
   // GameState.Level1.prototype.saveResults = function(results){
