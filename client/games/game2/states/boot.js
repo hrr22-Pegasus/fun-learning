@@ -9,6 +9,6 @@ GameState2.Boot.prototype = {
     this.game.stage.backgroundColor = '#add8e6'
   },
   create: function() {
-    this.state.start('Preload');
+    this.state.start('MainMenu');
   }
 };

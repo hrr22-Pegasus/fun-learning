@@ -27,11 +27,9 @@ GameState2.Level1.prototype = {
       this.game.choice1 = this.game.add.text(150, 30, this.choices[0][0], {font: '20px Arial'});
       this.game.choice2 = this.game.add.text(190, 30, this.choices[0][1], {font: '20px Arial'});
       this.game.choice3 = this.game.add.text(230, 30, this.choices[0][2], {font: '20px Arial'});
-      this.choices.shift();
 
       // add answer to game object to retain access once click event fires
       this.game.answer = this.answerArray[0];
-      this.answerArray.shift();
 
       // add click events to choices
       this.game.choice1.inputEnabled = true;
@@ -45,22 +43,47 @@ GameState2.Level1.prototype = {
       this.percentage = this.testArray[0][0] / this.testArray[0][1];
       this.rad1 = 0;
       this.rad2 = Math.round(360 * this.percentage) + 6.5;
-      this.testArray.shift();
 
       // clear old pie and then draw the new one
       this.graphics.clear();
       this.graphics.beginFill(0x873655);
       this.graphics.arc(0, 0, 90, this.game.math.degToRad(this.rad2), this.game.math.degToRad(this.rad1), true);
       this.graphics.endFill();
+
+      // remove first item from each of the input arrays
+        // this is because the preceeding logic always checks the 0th element of each of these arrays
+      this.choices.shift();
+      this.testArray.shift();
+      this.answerArray.shift();
+      console.log('timer ran');
     };
 
     this.game.add.text(10, 30, 'Choose one: ', {font: '20px Arial'});
 
-    // Rerender the game after 3 seconds
-    this.game.time.events.repeat(Phaser.Timer.SECOND * 3, this.testArray.length - 1, this.renderGame, this);
+    // set renderGame to repeat
+    this.repeatTimer = this.game.time.create(false);
+    this.repeatTimer.start();
+    this.repeatTimer.repeat(Phaser.Timer.SECOND * 3, this.testArray.length - 1, this.renderGame, this);
+
+    // set length of the game
+    this.gameLengthTimer = this.game.time.create(false);
+    this.gameLengthTimer.start();
+    this.gameLengthTimer.add(Phaser.Timer.SECOND * 3, this.endOfGame, this);
+
+    // function for when the game ends
+
+    // this.lvl1Timer = this.game.time.create(false);
+    // this.lvl1Timer.start();
+    // this.lvl1Timer.onComplete.add(this.incrementCounter, this);
+    // this.lvl1Timer.repeat(Phaser.Timer.SECOND * 4, 10, this.objectDroppingFunction, this);
 
     // initialize the game
     this.renderGame();
+  },
+  endOfGame: function() {
+      console.log('in endOfGame');
+      // sends the results to the database once the game ends
+      this.sendGameData();
   },
   picked1: function() {
 
@@ -98,7 +121,8 @@ GameState2.Level1.prototype = {
     }
 
   },
-  render: function () {
+  sendGameData: function () {
+    console.log('game ended', this.game.correctAnswers, this.game.incorrectAnswers);
   }
 
 }

@@ -1,12 +1,18 @@
 angular.module('funLearning.game', [])
   .controller('GameCtrl', function($scope, UsersFactory, GameResultsFactory, TestsFactory){
 
-  var game = new Phaser.Game(600, 410, Phaser.CANVAS, 'game-canvas', null, false);
+    $scope.getGameResults = function() {
+      return GameResultsFactory.getGameResults().then(function(data) {
+        console.log('data response', data);
+        console.log('all game data', GameResultsFactory.allGameData);
+      });
+    };
+    // var game = new Phaser.Game(600, 410, Phaser.CANVAS, 'game-canvas', null, false);
 
-  GameState.Preload.prototype.getAvatar = function(){
+    // GameState.Preload.prototype.getAvatar = function(){
 
-    return UsersFactory.currentUser[0]["avatar"][0];
-  };
+    //   return UsersFactory.currentUser[0]["avatar"][0];
+    // };
 
   // // GameState.Level1.prototype.getTeacher = function(){
   // //   return UsersFactory.currentUser[0]["teacher"] //returns teacher to be used to get test
@@ -17,13 +23,13 @@ angular.module('funLearning.game', [])
   // // };
 
 
-  console.log("GameState", GameState);
-  game.state.add('Boot', GameState.Boot);
-  game.state.add('Preload', GameState.Preload);
-  game.state.add('MainMenu', GameState.MainMenu);
-  game.state.add('Level1', GameState.Level1);
+  // console.log("GameState", GameState);
+  // game.state.add('Boot', GameState.Boot);
+  // game.state.add('Preload', GameState.Preload);
+  // game.state.add('MainMenu', GameState.MainMenu);
+  // game.state.add('Level1', GameState.Level1);
 
-  game.state.start('Boot');
+  // game.state.start('Boot');
 
   var game2 = new Phaser.Game(300, 300, Phaser.CANVAS, 'phaser-example', null, false);
   GameState2.Level1.prototype.getTeacher = function(){

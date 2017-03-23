@@ -4,7 +4,6 @@ angular.module('funLearning', [
   'funLearning.dashboard',
   'funLearning.game',
   'funLearning.profile',
-  'funLearning.results',
   'funLearning.users',
   'funLearning.tests',
   'ngSanitize',
