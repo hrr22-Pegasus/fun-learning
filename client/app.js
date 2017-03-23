@@ -44,8 +44,8 @@ angular.module('funLearning', [
       controller: 'AnalyticsCtrl'
     })
     .otherwise({
-      templateUrl: 'signup/signup.html',
-      controller: 'SignupCtrl'
+      templateUrl: 'login/login.html',
+      controller: 'LoginCtrl'
     });
   $locationProvider.hashPrefix('');
 
