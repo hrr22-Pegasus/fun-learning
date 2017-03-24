@@ -113,7 +113,7 @@ GameState.Level1 = {
   //  Get a dead item
     var ghost = this.ghostsGroup.getFirstDead();
     if (ghost){
-      ghost.reset(80, 300);
+      ghost.reset(80, Math.floor(Math.random() * 300));
     }
   },
 

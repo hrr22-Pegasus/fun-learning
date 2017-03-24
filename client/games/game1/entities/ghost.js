@@ -20,7 +20,7 @@ Ghost = function(game, x, y, name){
 
 
   this.style = { font: "12px Arial", fill: "#ffffff" };
-  this.equation_text = this.game.add.text(-30, 10, this.equation, this.style);
+  this.equation_text = this.game.add.text(-20, 25, this.equation, this.style);
   this.addChild(this.equation_text);
 };
 
@@ -44,7 +44,8 @@ Ghost.prototype.checkValue = function(guess){
     if(parseInt(guess) === this.sum){
       console.log("they are equal!")
 
-      this.kill()
+      this.kill();
+      this.destroy();
       return true;
     }
   }
