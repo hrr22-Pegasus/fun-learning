@@ -1,11 +1,11 @@
-var GameState = GameState || {};
+var GameState3 = GameState3 || {};
 
-GameState.Boot = function(game){};
+GameState3.Boot = function(game){};
 
-GameState.Boot.prototype = {
+GameState3.Boot.prototype = {
 
   preload: function(){
-    this.game.stage.backgroundColor = '#ADD8E6'
+    this.game.stage.backgroundColor = '#000000'
   },
   create: function(){
     this.state.start('Preload');

@@ -1,11 +1,11 @@
-var GameState = GameState || {};
-GameState.MainMenu = function(game){};
+var GameState3 = GameState3 || {};
+GameState3.MainMenu = function(game){};
 
 
-GameState.MainMenu.prototype = {
+GameState3.MainMenu.prototype = {
   // preload: function(){}, //already did this
   create: function(){
-    this.background = this.game.add.sprite(0,0, 'background');
+    this.background = this.game.add.sprite(0,0, 'backgroundImage');
 
     //start game text
     var text = "Tap to begin";
@@ -17,7 +17,6 @@ GameState.MainMenu.prototype = {
   update: function(){
     if(this.game.input.activePointer.justPressed()) {
       this.game.state.start('Level1');
-      console.log("pressed")
     }
   }
 

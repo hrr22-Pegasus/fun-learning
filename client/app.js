@@ -36,6 +36,16 @@ angular.module('funLearning', [
       templateUrl: 'games/game3.html',
       controller: 'GameCtrl3'
     })
+    .when('/game3', {
+      templateUrl: 'games/game3.html',
+      controller: 'GameCtrl',
+      onEnter: function(Game) {
+        Game.playing = true;
+      },
+      onExit: function(Game) {
+        Game.playing = false;
+      }
+    })
     .when('/profile', {
       templateUrl: 'profile/profile.html',
       controller: 'ProfileCtrl'

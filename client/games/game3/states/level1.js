@@ -1,157 +1,198 @@
-var GameState = GameState || {};
-GameState.Level1 = function(game){};
+var GameState3 = GameState3 || {};
+GameState3.Level1 = function(game){};
 
-GameState.Level1.prototype = {
+GameState3.Level1.prototype = {
   // preload: function(){}, //already did this
   create: function(){
-    this.background = this.game.add.sprite(0, 0, 'background');
-    this.kanye = new Player(this.game, 500, 350, 'kanye');
-
-    // this.teacher = this.getTeacher();
-    // this.test = this.getTest(this.teacher);
-
-    this.test = [[0,1], [5,5], [3,3], [0,0]];
-
-    this.textStyle = { font: '25px Desyrel', align: 'center'}
-    this.time = this.game.add.text(0, 40, '0', this.textStyle);
-    this.seconds = 0;
+    this.background = this.game.add.tileSprite(0, 0, 1600, 1200, 'scrollingSpace');
+    this.ship = new Ship(this.game, 800, 1200, 'ship');
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.questions = ["The brain of the cell", "nucleus"]
 
 
-    this.gameStarted = false;
-    this.gameEnded = false;
+    this.mitochondria = new Enemy(this.game, Math.random()*1600, Math.random()* 800, 'mitochondria');
 
-    this.variable1 = this.test[0][0];
-    this.variable2 = this.test[0][1];
-    this.sum = this.variable1 + this.variable2
-    this.answers = [];
+     this.mitochondria.enableBody = true;
+    this.mitochondria.physicsBodyType = Phaser.Physics.ARCADE;
 
 
-    this.equation = "";
-    this.guess = "";
-    this.pointsScored = 0;
-    this.pointsAvailable = this.test.length;
+    this.chloroplast = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'chloroplast');
+    this.chloroplast.enableBody = true;
+    this.chloroplast.physicsBodyType = Phaser.Physics.ARCADE;
+
+    this.animalCell = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'animalCell');
+    this.animalCell.enableBody = true;
+    this.animalCell.physicsBodyType = Phaser.Physics.ARCADE;
 
 
-    this.equation_text = this.game.add.text(
-      this.game.width/2,
-      this.game.height/2,
-      this.equation,
-      { fontSize: '14px', fill: '#000' }
-    );
 
-    this.guess_text = this.game.add.text(
-      this.game.width/2 + 50,
-      this.game.height/2,
-      this.guess,
-      { fontSize: '14px', fill: '#000' }
-    );
+    this.plantCell = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'plantCell');
+    this.plantCell.enableBody = true;
+    this.plantCell.physicsBodyType = Phaser.Physics.ARCADE;
 
-    this.pointsScored_text = this.game.add.text(
-      this.game.width/2,
-      this.game.height/2 + 100,
-      "Score: " + this.pointsScored,
-      { fontSize: '14px', fill: '#000' }
-    );
+    this.nucleus = new Enemy(this.game, Math.random()*1600, Math.random()*400, 'nucleus');
+    this.nucleus.enableBody = true;
+    this.nucleus.physicsBodyType = Phaser.Physics.ARCADE;
+    this.nucleus.value = "nucleus"
+
+
+
+
+    this.golgicomplex = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'golgiComplex')
+    this.golgicomplex.enableBody = true;
+    this.golgicomplex.physicsBodyType = Phaser.Physics.ARCADE;
+
+
+    this.dna = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'dna');
+    this.dna.enableBody = true;
+    this.dna.physicsBodyType = Phaser.Physics.ARCADE;
+
+
+
+    this.cursors = this.game.input.keyboard.createCursorKeys();
+    this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+    this.bullets = this.game.add.group();
+    this.bullets.enableBody = true;
+    this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
+    this.bullets.createMultiple(30, 'bullet');
+    this.bullets.setAll('anchor.x', 0.5);
+    this.bullets.setAll('anchor.y', 1);
+    this.bullets.setAll('outOfBoundsKill', true);
+    this.bullets.setAll('checkWorldBounds', true);
+    this.bulletTime = 0;
+    this.scoreString = 'Score: ';
+    this.score = 0;
+    this.scoreText = this.game.add.text(this.game.world.width - 200, 10, this.scoreString + this.score, { font: '34px Arial', fill: '#fff' });
+    this.game.add.text(this.game.world.width - 200, 1100, 'Question : ', { font: '34px Arial', fill: '#fff' });
+
+    this.answers = this.game.add.group();
+    this.answers.enableBody = true;
+    this.answers.physicsBodyType = Phaser.Physics.ARCADE;
+
+
+    this.moveAnswers();
   },
 
-  update: function(){
-    this.updateTimer();
+  update: function() {
 
-    if(this.input.keyboard.pressEvent && !this.gameEnded){
-      if(!this.gameStarted){
-        this.setVariables();
-        this.createEquation();
-        this.gameStarted = true;
-      } else {
+    this.background.tilePosition.y += 2;
 
-        this.ev = this.input.keyboard.pressEvent
-        this.addKeyToGuessString(this.ev.key);
 
-        if(this.guess.length === this.sum.toString().length){
-          if(this.correctAnswer()){
-            this.pointsScored += 1;
-            this.answers.push(1);
-          } else {
-            this.answers.push(0);
-          }
-          this.guess = "";
-          this.test.shift();
-          console.log("test array", this.test);
-          this.setVariables();
-          this.createEquation();
-        }
+    if (this.ship.alive) {
+      this.ship.body.velocity.setTo(0, 0);
+
+      if (this.cursors.left.isDown) {
+        this.ship.body.velocity.x = -400;
+      } else if (this.cursors.right.isDown) {
+        this.ship.body.velocity.x = 300;
+      }
+      if (this.fireButton.isDown) {
+        this.fireBullet();
+      }
+      if (this.game.time.now > this.firingTimer) {
+        this.enemyFires();
       }
     }
-    this.input.keyboard.pressEvent = null;
+
+    this.game.physics.arcade.overlap(this.bullets, this.mitochondria, this.collisionHandlerMitochondria, null, this);
+    this.game.physics.arcade.overlap(this.bullets, this.chloroplast, this.collisionHandlerChloroplast, null, this);
+    this.game.physics.arcade.overlap(this.bullets, this.nucleus, this.collisionHandlerNucleus, null, this);
+    this.game.physics.arcade.overlap(this.bullets, this.animalCell, this.collisionHandlerAnimalCell, null, this);
+    this.game.physics.arcade.overlap(this.bullets, this.plantCell, this.collisionHandlerPlantCell, null, this);
+    this.game.physics.arcade.overlap(this.bullets, this.nucleus, this.collisionHandlerNucleus, null, this);
+    this.game.physics.arcade.overlap(this.bullets, this.dna, this.collisionHandlerDna, null, this);
+    this.game.physics.arcade.overlap(this.bullets, this.golgicomplex, this.collisionHandlerGolgiComplex, null, this);
   },
 
-  correctAnswer: function(){
-    return parseInt(this.guess) === this.sum;
-  },
+  fireBullet: function() {
 
+      //  To avoid them being allowed to fire too fast we set a time limit
+    if (this.game.time.now > this.bulletTime) {
+          //  Grab the first bullet we can from the pool
+      this.bullet = this.bullets.getFirstExists(false);
 
-  updateTimer: function(){
-    var seconds = Math.floor(this.game.time.time / 1000) % 60
-    this.time.text = seconds;
-    this.renderText()
-  },
-
-  createEquation: function(){
-    if(this.test[0]){
-      this.equation = "" + this.variable1 + " + " + this.variable2 + " = ";
-      this.sum = this.variable1 + this.variable2;
-      this.equation_text.text = this.equation;
-      this.renderText();
+      if (this.bullet) {
+        this.bullet.reset(this.ship.x, this.ship.y + 8);
+        this.bullet.body.velocity.y = -1000;
+        this.bulletTime = this.game.time.now + 200;
+      }
     }
+
+
   },
 
-  // randomizeVariables: function(){
-  //   this.variable1 = Math.floor(Math.random() * 10);
-  //   this.variable2 = Math.floor(Math.random() * 10);
-  // },
+  resetBullet: function(bullet) {
+    this.bullet.kill();
+  },
+  moveAnswers: function() {
+    this.tween = this.game.add.tween(this.chloroplast).to( { x: 200 }, Math.random()*4000+1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
-  setVariables: function(){
-    if(this.test[0]){
-      this.variable1 = this.test[0][0];
-      this.variable2 = this.test[0][1];
-      this.renderText();
-    } else {
-      this.gameOver();
-    }
+    this.tween2 = this.game.add.tween(this.golgicomplex).to( { x: 200 }, Math.random()*4000+1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+    this.tween3 = this.game.add.tween(this.animalCell).to( { x: 200 }, Math.random()*4000+1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+    this.tween4 = this.game.add.tween(this.plantCell).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+    this.tween5 = this.game.add.tween(this.nucleus).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1000, true);
+
+    this.tween6 = this.game.add.tween(this.mitochondria).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 1500, true);
+
+    this.tween7 = this.game.add.tween(this.dna).to( { x: 200 }, 2000, Phaser.Easing.Linear.None, true, 0, 2500, true);
+
   },
 
-  addKeyToGuessString: function(key){
-    this.guess += key;
-    console.log("this.guess after adding key: ", this.guess)
-    this.renderText()
+
+  collisionHandlerMitochondria: function(bullet, mitochondria, animalCell,chloroplast) {
+    this.bullet.kill();
+    this.mitochondria.kill();
+    this.score+=1;
+    this.scoreText.text = this.scoreString + this.score
+    console.log("Collision!");
+
   },
-  renderText: function(){
-    this.equation_text.text = this.equation;
-    this.guess_text.text = this.guess;
-    this.pointsScored_text.text = "Score: " + this.pointsScored;
+  collisionHandlerChloroplast: function(bullet, chloroplast) {
+    this.bullet.kill();
+    this.chloroplast.kill();
+    this.score+=1;
+    console.log("Collision!");
+    this.scoreText.text = this.scoreString + this.score
   },
-
-  gameOver: function(){
-    this.gameEnded = true;
-    this.equation_text.text = "YOU WON";
-    this.guess_text.text = "";
-    this.renderText();
-
-    console.log("Game Over");
-    // this.saveResults(
-    //   {
-    //     "time": this.time,
-    //     "pointsScored": this.pointsScored,
-    //     "pointsAvailable": this.pointsAvailable,
-    //     "answers": this.answers,
-    //     "feeling": 3
-    //   }
-    //   );
-    // this.sendResults()
-
+  collisionHandlerAnimalCell: function(bullet, animalCell) {
+    this.bullet.kill();
+    this.animalCell.kill();
+    this.score+=1;
+    console.log("Collision!");
+    this.scoreText.text = this.scoreString + this.score;
+  },
+  collisionHandlerPlantCell: function(bullet, plantCell) {
+    this.bullet.kill();
+    this.plantCell.kill();
+    this.score+=1;
+    console.log("Collision!");
+    this.scoreText.text = this.scoreString + this.score;
+  },
+  collisionHandlerDna: function(bullet, dna) {
+    this.bullet.kill();
+    this.dna.kill();
+    this.score+=1;
+    console.log("Collision!");
+    this.scoreText.text = this.scoreString + this.score;
+  },
+  collisionHandlerGolgiComplex: function(bullet, golgicomplex) {
+    this.bullet.kill();
+    this.golgicomplex.kill();
+    this.score+=1;
+    console.log("Collision!");
+    this.scoreText.text = this.scoreString + this.score;
+  },
+  collisionHandlerNucleus: function(bullet, nucleus) {
+    this.bullet.kill();
+    this.nucleus.kill();
+    this.score+=1;
+    console.log("Collision!");
+    this.scoreText.text = this.scoreString + this.score;
   }
-
-
 
 };
 
