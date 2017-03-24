@@ -17,7 +17,7 @@
     avatar: Array,
 
     //game related logic
-    gameResults: Array,
+    gameResults: Object,
     badges: Array,
     friends: Array,
     sessionLength: Array

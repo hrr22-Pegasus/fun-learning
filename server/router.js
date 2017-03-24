@@ -14,10 +14,12 @@ router.post('/api/results/:gameName/:userName', function(req, res) {
   for(var key in req.body) {
     gameData[key] = req.sanitize(req.body[key]);
   }
+  var query = {};
+  query['gameResults.' + gameName] = gameData;
   // find user, User.findOne()
   // check for the game,
   // add the game data User.update({'gameResults.game1'})
-  User.findOneAndUpdate({'username': userName}, {$push: {'gameResults': gameData}}, function(err, data) {
+  User.findOneAndUpdate({'username': userName}, {$push: query}, function(err, data) {
     if (err) {
       console.error(err);
     } else {

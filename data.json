@@ -12,13 +12,21 @@
     "school": "Hrr",
     "dateJoined": "03-25-2017",
     "avatar": ["../assets/bear_animation_test.png"],
-    "gameResults": [
-      {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
-      {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
-      {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 },
-      {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
-      {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
-    ],
+    "gameResults": {
+      "game1": [
+        {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
+        {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
+      ],
+      "game2": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ],
+      "game3": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ]
+    },
     "badges": [],
     "friends": [],
     "sessionLength": []
@@ -36,13 +44,21 @@
     "school": "Hrr",
     "dateJoined": "03-25-2017",
     "avatar": ["../assets/bear_animation_test.png"],
-    "gameResults": [
-      {"livesUsed": 2, "time": 29, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2},
-      {"livesUsed": 1, "time": 22, "pointsScored": 10, "pointsAvailable": 14, "feeling": 3},
-      {"livesUsed": 2, "time": 21, "pointsScored": 12, "pointsAvailable": 14, "feeling": 4 },
-      {"livesUsed": 3, "time": 40, "pointsScored": 7, "pointsAvailable": 14, "feeling": 1},
-      {"livesUsed": 0, "time": 34, "pointsScored": 12, "pointsAvailable": 14, "feeling": 5 }
-    ],
+    "gameResults": {
+      "game1": [
+        {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
+        {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
+      ],
+      "game2": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ],
+      "game3": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ]
+    },
     "badges": [],
     "friends": [],
     "sessionLength": []
@@ -60,13 +76,21 @@
     "school": "Hrr",
     "dateJoined": "03-25-2017",
     "avatar": ["../assets/bear_animation_test.png"],
-    "gameResults": [
-      {"livesUsed": 3, "time": 15, "pointsScored": 2, "pointsAvailable": 14, "feeling": 2},
-      {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 5},
-      {"livesUsed": 2, "time": 28, "pointsScored": 12, "pointsAvailable": 14, "feeling": 1},
-      {"livesUsed": 3, "time": 20, "pointsScored": 9, "pointsAvailable": 14, "feeling": 2},
-      {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 3}
-    ],
+    "gameResults": {
+      "game1": [
+        {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
+        {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
+      ],
+      "game2": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ],
+      "game3": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ]
+    },
     "badges": [],
     "friends": [],
     "sessionLength": []
@@ -84,13 +108,21 @@
     "school": "Hrr",
     "dateJoined": "03-25-2017",
     "avatar": ["../assets/bear_animation_test.png"],
-    "gameResults": [
-      {"livesUsed": 3, "time": 15, "pointsScored": 4, "pointsAvailable": 14, "feeling": 3},
-      {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 5},
-      {"livesUsed": 2, "time": 28, "pointsScored": 12, "pointsAvailable": 14, "feeling": 4 },
-      {"livesUsed": 3, "time": 20, "pointsScored": 9, "pointsAvailable": 14, "feeling": 4},
-      {"livesUsed": 0, "time": 34, "pointsScored": 12, "pointsAvailable": 14, "feeling": 4 }
-    ],
+    "gameResults": {
+      "game1": [
+        {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
+        {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
+      ],
+      "game2": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ],
+      "game3": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ]
+    },
     "badges": [],
     "friends": [],
     "sessionLength": []
@@ -108,13 +140,21 @@
     "school": "Hrr",
     "dateJoined": "03-25-2017",
     "avatar": ["../assets/bear_animation_test.png"],
-    "gameResults": [
-      {"livesUsed": 3, "time": 45, "pointsScored": 8, "pointsAvailable": 14, "feeling": 3},
-      {"livesUsed": 2, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 5},
-      {"livesUsed": 2, "time": 28, "pointsScored": 12, "pointsAvailable": 14, "feeling": 4 },
-      {"livesUsed": 1, "time": 23, "pointsScored": 12, "pointsAvailable": 14, "feeling": 1},
-      {"livesUsed": 0, "time": 20, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
-    ],
+    "gameResults": {
+      "game1": [
+        {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
+        {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
+      ],
+      "game2": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ],
+      "game3": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ]
+    },
     "badges": [],
     "friends": [],
     "sessionLength": []
@@ -132,13 +172,21 @@
     "school": "Hrr",
     "dateJoined": "03-25-2017",
     "avatar": ["../assets/bear_animation_test.png"],
-    "gameResults": [
-      {"livesUsed": 3, "time": 18, "pointsScored": 8, "pointsAvailable": 14, "feeling": 3},
-      {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
-      {"livesUsed": 2, "time": 27, "pointsScored": 9, "pointsAvailable": 14, "feeling": 4 },
-      {"livesUsed": 3, "time": 21, "pointsScored": 9, "pointsAvailable": 14, "feeling": 3},
-      {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 5 }
-    ],
+    "gameResults": {
+      "game1": [
+        {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
+        {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
+      ],
+      "game2": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ],
+      "game3": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ]
+    },
     "badges": [],
     "friends": [],
     "sessionLength": []
@@ -156,13 +204,21 @@
     "school": "Hrr",
     "dateJoined": "03-25-2017",
     "avatar": ["../assets/bear_animation_test.png"],
-    "gameResults": [
-      {"livesUsed": 3, "time": 15, "pointsScored": 2, "pointsAvailable": 14, "feeling": 3},
-      {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 5},
-      {"livesUsed": 2, "time": 28, "pointsScored": 12, "pointsAvailable": 14, "feeling": 4 },
-      {"livesUsed": 3, "time": 20, "pointsScored": 9, "pointsAvailable": 14, "feeling": 1},
-      {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 5 }
-    ],
+    "gameResults": {
+      "game1": [
+        {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
+        {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
+      ],
+      "game2": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ],
+      "game3": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ]
+    },
     "badges": [],
     "friends": [],
     "sessionLength": []
@@ -180,13 +236,21 @@
     "school": "Hrr",
     "dateJoined": "03-25-2017",
     "avatar": ["../assets/bear_animation_test.png"],
-    "gameResults": [
-      {"livesUsed": 3, "time": 15, "pointsScored": 4, "pointsAvailable": 14, "feeling": 1},
-      {"livesUsed": 3, "time": 25, "pointsScored": 4, "pointsAvailable": 14, "feeling": 1},
-      {"livesUsed": 2, "time": 28, "pointsScored": 8, "pointsAvailable": 14, "feeling": 2 },
-      {"livesUsed": 3, "time": 20, "pointsScored": 9, "pointsAvailable": 14, "feeling": 3},
-      {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 5 }
-    ],
+    "gameResults": {
+      "game1": [
+        {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
+        {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
+      ],
+      "game2": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ],
+      "game3": [
+        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+      ]
+    },
     "badges": [],
     "friends": [],
     "sessionLength": []
