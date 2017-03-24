@@ -1,7 +1,5 @@
 angular.module('funLearning.login', [])
-  .controller('LoginCtrl',['$scope', '$sanitize', 'UsersFactory', 'TestsFactory', function($scope, $sanitize, UsersFactory, TestsFactory){
-    var interval;
-
+  .controller('LoginCtrl', function($scope, $sanitize, UsersFactory) {
 
     // $scope.setUser = function(username, password) {
     //   console.log("setUser in scope")
@@ -16,16 +14,12 @@ angular.module('funLearning.login', [])
       return UsersFactory.getCurrentUser(username, password);
     };
 
-
-    $scope.getLeaderBoard = function(){
+    $scope.getLeaderBoard = function() {
     };
-
 
     UsersFactory.getAllUsers();
 
-
-
-}]);
+});
 
 
       // $scope.validateUser = function(){
