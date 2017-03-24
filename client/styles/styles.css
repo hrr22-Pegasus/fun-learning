@@ -6,8 +6,8 @@ login
 	position: relative;
   height: 700px;
   width: 100%;
-	background: url("/styles/img/background.jpg");
-	background-color: #AFEEEE;
+/*	background: url("/styles/img/background.jpg");*/
+	background-color:#89C4F4;
   background-size: cover;
 }
 
@@ -22,7 +22,7 @@ login
 	right: 0;
 	position: absolute;
 	margin: 5rem auto;
-	margin-top: 8rem;
+	margin-top: 6.7rem;
 	background-color: white;
 }
 
@@ -42,6 +42,12 @@ input {
 	border-radius: 0.6rem;
 	border: none;
 	font-family: 'Baloo Bhaina', cursive;
+
+}
+
+label {
+	text-align: left;
+  font-family: 'Baloo Bhaina', cursive;
 
 }
 
@@ -91,4 +97,31 @@ h4 {
 /*
 signup
 */
+
+.signup {
+	position: relative;
+  height: 700px;
+  width: 100%;
+/*	background: url("/styles/img/background.jpg");*/
+	background-color: #89C4F4;
+}
+
+
+.signupform {
+	text-align: center;
+	width: 55rem;
+	height: 60rem;
+	border-radius: 0.8rem;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+		margin-top: 5rem;
+
+	margin: 5rem auto;
+	background-color: white;
+	padding: 5px;
+}
+
 
