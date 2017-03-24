@@ -1,14 +1,7 @@
 <div>
-  <h2> dashboard.html </h2>
+  <h2> dashboard </h2>
+  <button ng-click="changeLocation('/game')">Game1</button>
+  <button ng-click="changeLocation('/game2')">Game2</button>
+  <button ng-click="changeLocation('/game3')">Game3</button>
+  <button ng-click="changeLocation('/analytics')">Analytics</button>
 </div>
-
-<div ng-controller="DashboardCtrl">
-  <h2> Dashboard.html </h2>
-
-  <form class="text-center" ng-submit="getTest()">
-    Teacher:<br>
-    <input type="text" ng-model="teacher"><br>
-    games:<br>
-    <input type="test" ng-model="games"><br>
-    <input type="submit" value="sendTest">
-  </form>

@@ -9,10 +9,6 @@ GameState.GameOver.prototype = {
 
     this.user = this.getUsername();
     console.log("this.user from gameover state: ", this.user);
-    this.game = "game1"
-
-
-    this.game.stage.backgroundColor = '#add8e6'
 
     this.option1 = new Option(this.game, 50, 50, 'option1');
     this.option1.value = 1;

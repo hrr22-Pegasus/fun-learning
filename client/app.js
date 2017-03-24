@@ -26,13 +26,15 @@ angular.module('funLearning', [
     })
     .when('/game', {
       templateUrl: 'games/game.html',
-      controller: 'GameCtrl',
-      onEnter: function(Game) {
-        Game.playing = true;
-      },
-      onExit: function(Game) {
-        Game.playing = false;
-      }
+      controller: 'GameCtrl'
+    })
+    .when('/game2', {
+      templateUrl: 'games/game2.html',
+      controller: 'GameCtrl2'
+    })
+    .when('/game3', {
+      templateUrl: 'games/game3.html',
+      controller: 'GameCtrl3'
     })
     .when('/profile', {
       templateUrl: 'profile/profile.html',

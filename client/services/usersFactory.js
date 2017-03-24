@@ -29,7 +29,7 @@ angular.module('funLearning.users', [])
         //
         if (res.data) {
           currentUser.push(res.data);
-          $location.path('/game');
+          $location.path('/dashboard');
         } else {
           alert('login didn\'t work! If you haven\'t created account, please create!');
           $location.path('/login');

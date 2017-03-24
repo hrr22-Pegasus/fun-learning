@@ -12,6 +12,7 @@ GameState2.Level1.prototype = {
     this.game.score = 0;
     this.game.correctAnswers = 0;
     this.game.incorrectAnswers = 0;
+    this.gameTime = this.testArray.length * 3;
 
     // create function for rendering the game
     this.renderGame = function () {
@@ -42,6 +43,7 @@ GameState2.Level1.prototype = {
       // calculate the percentage of the circle needing to be displayed
       this.percentage = this.testArray[0][0] / this.testArray[0][1];
       this.rad1 = 0;
+      // there is an issue with phaser rendering the graphic, adding 6.5 makes the graphic the most consistent across the three different stages
       this.rad2 = Math.round(360 * this.percentage) + 6.5;
 
       // clear old pie and then draw the new one
@@ -68,7 +70,7 @@ GameState2.Level1.prototype = {
     // set length of the game
     this.gameLengthTimer = this.game.time.create(false);
     this.gameLengthTimer.start();
-    this.gameLengthTimer.add(Phaser.Timer.SECOND * 11, this.endOfGame, this);
+    this.gameLengthTimer.add(Phaser.Timer.SECOND * this.testArray.length * 3, this.endOfGame, this);
 
     // initialize the game
     this.renderGame();
@@ -115,14 +117,20 @@ GameState2.Level1.prototype = {
 
   },
   sendGameData: function () {
-    console.log('game ended', this.game.correctAnswers, this.game.incorrectAnswers);
+    // creates data object containing all the data gathered by this game
     var data = {
-      'livesUsed': this.game.incorrectAnswers || 0,
-      'time': 9,
+      'livesUsed': this.game.incorrectAnswers,
+      'time': this.gameTime,
       'pointsScored': this.game.correctAnswers,
       'pointsAvailable': this.game.correctAnswers + this.game.incorrectAnswers,
-      'feeling': 4
+      'feeling': 0
     };
+    // resets game
+    this.graphics.clear();
+    this.game.choice1.destroy();
+    this.game.choice2.destroy();
+    this.game.choice3.destroy();
+    //calls the gameover state to finish gathering data
     this.game.state.start('GameOver', null, null, data);
   }
 }

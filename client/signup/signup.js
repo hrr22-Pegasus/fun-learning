@@ -18,11 +18,12 @@ angular.module('funLearning.signup', [])
     // };
     $scope.addUser = function() {
       var user = {
-        firstName: $sanitize($scope.firstName),
-        lastName: $sanitize($scope.lastName),
+        firstName: $sanitize($scope.firstname),
+        lastName: $sanitize($scope.lastname),
         password: $sanitize($scope.password),
         username: $sanitize($scope.username),
         birthday: $sanitize($scope.birthday),
+        avatar: ['../assets/bear_animation_test.png'],
         gender: $sanitize($scope.gender),
         isAdministator: $sanitize($scope.isAdministrator),
         letterGrade: $sanitize($scope.letterGrade),
