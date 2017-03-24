@@ -34,7 +34,7 @@ angular.module('funLearning', [
     })
     .when('/game3', {
       templateUrl: 'games/game3.html',
-      controller: 'GameCtrl'
+      controller: 'GameCtrl3'
     })
     .when('/profile', {
       templateUrl: 'profile/profile.html',

@@ -69,18 +69,27 @@ angular.module('funLearning.game', [])
       return GameResultsFactory.getGameResults().then(function(data) {
         console.log('data response', data);
         console.log('all game data', GameResultsFactory.allGameData);
-           var game3 = new Phaser.Game(1600, 1200, Phaser.CANVAS, 'game3', null, false);
+    });
+};
 
-     var game3 = new Phaser.Game(1600, 1400, Phaser.CANVAS, 'game3', null, false);
-     GameState3.Level1.prototype.getTest = function(teacher){
-      return TestsFactory.getTest(teacher);
-  };
+var game3 = new Phaser.Game(1600, 1400, Phaser.CANVAS, 'game-3', null, false);
+
+  GameState3.GameOver.prototype.addResult = function(gameName, userName, data) {
+      console.log('game: ', gameName, 'user: ', userName, 'data: ', data);
+      return GameResultsFactory.addNewResult(gameName, userName, data);
+    }
+
+    GameState3.GameOver.prototype.getUsername = function(){
+      return UsersFactory.currentUser[0]["username"];
+    };
+
+
     game3.state.add('Boot', GameState3.Boot);
     game3.state.add('Preload', GameState3.Preload);
     game3.state.add('MainMenu', GameState3.MainMenu);
     game3.state.add('Level1', GameState3.Level1);
-
+    game3.state.add('GameOver', GameState3.GameOver);
     game3.state.start('Boot');
-      });
-    };
   });
+
+

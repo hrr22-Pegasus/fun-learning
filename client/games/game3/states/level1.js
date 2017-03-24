@@ -71,8 +71,8 @@ GameState3.Level1.prototype = {
     this.bullets.setAll('checkWorldBounds', true);
     this.bulletTime = 0;
     this.scoreString = 'Score: ';
-    this.score = 0;
-    this.scoreText = this.game.add.text(this.game.world.width - 200, 10, this.scoreString + this.score, { font: '34px Arial', fill: '#fff' });
+    this.game.score = 0;
+    this.scoreText = this.game.add.text(this.game.world.width - 200, 10, this.scoreString + this.game.score, { font: '34px Arial', fill: '#fff' });
     this.questionString = "Question: ";
     this.questionToAsk = this.game.questions[0];
     this.questionText =  this.game.add.text(10, 1000,  this.questionString + this.questionToAsk, { font: '34px Arial', fill: '#fff' });
@@ -158,22 +158,26 @@ GameState3.Level1.prototype = {
   collisionHandlerMitochondria: function(bullet, mitochondria) {
 
     if (this.mitochondria.value === this.game.answers[0]) {
-       this.score+=1;
+       this.game.score+=1;
     }
     this.bullet.kill();
     this.mitochondria.kill();
     this.game.questions.shift();
     this.game.answers.shift();
 
-    this.scoreText.text = this.scoreString + this.score;
+    this.scoreText.text = this.scoreString + this.game.score;
     this.questionToAsk = this.game.questions[0];
+    if (this.game.questions[0] === "GAME OVER") {
+      this.sendGameData();
+    }
+
     this.questionText.text = this.questionString + this.questionToAsk;
 
   },
   collisionHandlerChloroplast: function(bullet, chloroplast) {
 
     if (this.chloroplast.value === this.game.answers[0]) {
-       this.score+=1;
+       this.game.score+=1;
     }
     this.bullet.kill();
     this.chloroplast.kill();
@@ -181,14 +185,17 @@ GameState3.Level1.prototype = {
     this.game.answers.shift();
 
     console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.score;
+    this.scoreText.text = this.scoreString + this.game.score;
     this.questionToAsk = this.game.questions[0];
+    if (this.game.questions[0] === "GAME OVER") {
+      this.sendGameData();
+    }
 
     this.questionText.text = this.questionString + this.questionToAsk;
   },
   collisionHandlerAnimalCell: function(bullet, animalCell) {
     if (this.animalCell.value === this.game.answers[0]) {
-       this.score+=1;
+       this.game.score+=1;
     }
     this.bullet.kill();
     this.animalCell.kill();
@@ -197,14 +204,17 @@ GameState3.Level1.prototype = {
 
 
     console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.score;
+    this.scoreText.text = this.scoreString + this.game.score;
     this.questionToAsk = this.game.questions[0];
+    if (this.game.questions[0] === "GAME OVER") {
+      this.sendGameData();
+    }
 
     this.questionText.text = this.questionString + this.questionToAsk;
   },
   collisionHandlerPlantCell: function(bullet, plantCell) {
     if (this.plantCell.value === this.game.answers[0]) {
-       this.score+=1;
+       this.game.score+=1;
     }
     this.bullet.kill();
     this.plantCell.kill();
@@ -212,15 +222,18 @@ GameState3.Level1.prototype = {
     this.game.answers.shift();
 
     console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.score;
+    this.scoreText.text = this.scoreString + this.game.score;
     this.questionToAsk = this.game.questions[0];
+    if (this.game.questions[0] === "GAME OVER") {
+      this.sendGameData();
+    }
 
     this.questionText.text = this.questionString + this.questionToAsk;
 
   },
   collisionHandlerDna: function(bullet, dna) {
     if (this.dna.value === this.game.answers[0]) {
-       this.score+=1;
+       this.game.score+=1;
     }
     this.bullet.kill();
     this.dna.kill();
@@ -228,14 +241,17 @@ GameState3.Level1.prototype = {
     this.game.answers.shift();
 
     console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.score;
+    this.scoreText.text = this.scoreString + this.game.score;
     this.questionToAsk = this.game.questions[0];
+    if (this.game.questions[0] === "GAME OVER") {
+      this.sendGameData();
+    }
 
     this.questionText.text = this.questionString + this.questionToAsk;
   },
   collisionHandlerGolgiComplex: function(bullet, golgicomplex) {
     if (this.golgicomplex.value === this.game.answers[0]) {
-       this.score+=1;
+       this.game.score+=1;
     }
     this.bullet.kill();
     this.golgicomplex.kill();
@@ -243,25 +259,45 @@ GameState3.Level1.prototype = {
     this.game.answers.shift();
 
     console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.score;
+    this.scoreText.text = this.scoreString + this.game.score;
     this.questionText.text = this.questionString + this.questionToAsk;
     this.questionToAsk = this.game.questions[0];
+    if (this.game.questions[0] === "GAME OVER") {
+      this.sendGameData();
+    }
     console.log(this.questionToAsk);
 
   },
   collisionHandlerNucleus: function(bullet, nucleus) {
     if (this.nucleus.value === this.game.answers[0]) {
-       this.score+=1;
+       this.game.score+=1;
     }
     this.bullet.kill();
     this.nucleus.kill();
     this.game.questions.shift();
     this.game.answers.shift();
 
-    this.scoreText.text = this.scoreString + this.score;
+    this.scoreText.text = this.scoreString + this.game.score;
     this.questionToAsk = this.game.questions[0];
+    if (this.game.questions[0] === "GAME OVER") {
+      this.sendGameData();
+    }
     this.questionText.text = this.questionString + this.questionToAsk;
-  }
+  },
+
+  sendGameData: function () {
+  // creates data object containing all the data gathered by this game
+  var data = {
+    'livesUsed': 0,
+    'time': this.gameTime,
+    'pointsScored': this.game.score,
+    'pointsAvailable': 7,
+    'feeling': 0
+  };
+
+  //calls the gameover state to finish gathering data
+  this.game.state.start('GameOver', null, null, data);
+}
 
 };
 
