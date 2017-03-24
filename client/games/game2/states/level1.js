@@ -12,6 +12,7 @@ GameState2.Level1.prototype = {
     this.game.score = 0;
     this.game.correctAnswers = 0;
     this.game.incorrectAnswers = 0;
+    this.gameTime = this.testArray.length * 3;
 
     // create function for rendering the game
     this.renderGame = function () {
@@ -68,7 +69,7 @@ GameState2.Level1.prototype = {
     // set length of the game
     this.gameLengthTimer = this.game.time.create(false);
     this.gameLengthTimer.start();
-    this.gameLengthTimer.add(Phaser.Timer.SECOND * 11, this.endOfGame, this);
+    this.gameLengthTimer.add(Phaser.Timer.SECOND * this.testArray.length * 3, this.endOfGame, this);
 
     // initialize the game
     this.renderGame();
@@ -115,14 +116,14 @@ GameState2.Level1.prototype = {
 
   },
   sendGameData: function () {
-    console.log('game ended', this.game.correctAnswers, this.game.incorrectAnswers);
+    console.log('game ended livesused', this.game.incorrectAnswers);
     var data = {
       'livesUsed': this.game.incorrectAnswers || 0,
-      'time': 9,
+      'time': this.gameTime,
       'pointsScored': this.game.correctAnswers,
       'pointsAvailable': this.game.correctAnswers + this.game.incorrectAnswers,
       'feeling': 4
     };
-    this.game.state.start('GameOver', null, null, data);
+    //this.game.state.start('GameOver', null, null, data);
   }
 }
