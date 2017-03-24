@@ -42,15 +42,17 @@ angular.module('funLearning.game', [])
     //   return TestsFactory.currentTest[0]['games']['game1']['test1']
     // };
 
+  })
+  .controller('GameCtrl2', function($scope, UsersFactory, GameResultsFactory, TestsFactory){
+
+    $scope.getGameResults = function() {
+      return GameResultsFactory.getGameResults().then(function(data) {
+        console.log('data response', data);
+        console.log('all game data', GameResultsFactory.allGameData);
+      });
+    };
+
     var game2 = new Phaser.Game(600, 600, Phaser.CANVAS, 'phaser-example', null, false);
-
-    // GameState2.Level1.prototype.getTeacher = function(){
-    //   return UsersFactory.currentUser[0]["teacher"] //returns teacher to be used to get test
-    // };
-
-    // GameState2.Level1.prototype.getTest = function(teacher){
-    //   return TestsFactory.getTest(teacher);
-    // };
 
     GameState2.GameOver.prototype.addResult = function(gameName, userName, data) {
       console.log('game: ', gameName, 'user: ', userName, 'data: ', data);
@@ -67,5 +69,14 @@ angular.module('funLearning.game', [])
     game2.state.add('Level1', GameState2.Level1);
     game2.state.add('GameOver', GameState2.GameOver);
     game2.state.start('Boot');
+  })
+  .controller('GameCtrl3', function($scope, UsersFactory, GameResultsFactory, TestsFactory){
 
-  });
+    $scope.getGameResults = function() {
+      return GameResultsFactory.getGameResults().then(function(data) {
+        console.log('data response', data);
+        console.log('all game data', GameResultsFactory.allGameData);
+      });
+    };
+
+  })
