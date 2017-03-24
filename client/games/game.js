@@ -57,6 +57,10 @@ angular.module('funLearning.game', [])
       return GameResultsFactory.addNewResult(gameName, userName, data);
     }
 
+    GameState2.GameOver.prototype.getUsername = function(){
+      return UsersFactory.currentUser[0]["username"];
+    };
+
     game2.state.add('Boot', GameState2.Boot);
     game2.state.add('Preload', GameState2.Preload);
     game2.state.add('MainMenu', GameState2.MainMenu);

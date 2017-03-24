@@ -6,8 +6,10 @@ GameState2.GameOver.prototype = {
     this.data = gameResults;
   },
   create: function() {
-    this.game.stage.backgroundColor = '#add8e6'
 
+    this.user = this.getUsername();
+
+    // creates a new option from the options entity
     this.option1 = new Option(this.game, 50, 50, 'option1');
     this.option1.value = 1;
 
@@ -23,9 +25,7 @@ GameState2.GameOver.prototype = {
     this.option5 = new Option(this.game, 450, 50, 'option5');
     this.option5.value = 5;
 
-    console.log(this.option1.value);
-    //this.picked = null;
-
+    // adds the equivalent of event listeners to each of the options
     this.option1.inputEnabled = true;
     this.option2.inputEnabled = true;
     this.option3.inputEnabled = true;
@@ -39,10 +39,8 @@ GameState2.GameOver.prototype = {
     this.option5.events.onInputDown.add(this.sendData, this);
   },
   sendData: function(option) {
-    console.log('option1 clicked in gameover', option)
     this.data.feeling = option.value;
-    console.log(this.data);
-    this.addResult('game2', 'jesseKingOfTheHill', this.data);
+    this.addResult('game2', this.user, this.data);
     this.game.state.start('MainMenu');
   },
   setPicked: function() {
