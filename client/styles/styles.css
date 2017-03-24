@@ -1,73 +1,127 @@
-html {
-    background-color: #87CEFA;
-}
+/*
+login
+*/
 
-.fotu-container {
-  position: relative;
-  height: 800px;
+#login-page {
+	position: relative;
+  height: 700px;
   width: 100%;
+/*	background: url("/styles/img/background.jpg");*/
+	background-color:#89C4F4;
+  background-size: cover;
+}
+
+.jumbotron {
+	text-align: center;
+	width:35rem;
+	height: 50rem;
+	border-radius: 0.8rem;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+	margin: 5rem auto;
+	margin-top: 6.7rem;
+	background-color: white;
+}
+
+
+
+.container .glyphicon-list-alt {
+	font-size: 10rem;
+	margin-top: 3rem;
+	color: #f96145;
+}
+
+input {
+	width: 100%;
+	margin-bottom: 1.4rem;
+	padding: 1rem;
+	background-color: #ecf2f4;
+	border-radius: 0.6rem;
+	border: none;
+	font-family: 'Baloo Bhaina', cursive;
 
 }
 
-.fotu{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+label {
+	text-align: left;
+  font-family: 'Baloo Bhaina', cursive;
+
+}
+
+h2 {
+	font-weight: bold;
+	color: #F4A460;
+	font-family: 'Baloo Bhaina', cursive;
+}
+
+h3 {
+	font-size: 15px;
+	font-family: 'Baloo Bhaina', cursive;
+	color: #81CFE0;
+	font-weight: bold;
+}
+
+h4 {
+	font-size: 15px;
+	font-family: 'Baloo Bhaina', cursive;
+	color:	#A9A9A9;
+}
+
+
+.btn {
+	border-radius: 0.6rem;
+	font-family: 'Baloo Bhaina', cursive;
+}
+
+.full-width {
+	background-color: #8eb5e2;
+	width: 100%;
+	border-radius: 0.6rem;
+
+}
+
+.box {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin-bottom: 3rem;
+	margin-left: 3rem;
+	margin-right: 3rem;
+	border-radius: 0.6rem;
+}
+
+
+/*
+signup
+*/
+
+.signup {
+	position: relative;
+  height: 700px;
   width: 100%;
-}
-
-.fotu-left, .fotu-right {
-  display: inline-block;
-  width: 50%;
-  padding: 0 20px;
+/*	background: url("/styles/img/background.jpg");*/
+	background-color: #89C4F4;
 }
 
 
+.signupform {
+	text-align: center;
+	width: 55rem;
+	height: 60rem;
+	border-radius: 0.8rem;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+		margin-top: 5rem;
 
-.signup-btn {
-  background: #79bc64;
-  background-image: -webkit-linear-gradient(top, #79bc64, #578843);
-  background-image: -moz-linear-gradient(top, #79bc64, #578843);
-  background-image: -ms-linear-gradient(top, #79bc64, #578843);
-  background-image: -o-linear-gradient(top, #79bc64, #578843);
-  background-image: linear-gradient(to bottom, #79bc64, #578843);
-  -webkit-border-radius: 4;
-  -moz-border-radius: 4;
-  border-radius: 4px;
-  text-shadow: 0px 1px 0px #898a88;
-  -webkit-box-shadow: 0px 0px 0px #a4e388;
-  -moz-box-shadow: 0px 0px 0px #a4e388;
-  box-shadow: 0px 0px 0px #a4e388;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  border: solid #3b6e22  1px;
-  text-decoration: none;
+	margin: 5rem auto;
+	background-color: white;
+	padding: 5px;
 }
 
-.signup-btn:hover {
-  background: #79bc64;
-  background-image: -webkit-linear-gradient(top, #79bc64, #5e7056);
-  background-image: -moz-linear-gradient(top, #79bc64, #5e7056);
-  background-image: -ms-linear-gradient(top, #79bc64, #5e7056);
-  background-image: -o-linear-gradient(top, #79bc64, #5e7056);
-  background-image: linear-gradient(to bottom, #79bc64, #5e7056);
-  text-decoration: none;
-}
-.navbar-default .navbar-brand{
-        color:#fff;
-        font-size:30px;
-        font-weight:bold;
-    }
-.form .form-control { margin-bottom: 10px; }
-@media (min-width:768px) {
-    #home{
-        margin-top:50px;
-    }
-    #home .slogan{
-        color: #0e385f;
-        line-height: 29px;
-        font-weight:bold;
-    }
-}
+

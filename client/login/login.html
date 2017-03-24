@@ -1,28 +1,17 @@
 <div ng-controller="LoginCtrl">
-  <form class="container" ng-submit='getSingleUser()'>
-    <div class="row main">
-      <div class="main-login main-center">
-        <h5>Fun Learning!</h5>
-
-          <label for="name" class="cols-sm-2 control-label">Username</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" ng-model="username"/>
-            </div>
-          </div>
-
-          <label for="password" class="cols-sm-2 control-label">Password</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-              <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" ng-model="password"/>
-            </div>
-          </div>
-
-          <input type="submit" value = 'Login' id="button" class="btn btn-primary btn-lg btn-block login-button">
-      </div>
-    </div>
-  </form>
+	<div id="login-page">
+			<div class="jumbotron">
+				<h3>Learn through Play</h3> 
+				<img src="./styles/img/bear.png" height="100" width="100">
+				<h2>FUN LEARNING</h2>
+				<div class="box">
+					<form class="login" ng-submit='getSingleUser()'>
+						<input type="text" placeholder="Enter your Username" ng-model="username">
+						<input type="password" placeholder="password" placeholder="Enter your Password" ng-model="password">
+						<button class="btn btn-lg btn-primary btn-block" type="submit"> Sign In </button>
+						<br> </form>
+					<h4>Don't have an account? <a href="#/signup">Sign up</a> here!</h4> </div>
+				<br> 
+		</div>
+	</div>
 </div>
-
