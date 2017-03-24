@@ -45,9 +45,10 @@ Ghost.prototype.checkValue = function(guess){
       console.log("they are equal!")
 
       this.kill()
-
+      return true;
     }
   }
+  return false;
 }
 
 

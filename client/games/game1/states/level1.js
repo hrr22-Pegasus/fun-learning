@@ -2,6 +2,10 @@ var GameState = GameState || {};
 
 GameState.Level1 = {
   // preload: function(){}, //already did this
+  init: function(custom){
+    console.log("startTime: ", custom);
+    this.fallingTimer = custom;
+  },
   create: function(){
     this.background = this.game.add.sprite(0, 0, 'background');
     this.kanye = new Player(this.game, 500, 350, 'kanye');
@@ -18,16 +22,16 @@ GameState.Level1 = {
     // [0,1], [5,5], [3,3], [0,0],
     // [0,1], [5,5], [3,3], [0,0],
     ];
-    this.fallingTimer = 0;
+    // this.fallingTimer = 0;
 
     this.guess = "";
-    this.pointsScored = 0;
+    // this.pointsScored = 0;
     this.pointsAvailable = this.test.length;
 
     this.pointsScored_text = this.game.add.text(
       100,
       100,
-      "Score: " + this.pointsScored,
+      "Score: " + this.kanye.score,
       { fontSize: '14px', fill: '#000' }
     );
 
@@ -51,13 +55,12 @@ GameState.Level1 = {
     this.game.physics.arcade.overlap(this.kanye, this.ghostsGroup, this.ghostCollisionHandler);
 
     if (this.game.time.now > this.fallingTimer){
-      this.reviveFruit();
+      this.reviveGhost();
+      this.updateScore();
       this.fallingTimer += 3000;
     };
 
     for (var i = 0; i < this.ghostsGroup.children.length; i++) {
-      // console.log(this.ghostsGroup.children[i]);
-      // console.log(this.kanye)
       var ghost = this.ghostsGroup.children[i]
       if(ghost.alive && ghost.moving === false){
         ghost.moveToPlayer(this.kanye);
@@ -78,23 +81,15 @@ GameState.Level1 = {
             if(ghost.moving){
               this.guess = this.myInput.canvasInput.value();
               ghost.checkValue(this.guess);
+              if(ghost.checkValue(this.guess)){
+                console.log("MATCHING UPDATE SCORE")
+                this.kanye.score += 1;
+                this.updateScore();
+              }
             }
           }
     }
     this.input.keyboard.pressEvent = null;
-  },
-
-  addKeyToGuessString: function(keyPressed){
-    this.guess += keyPressed;
-    console.log("current guess: ", this.guess);
-
-  },
-  endTimer: function() {
-    // Stop the timer when the delayed event triggers
-    console.log("Times Up");
-    this.clearText();
-    this.timer.stop();
-    //send results off
   },
 
   // enemyFires: function(){
@@ -106,18 +101,19 @@ GameState.Level1 = {
   ghostCollisionHandler: function(player, ghost){
     console.log("player in collision", player);
     console.log("ghost in collision", ghost);
+    player.score -= 1;
     ghost.destroy();
-
   },
 
-  reviveFruit: function(){
+  updateScore: function(){
+    this.pointsScored_text.text = "Score: " + this.kanye.score
+  },
+
+  reviveGhost: function(){
   //  Get a dead item
     var ghost = this.ghostsGroup.getFirstDead();
     if (ghost){
-      // fruit.reset(game.world.randomX, 10);
-      // ghost.moving = false;
       ghost.reset(80, 300);
-      // this.game.physics.arcade.moveToObject(this.ghost,this.kanye,120);
     }
   },
 
