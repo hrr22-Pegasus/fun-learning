@@ -29,7 +29,7 @@ angular.module('funLearning.game', [])
     //   return TestsFactory.currentTest[0]['games']['game1']['test1']
     // };
 
-    var game2 = new Phaser.Game(300, 300, Phaser.CANVAS, 'phaser-example', null, false);
+    var game2 = new Phaser.Game(600, 600, Phaser.CANVAS, 'phaser-example', null, false);
 
     // GameState2.Level1.prototype.getTeacher = function(){
     //   return UsersFactory.currentUser[0]["teacher"] //returns teacher to be used to get test
@@ -39,7 +39,7 @@ angular.module('funLearning.game', [])
     //   return TestsFactory.getTest(teacher);
     // };
 
-    GameState2.Level1.prototype.addResult = function(gameName, userName, data) {
+    GameState2.GameOver.prototype.addResult = function(gameName, userName, data) {
       console.log('game: ', gameName, 'user: ', userName, 'data: ', data);
       return GameResultsFactory.addNewResult(gameName, userName, data);
     }
@@ -48,6 +48,7 @@ angular.module('funLearning.game', [])
     game2.state.add('Preload', GameState2.Preload);
     game2.state.add('MainMenu', GameState2.MainMenu);
     game2.state.add('Level1', GameState2.Level1);
+    game2.state.add('GameOver', GameState2.GameOver);
     game2.state.start('Boot');
 
   });

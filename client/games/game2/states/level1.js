@@ -47,7 +47,7 @@ GameState2.Level1.prototype = {
       // clear old pie and then draw the new one
       this.graphics.clear();
       this.graphics.beginFill(0x873655);
-      this.graphics.arc(0, 0, 90, this.game.math.degToRad(this.rad2), this.game.math.degToRad(this.rad1), true);
+      this.graphics.arc(0, 0, 180, this.game.math.degToRad(this.rad2), this.game.math.degToRad(this.rad1), true);
       this.graphics.endFill();
 
       // remove first item from each of the input arrays
@@ -123,6 +123,6 @@ GameState2.Level1.prototype = {
       'pointsAvailable': this.game.correctAnswers + this.game.incorrectAnswers,
       'feeling': 4
     };
-    // this.addResult('game2', 'jesseKingOfTheHill', data);
+    this.game.state.start('GameOver', null, null, data);
   }
 }
