@@ -14,7 +14,7 @@ GameState2.Level1.prototype = {
     this.game.incorrectAnswers = 0;
 
     // create function for rendering the game
-    this.renderGame = function() {
+    this.renderGame = function () {
 
       // remove old choices from display
       if (this.game.choice1) {
@@ -70,22 +70,15 @@ GameState2.Level1.prototype = {
     this.gameLengthTimer.start();
     this.gameLengthTimer.add(Phaser.Timer.SECOND * 11, this.endOfGame, this);
 
-    // function for when the game ends
-
-    // this.lvl1Timer = this.game.time.create(false);
-    // this.lvl1Timer.start();
-    // this.lvl1Timer.onComplete.add(this.incrementCounter, this);
-    // this.lvl1Timer.repeat(Phaser.Timer.SECOND * 4, 10, this.objectDroppingFunction, this);
-
     // initialize the game
     this.renderGame();
   },
-  endOfGame: function() {
+  endOfGame: function () {
       console.log('in endOfGame');
       // sends the results to the database once the game ends
       this.sendGameData();
   },
-  picked1: function() {
+  picked1: function () {
 
     if (this.game.choice1._text === this.game.answer) {
       this.game.score++;
@@ -97,7 +90,7 @@ GameState2.Level1.prototype = {
     }
 
   },
-  picked2: function() {
+  picked2: function () {
 
     if (this.game.choice2._text === this.game.answer) {
       this.game.score++;
@@ -109,7 +102,7 @@ GameState2.Level1.prototype = {
     }
 
   },
-  picked3: function() {
+  picked3: function () {
 
     if (this.game.choice3._text === this.game.answer) {
       this.game.score++;
@@ -124,13 +117,12 @@ GameState2.Level1.prototype = {
   sendGameData: function () {
     console.log('game ended', this.game.correctAnswers, this.game.incorrectAnswers);
     var data = {
-      'livesUsed': this.game.incorrectAnswers,
+      'livesUsed': this.game.incorrectAnswers || 0,
       'time': 9,
       'pointsScored': this.game.correctAnswers,
-      'pointsAvailable': this.game.correctAnswers - this.game.incorrectAnswers,
+      'pointsAvailable': this.game.correctAnswers + this.game.incorrectAnswers,
       'feeling': 4
     };
-    this.addResult('game2', 'jesseKingOfTheHill', data);
+    // this.addResult('game2', 'jesseKingOfTheHill', data);
   }
-
 }
