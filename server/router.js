@@ -16,10 +16,13 @@ router.post('/api/results/:gameName/:userName', function(req, res) {
   }
   var query = {};
   query['gameResults.' + gameName] = gameData;
+  console.log("Query object: ", query);
   // find user, User.findOne()
   // check for the game,
   // add the game data User.update({'gameResults.game1'})
-  User.findOneAndUpdate({'username': userName}, {$push: query}, function(err, data) {
+  // {'gameResults.game2': gameData}
+
+  User.findOneAndUpdate({'username': userName}, {$addToSet: query}, function(err, data) {
     if (err) {
       console.error(err);
     } else {

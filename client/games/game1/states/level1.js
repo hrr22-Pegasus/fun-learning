@@ -13,8 +13,8 @@ GameState.Level1 = {
 
 
     this.test = [
-    [0,1], [5,5], [3,3], [0,0],
-    [0,2], [5,4], [6,3], [8,0]
+    [0,1], [5,5], [3,3], [0,0]
+    // [0,2], [5,4], [6,3], [8,0]
     // [1,1], [4,5], [5,3], [6,0],
     // [0,4], [5,5], [3,3], [0,0],
     // [0,1], [5,5], [3,3], [0,0],
@@ -22,7 +22,7 @@ GameState.Level1 = {
     // [0,1], [5,5], [3,3], [0,0],
     // [0,1], [5,5], [3,3], [0,0],
     ];
-    // this.fallingTimer = 0;
+    this.questionsAsked = 0;
 
     this.guess = "";
     // this.pointsScored = 0;
@@ -55,6 +55,7 @@ GameState.Level1 = {
     this.game.physics.arcade.overlap(this.kanye, this.ghostsGroup, this.ghostCollisionHandler);
 
     if (this.game.time.now > this.fallingTimer){
+      this.questionsAsked += 1;
       this.reviveGhost();
       this.updateScore();
       this.fallingTimer += 3000;
@@ -90,6 +91,11 @@ GameState.Level1 = {
           }
     }
     this.input.keyboard.pressEvent = null;
+
+    if(this.questionsAsked >= this.test.length){
+      console.log("game over");
+      this.endGame();
+    }
   },
 
   // enemyFires: function(){
@@ -144,6 +150,16 @@ GameState.Level1 = {
     myInput.events.onInputUp.add(this.inputFocus, this);
 
     return myInput;
+  },
+  endGame: function () {
+    console.log('game ended');
+    var data = {
+      'livesUsed': 0,
+      'time': 9,
+      'pointsScored': 220,
+      'pointsAvailable': this.test.length
+    };
+    this.game.state.start('GameOver', null, null, data);
   }
 
 };
