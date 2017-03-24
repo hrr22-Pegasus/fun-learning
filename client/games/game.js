@@ -64,12 +64,14 @@ angular.module('funLearning.game', [])
   })
   .controller('GameCtrl3', function($scope, UsersFactory, GameResultsFactory, TestsFactory){
 
+
     $scope.getGameResults = function() {
       return GameResultsFactory.getGameResults().then(function(data) {
         console.log('data response', data);
         console.log('all game data', GameResultsFactory.allGameData);
            var game3 = new Phaser.Game(1600, 1200, Phaser.CANVAS, 'game3', null, false);
 
+     var game3 = new Phaser.Game(1600, 1400, Phaser.CANVAS, 'game3', null, false);
      GameState3.Level1.prototype.getTest = function(teacher){
       return TestsFactory.getTest(teacher);
   };

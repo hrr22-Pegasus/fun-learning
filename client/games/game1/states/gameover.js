@@ -8,10 +8,10 @@ GameState.GameOver.prototype = {
   create: function() {
 
     this.user = this.getUsername();
-    console.log("this.user from gameover state: ", this.user);
 
     this.option1 = new Option(this.game, 50, 50, 'option1');
     this.option1.value = 1;
+
 
     this.option2 = new Option(this.game, 150, 50, 'option2');
     this.option2.value = 2;
