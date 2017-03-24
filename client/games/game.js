@@ -14,12 +14,25 @@ angular.module('funLearning.game', [])
     game.state.add('Preload', GameState.Preload);
     game.state.add('MainMenu', GameState.MainMenu);
     game.state.add('Level1', GameState.Level1);
+    game.state.add('GameOver', GameState.GameOver);
     game.state.start('Boot');
 
-    GameState.Preload.prototype.getAvatar = function(){
+    // GameState.Preload.prototype.getAvatar = function(){
+    //   return UsersFactory.currentUser[0]["avatar"][0];
+    // };
 
-      return UsersFactory.currentUser[0]["avatar"][0];
+    GameState.Preload.prototype.getPropertyFromUser = function(property){
+      return UsersFactory.currentUser[0][property][0];
     };
+
+    GameState.GameOver.prototype.getUsername = function(){
+      return UsersFactory.currentUser[0]["username"];
+    };
+
+    GameState.GameOver.prototype.addResult = function(gameName, userName, data) {
+      console.log('game1: ', gameName, 'user1: ', userName, 'data1: ', data);
+      return GameResultsFactory.addNewResult(gameName, userName, data);
+    }
 
     // GameState.Level1.prototype.getTeacher = function(){
     //   return UsersFactory.currentUser[0]["teacher"] //returns teacher to be used to get test
