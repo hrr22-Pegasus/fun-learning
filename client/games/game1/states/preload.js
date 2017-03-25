@@ -5,7 +5,7 @@ GameState.Preload = function(game){};
 GameState.Preload.prototype = {
 
   preload: function(){
-    this.avatarPath = this.getPropertyFromUser("avatar");
+    this.avatarPath = this.getAvatarFromUser();
 
     this.avatarBody = this.avatarPath[0];
     this.avatarHead = this.avatarPath[1];
