@@ -11,7 +11,7 @@
     "teacher": "Tre",
     "school": "Hrr",
     "dateJoined": "03-25-2017",
-    "avatar": ["../assets/bear_animation_test.png"],
+    "avatar": ["assets/bear_animation_body.png","assets/bear_animation_head_only.png"],
     "gameResults": {
       "game1": [
         {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},

@@ -9,6 +9,11 @@ GameState.Level1 = {
   create: function(){
     this.background = this.game.add.sprite(0, 0, 'background');
     this.kanye = new Player(this.game, 500, 350, 'kanye');
+
+    this.kanyehead = this.game.add.sprite(455, 245, 'kanye-head');
+
+    // console.log("this.kanyehead", this.kanyehead);
+
     // this.ghost = new Ghost(this.game, 0, 350, 'ghost');
 
 

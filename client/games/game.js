@@ -22,7 +22,9 @@ angular.module('funLearning.game', [])
     // };
 
     GameState.Preload.prototype.getPropertyFromUser = function(property){
-      return UsersFactory.currentUser[0][property][0];
+      return UsersFactory.currentUser[0][property];
+
+      //removed zero to get head and body
     };
 
     GameState.GameOver.prototype.getUsername = function(){
