@@ -4,39 +4,39 @@ GameState3.Level1 = function(game){};
 GameState3.Level1.prototype = {
   // preload: function(){}, //already did this
   create: function(){
-    this.background = this.game.add.tileSprite(0, 0, 1600, 1400, 'scrollingSpace');
-    this.ship = new Ship(this.game, 800, 1400, 'ship');
+    this.background = this.game.add.tileSprite(0, 0, 1200, 1000, 'scrollingSpace');
+    this.ship = new Ship(this.game, 600, 1000, 'ship');
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.questions = ["a dense organelle present in most eukaryotic cells, typically a single rounded \n structure bounded by a double membrane, containing the genetic material.", "Shares a similar construction motif with the typical eukaryote cell, but does not have centrioles, \n lysosomes, intermediate filaments, cilia, or flagella but does features a cell wall", "a molecule that carries the genetic instructions used in the growth, development, functioning\n and reproduction of all known living organisms and many viruses", "produce the energy currency of the cell, ATP (i.e., phosphorylation of ADP),\n through respiration, and to regulate cellular metabolism.", "a plastid that contains chlorophyll and \n in which photosynthesis takes place.", " a series of flattened, stacked pouches called cisternae, it is responsible for transporting, modifying, \nand packaging proteins", "cells contain a nucleus and other organelles enclosed \n within membranes but no cell wall.", "GAME OVER"],
     this.game.answers = ["nucleus", "plantCell", "dna", "mitochondria", "chloroplast", "golgiComplex", "animalCell"];
 
 
-    this.mitochondria = new Enemy(this.game, Math.random()*1600, Math.random()* 800, 'mitochondria');
+    this.mitochondria = new Enemy(this.game, Math.random()*1200, Math.random()* 800, 'mitochondria');
      this.mitochondria.enableBody = true;
     this.mitochondria.physicsBodyType = Phaser.Physics.ARCADE;
     this.mitochondria.value = "mitochondria";
 
 
 
-    this.chloroplast = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'chloroplast');
+    this.chloroplast = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'chloroplast');
     this.chloroplast.enableBody = true;
     this.chloroplast.physicsBodyType = Phaser.Physics.ARCADE;
     this.chloroplast.value = "chloroplast";
 
-    this.animalCell = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'animalCell');
+    this.animalCell = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'animalCell');
     this.animalCell.enableBody = true;
     this.animalCell.physicsBodyType = Phaser.Physics.ARCADE;
     this.animalCell.value = "animalCell";
 
 
 
-    this.plantCell = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'plantCell');
+    this.plantCell = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'plantCell');
     this.plantCell.enableBody = true;
     this.plantCell.physicsBodyType = Phaser.Physics.ARCADE;
     this.plantCell.value = "plantCell";
 
 
-    this.nucleus = new Enemy(this.game, Math.random()*1600, Math.random()*400, 'nucleus');
+    this.nucleus = new Enemy(this.game, Math.random()*1200, Math.random()*400, 'nucleus');
     this.nucleus.enableBody = true;
     this.nucleus.physicsBodyType = Phaser.Physics.ARCADE;
     this.nucleus.value = "nucleus"
@@ -44,14 +44,14 @@ GameState3.Level1.prototype = {
 
 
 
-    this.golgicomplex = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'golgiComplex')
+    this.golgicomplex = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'golgiComplex')
     this.golgicomplex.enableBody = true;
     this.golgicomplex.physicsBodyType = Phaser.Physics.ARCADE;
     this.golgicomplex.value = "golgiComplex"
 
 
 
-    this.dna = new Enemy(this.game, Math.random()*1600, Math.random()*800, 'dna');
+    this.dna = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'dna');
     this.dna.enableBody = true;
     this.dna.physicsBodyType = Phaser.Physics.ARCADE;
     this.dna.value = "dna"
@@ -75,7 +75,7 @@ GameState3.Level1.prototype = {
     this.scoreText = this.game.add.text(this.game.world.width - 200, 10, this.scoreString + this.game.score, { font: '34px Arial', fill: '#fff' });
     this.questionString = "Question: ";
     this.questionToAsk = this.game.questions[0];
-    this.questionText =  this.game.add.text(10, 1000,  this.questionString + this.questionToAsk, { font: '34px Arial', fill: '#fff' });
+    this.questionText =  this.game.add.text(40, 750,  this.questionString + this.questionToAsk, { font: '24px Arial', fill: '#fff' });
 
 
     this.answers = this.game.add.group();

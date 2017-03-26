@@ -1,7 +1,25 @@
 <div class="game text-center">
-  <h2> dashboard </h2>
-  <button ng-click="changeLocation('/game')">Game1</button>
-  <button ng-click="changeLocation('/game2')">Game2</button>
-  <button ng-click="changeLocation('/game3')">Game3</button>
-  <button ng-click="changeLocation('/analytics')">Analytics</button>
+<div class ="page-header dashboard">
+  <img src="./styles/img/bear.png" height="100" width="100">
+  <h1> Dashboard </h1>
+  <h3>Learn through Play</h3>
+  <button ng-click="changeLocation('/analytics')" class="btn btn-warning">Analytics</button>
+
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+  <button ng-click="changeLocation('/game')" class="btn btn-warning">Game 1</button>
+  <br><br>
+  <img src="assets/game1haunted.gif" height="400"></div>
+  <div class="col-sm-4">
+    <button ng-click="changeLocation('/game2')" class="btn btn-warning">Game 2</button>
+    <br><br>
+    <img src="assets/fractionfun.gif" height="400" >
+    </div>
+  <div class="col-sm-4">
+    <button ng-click="changeLocation('/game3')" class="btn btn-warning">Game 3</button>
+    <br><br>
+    <img src="assets/cellshootout.gif" height="400" ></div>
+  </div>
 </div>

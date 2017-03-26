@@ -5,32 +5,54 @@ angular.module('funLearning.analytics', ['chart.js'])
 
     var dataTypeTrigger = "all";
     var parameterToMonitor = "points";
+    var gameName = "game1";
+
+    $scope.setGame = function($event) {
+
+      $scope.game= $event.target.getAttribute('value');
+      gameName = $event.target.getAttribute('value');
+      var parameterAverages = findClassAverage(allStudentsUnderCertainTeacher, parameterToMonitor, gameName);
+
+      var combinedClassAverage = combineClassAverage(parameterAverages);
+       console.log(combinedClassAverage);
+      setLabels(parameterAverages);
+
+
+      if (dataTypeTrigger === "all"){
+      setData(parameterAverages);
+      setLabels(parameterAverages);
+      setDataSetOverrideAndOptions(parameterAverages);
+
+     } else if (dataTypeTrigger === "combined"){
+      setData(combinedClassAverage);
+      setLabels(combinedClassAverage);
+      setDataSetOverrideAndOptions(combinedClassAverage);
+     }
+    };
 
     $scope.setDataViewType = function($event) {
      $scope.dataView = $event.target.getAttribute('value');
      dataTypeTrigger = $event.target.getAttribute('value');
      console.log(dataTypeTrigger);
 
-     var parameterAverages = findClassAverage(allStudentsUnderCertainTeacher, parameterToMonitor);
+     var parameterAverages = findClassAverage(allStudentsUnderCertainTeacher, parameterToMonitor, gameName);
      var combinedClassAverage = combineClassAverage(parameterAverages);
      console.log(combinedClassAverage)
+    setLabels(parameterAverages);
+
 
      console.log("INSIDE OF HERE!")
      if (dataTypeTrigger === "all"){
       setData(parameterAverages);
-      // setLabels(combinedClassAverage);
+      setLabels(parameterAverages);
       setDataSetOverrideAndOptions(parameterAverages);
 
      } else if (dataTypeTrigger === "combined"){
       setData(combinedClassAverage);
-      // setLabels(combinedClassAverage);
+      setLabels(combinedClassAverage);
       setDataSetOverrideAndOptions(combinedClassAverage);
      }
     };
-
-
-
-
 
     var allStudentData = UsersFactory.allUsers[0];
 
@@ -80,9 +102,13 @@ angular.module('funLearning.analytics', ['chart.js'])
     };
 
 
-    var extractSingleStudentPerformance = function(singleStudent, parameter){
+    var extractSingleStudentPerformance = function(singleStudent, parameter, game){
       var scores = [];
-      var studentGameResults = singleStudent['gameResults'];
+      console.log(game);
+      var studentGameResults = singleStudent['gameResults'][game];
+      console.log(game);
+      console.log("Here!");
+      console.log("Here are the student game results! ", studentGameResults);
 
       if(parameter === 'points') {
           for (var i = 0; i<studentGameResults.length; i++){
@@ -117,19 +143,16 @@ angular.module('funLearning.analytics', ['chart.js'])
     };
 
 
-    var findClassAverage = function(classData, parameter) {
+    var findClassAverage = function(classData, parameter, game) {
       var allClassScores = [];
       var attemptsSum = 0;
       var numStudents = classData.length;
-
       for (var i = 0; i<classData.length; i++) {
         var student = classData[i];
         var studentName = classData[i]["firstName"] + ' ' + classData[i]["lastName"];
         var studentGrade = classData[i]["grade"];
         var studentAge = classData[i]["age"];
-        var studentPerformance = extractSingleStudentPerformance(student, parameter);
-        console.log(studentPerformance);
-        console.log("Individual student", student);
+        var studentPerformance = extractSingleStudentPerformance(student, parameter, game);
         allClassScores.push(studentPerformance);
         attemptsSum+=studentPerformance.length;
         $scope.dataTable[i]= ({"studentName":studentName, "studentGrade": studentGrade, "studentAge":studentAge, "studentPerformance":studentPerformance});
@@ -141,7 +164,7 @@ angular.module('funLearning.analytics', ['chart.js'])
 
     };
 
-    var classAverages = findClassAverage(allStudentsUnderCertainTeacher, "points");
+    var classAverages = findClassAverage(allStudentsUnderCertainTeacher, "points", "game1");
 
     var classAveragesLength = classAverages.length;
 
@@ -149,24 +172,26 @@ angular.module('funLearning.analytics', ['chart.js'])
    $scope.setParameter = function($event) {
      $scope.parameter = $event.target.getAttribute('value');
      var parameterToMonitor = $event.target.getAttribute('value');
-     var parameterAverages = findClassAverage(allStudentsUnderCertainTeacher, parameterToMonitor);
+     var parameterAverages = findClassAverage(allStudentsUnderCertainTeacher, parameterToMonitor, gameName);
      var combinedClassAverage = combineClassAverage(parameterAverages);
-     console.log(combinedClassAverage)
+      setLabels(parameterAverages);
+
+     console.log(combinedClassAverage);
      if (dataTypeTrigger === "all"){
       setData(parameterAverages);
-      // setLabels(combinedClassAverage);
+      setLabels(combinedClassAverage);
       setDataSetOverrideAndOptions(parameterAverages);
 
      } else if (dataTypeTrigger === "combined"){
       setData(combinedClassAverage);
-      // setLabels(combinedClassAverage);
+      setLabels(combinedClassAverage);
       setDataSetOverrideAndOptions(combinedClassAverage);
      }
     };
 
     //need to make dynamic but for now this will work
     var setLabels = function(data) {
-      console.log(data)
+      console.log("Inside of set labels, " + data);
       var numberOfLabels = data[0].length;
       var dynamicLabels = [];
       for (var i = 0; i < numberOfLabels; i++) {

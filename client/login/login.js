@@ -18,7 +18,6 @@ angular.module('funLearning.login', [])
     };
 
     UsersFactory.getAllUsers();
-
 });
 
 

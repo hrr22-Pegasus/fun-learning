@@ -1,6 +1,9 @@
 <div ng-controller="AnalyticsCtrl" class="analytics text-center">
-  <h2> Teacher Analytics </h2>
-  <br><br>
+<div class ="page-header dashboard">
+  <img src="./styles/img/bear.png" height="100" width="100">
+  <h1>Analytics! </h1>
+  <h3>Learn through Play</h3>
+</div>
   <h1 ng-repeat="compare in comparisons">{{compare}}</h1>
   <h3>{{subject}}</h3>
   <h4>Evaluating {{parameter}}</h4>
@@ -27,11 +30,9 @@
   <div class="dropdown">
   <button class="dropbtn">Which game would you like data on?</button>
   <div class="dropdown-content">
-    <a value = "Ryan's Algebra Adventure!" ng-click= "setGame($event)">Ryan's Algebra Adventure</a>
-    <a value = "Samy's Science Something" ng-click= "setGame($event)">Samy's Science Something</a>
-    <a value = "Jesse's Geography Bee!" ng-click= "setGame($event)">Jesse's Geograph Bee</a>
-    <a  value = "Misaki's Math Mojo" ng-click= "setGame($event)">Misaki's Math Mojo</a>
-    <a  value = "barChart" ng-click= "setChart($event)">barChart</a>
+    <a value = "game1" ng-click= "setGame($event)">Pythagoras' Haunted House</a>
+    <a value = "game2" ng-click= "setGame($event)">Fraction Fun!</a>
+    <a value = "game3" ng-click= "setGame($event)">Cellular Shootout</a>
   </div>
 
 </div>
@@ -59,11 +60,9 @@
 
  <button class="dropbtnCompare">Compare Against: Game?</button>
   <div class="dropdown-content">
-    <a value = "Ryan's Algebra Adventure!" ng-click= "setGame($event)">Ryan's Algebra Adventure</a>
-    <a value = "Samy's Science Something" ng-click= "setGame($event)">Samy's Science Something</a>
-    <a value = "Jesse's Geography Bee!" ng-click= "setGame($event)">Jesse's Geograph Bee</a>
-    <a  value = "Misaki's Math Mojo" ng-click= "setGame($event)">Misaki's Math Mojo</a>
-    <a  value = "barChart" ng-click= "setChart($event)">barChart</a>
+    <a value = "game1" ng-click= "setGame($event)">Pythagoras' Haunted House</a>
+    <a value = "game2" ng-click= "setGame($event)">Fraction Fun!</a>
+    <a value = "game3" ng-click= "setGame($event)">Cellular Shootout</a>
   </div>
 
 </div>

@@ -88,7 +88,7 @@ angular.module('funLearning.game', [])
     });
 };
 
-var game3 = new Phaser.Game(1600, 1400, Phaser.CANVAS, 'game-3', null, false);
+var game3 = new Phaser.Game(1200, 1000, Phaser.CANVAS, 'game-3', null, false);
 
   GameState3.GameOver.prototype.addResult = function(gameName, userName, data) {
       console.log('game: ', gameName, 'user: ', userName, 'data: ', data);
