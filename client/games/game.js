@@ -15,16 +15,30 @@ angular.module('funLearning.game', [])
     game.state.add('MainMenu', GameState.MainMenu);
     game.state.add('Level1', GameState.Level1);
     game.state.add('GameOver', GameState.GameOver);
-    game.state.start('Boot');
 
-    // GameState.Preload.prototype.getAvatar = function(){
-    //   return UsersFactory.currentUser[0]["avatar"][0];
-    // };
 
-    GameState.Preload.prototype.getPropertyFromUser = function(property){
-      return UsersFactory.currentUser[0][property][0];
+    GameState.Preload.prototype.getAvatarFromUser = function(){
+      return UsersFactory.currentUser[0]["avatar"];
     };
 
+    /////////////////// Level1 Functions Using Factory //////////////////
+
+    console.log("Gamestate they say is undefined: ", GameState);
+    GameState.Level1.prototype.getTeacherFromUser = function(){
+      return UsersFactory.currentUser[0]["teacher"];
+    };
+
+    GameState.Level1.prototype.getTestByTeacher = function(teacher, game, test){
+      var fullTestObj = TestsFactory.getTest(teacher);
+      var test = fullTestObj["games"][game][test];
+      console.log("test  dfadsfasfd", test);
+      return test;
+    };
+    /////////////////////////////////////////////////////////////////////
+
+
+
+    /////////////////// Gameover Functions Using Factory //////////////////
     GameState.GameOver.prototype.getUsername = function(){
       return UsersFactory.currentUser[0]["username"];
     };
@@ -33,7 +47,9 @@ angular.module('funLearning.game', [])
       console.log('game1: ', gameName, 'user1: ', userName, 'data1: ', data);
       return GameResultsFactory.addNewResult(gameName, userName, data);
     }
+    ////////////////////////////////////////////////////////////////////////
 
+    game.state.start('Boot');
 
   })
   .controller('GameCtrl2', function($scope, UsersFactory, GameResultsFactory, TestsFactory){

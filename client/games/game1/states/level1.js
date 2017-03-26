@@ -1,6 +1,8 @@
 var GameState = GameState || {};
 
-GameState.Level1 = {
+GameState.Level1 = function(game){};
+
+GameState.Level1.prototype = {
   // preload: function(){}, //already did this
   init: function(custom){
     console.log("startTime: ", custom);
@@ -9,19 +11,24 @@ GameState.Level1 = {
   create: function(){
     this.background = this.game.add.sprite(0, 0, 'background');
     this.kanye = new Player(this.game, 500, 350, 'kanye');
-    // this.ghost = new Ghost(this.game, 0, 350, 'ghost');
+    this.kanyehead = this.game.add.sprite(455, 245, 'kanye-head');
 
 
-    this.test = [
-    [0,1], [5,5], [3,3], [0,0]
-    // [0,2], [5,4], [6,3], [8,0]
-    // [1,1], [4,5], [5,3], [6,0],
-    // [0,4], [5,5], [3,3], [0,0],
-    // [0,1], [5,5], [3,3], [0,0],
-    // [0,1], [5,5], [3,3], [0,0],
-    // [0,1], [5,5], [3,3], [0,0],
-    // [0,1], [5,5], [3,3], [0,0],
-    ];
+    this.teacher = this.getTeacherFromUser();
+    console.log("teacher success: ", this.teacher);
+    this.test= this.getTestByTeacher(this.teacher, "game1", "test1");
+    console.log("test success: ", this.test);
+
+    // this.test = [
+    // [0,1], [5,5], [3,3], [0,0]
+    // // [0,2], [5,4], [6,3], [8,0]
+    // // [1,1], [4,5], [5,3], [6,0],
+    // // [0,4], [5,5], [3,3], [0,0],
+    // // [0,1], [5,5], [3,3], [0,0],
+    // // [0,1], [5,5], [3,3], [0,0],
+    // // [0,1], [5,5], [3,3], [0,0],
+    // // [0,1], [5,5], [3,3], [0,0],
+    // ];
     this.questionsAsked = 0;
 
     this.guess = "";
@@ -92,7 +99,7 @@ GameState.Level1 = {
     }
     this.input.keyboard.pressEvent = null;
 
-    if(this.questionsAsked >= this.test.length){
+    if(this.questionsAsked > this.test.length + 1){
       console.log("game over");
       this.endGame();
     }
@@ -153,6 +160,19 @@ GameState.Level1 = {
   },
   endGame: function () {
     console.log('game ended');
+
+    for (var i = 0; i < this.ghostsGroup.children.length; i++) {
+      var ghost = this.ghostsGroup.children[i]
+      ghost.kill();
+      ghost.destroy();
+    }
+
+    this.ghostsGroup.callAll('kill');
+    this.kanye.destroy();
+    this.kanyehead.destroy();
+    this.myInput.destroy();
+
+
     var data = {
       'livesUsed': 0,
       'time': 9,
