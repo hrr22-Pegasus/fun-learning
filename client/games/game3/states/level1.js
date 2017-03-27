@@ -2,8 +2,10 @@ var GameState3 = GameState3 || {};
 GameState3.Level1 = function(game){};
 
 GameState3.Level1.prototype = {
-  // preload: function(){}, //already did this
-  create: function(){
+
+
+  create: function() {
+    this.game.timerTest = 0;
     this.background = this.game.add.tileSprite(0, 0, 1200, 1000, 'scrollingSpace');
     this.ship = new Ship(this.game, 600, 1000, 'ship');
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -12,7 +14,7 @@ GameState3.Level1.prototype = {
 
 
     this.mitochondria = new Enemy(this.game, Math.random()*1200, Math.random()* 800, 'mitochondria');
-     this.mitochondria.enableBody = true;
+    this.mitochondria.enableBody = true;
     this.mitochondria.physicsBodyType = Phaser.Physics.ARCADE;
     this.mitochondria.value = "mitochondria";
 
@@ -22,6 +24,7 @@ GameState3.Level1.prototype = {
     this.chloroplast.enableBody = true;
     this.chloroplast.physicsBodyType = Phaser.Physics.ARCADE;
     this.chloroplast.value = "chloroplast";
+
 
     this.animalCell = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'animalCell');
     this.animalCell.enableBody = true;
@@ -71,8 +74,11 @@ GameState3.Level1.prototype = {
     this.bullets.setAll('checkWorldBounds', true);
     this.bulletTime = 0;
     this.scoreString = 'Score: ';
+    this.wrongString = 'Incorrect: ';
+    this.game.numWrong = 0;
     this.game.score = 0;
-    this.scoreText = this.game.add.text(this.game.world.width - 200, 10, this.scoreString + this.game.score, { font: '34px Arial', fill: '#fff' });
+    this.scoreText = this.game.add.text(this.game.world.width - 200, 10, this.scoreString + this.game.score, { font: '34px Arial', fill: '#ff0' });
+    this.scoreWrong = this.game.add.text(this.game.world.width - 200, 50, this.wrongString + this.game.numWrong , { font: '34px Arial', fill: '#ff0000' });
     this.questionString = "Question: ";
     this.questionToAsk = this.game.questions[0];
     this.questionText =  this.game.add.text(40, 750,  this.questionString + this.questionToAsk, { font: '24px Arial', fill: '#fff' });
@@ -82,7 +88,7 @@ GameState3.Level1.prototype = {
     this.answers.enableBody = true;
     this.answers.physicsBodyType = Phaser.Physics.ARCADE;
 
-
+    this.game.attempts = 0;
     this.moveAnswers();
   },
 
@@ -90,6 +96,8 @@ GameState3.Level1.prototype = {
 
     this.background.tilePosition.y += 2;
 
+    this.game.timerTest +=1;
+    console.log(this.game.timerTest/60);
 
     if (this.ship.alive) {
       this.ship.body.velocity.setTo(0, 0);
@@ -158,138 +166,213 @@ GameState3.Level1.prototype = {
   collisionHandlerMitochondria: function(bullet, mitochondria) {
 
     if (this.mitochondria.value === this.game.answers[0]) {
-       this.game.score+=1;
-    }
-    this.bullet.kill();
-    this.mitochondria.kill();
-    this.game.questions.shift();
-    this.game.answers.shift();
+      this.bullet.kill();
+      this.mitochondria.kill();
+      this.game.questions.shift();
+      this.game.answers.shift();
 
-    this.scoreText.text = this.scoreString + this.game.score;
-    this.questionToAsk = this.game.questions[0];
-    if (this.game.questions[0] === "GAME OVER") {
-      this.sendGameData();
+      this.questionToAsk = this.game.questions[0];
+      this.questionText.text = this.questionString + this.questionToAsk;
+      if (this.game.attempts === 0){
+        this.game.score+=1;
+        this.scoreText.text = this.scoreString + this.game.score;
+
+      }
+      this.game.attempts = 0;
+      if (this.game.questions[0] === "GAME OVER") {
+        this.sendGameData();
+      }
+
+    } else {
+      this.bullet.kill();
+      this.game.attempts +=1;
+      if (this.game.attempts ===1) {
+        this.game.numWrong +=1;
+        this.scoreWrong.text = this.wrongString + this.game.numWrong;
+      }
     }
 
-    this.questionText.text = this.questionString + this.questionToAsk;
+
+
 
   },
   collisionHandlerChloroplast: function(bullet, chloroplast) {
 
     if (this.chloroplast.value === this.game.answers[0]) {
-       this.game.score+=1;
-    }
-    this.bullet.kill();
-    this.chloroplast.kill();
-    this.game.questions.shift();
-    this.game.answers.shift();
+      this.bullet.kill();
+      this.chloroplast.kill();
+      this.game.questions.shift();
+      this.game.answers.shift();
 
-    console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.game.score;
-    this.questionToAsk = this.game.questions[0];
-    if (this.game.questions[0] === "GAME OVER") {
-      this.sendGameData();
-    }
+      this.questionToAsk = this.game.questions[0];
+      this.questionText.text = this.questionString + this.questionToAsk;
+      if (this.game.attempts === 0){
+        this.game.score+=1;
+        this.scoreText.text = this.scoreString + this.game.score;
 
-    this.questionText.text = this.questionString + this.questionToAsk;
+      }
+      this.game.attempts = 0;
+      if (this.game.questions[0] === "GAME OVER") {
+        this.sendGameData();
+      }
+
+    } else {
+      this.bullet.kill();
+      this.game.attempts +=1;
+      if (this.game.attempts ===1) {
+        this.game.numWrong +=1;
+        this.scoreWrong.text = this.wrongString + this.game.numWrong;
+      }
+    }
   },
   collisionHandlerAnimalCell: function(bullet, animalCell) {
+
     if (this.animalCell.value === this.game.answers[0]) {
-       this.game.score+=1;
+      this.bullet.kill();
+      this.animalCell.kill();
+      this.game.questions.shift();
+      this.game.answers.shift();
+
+      this.questionToAsk = this.game.questions[0];
+      this.questionText.text = this.questionString + this.questionToAsk;
+      if (this.game.attempts === 0){
+        this.game.score+=1;
+        this.scoreText.text = this.scoreString + this.game.score;
+
+      }
+      this.game.attempts = 0;
+      if (this.game.questions[0] === "GAME OVER") {
+        this.sendGameData();
+      }
+
+    } else {
+      this.bullet.kill();
+      this.game.attempts +=1;
+      if (this.game.attempts ===1) {
+        this.game.numWrong +=1;
+        this.scoreWrong.text = this.wrongString + this.game.numWrong;
+      }
     }
-    this.bullet.kill();
-    this.animalCell.kill();
-    this.game.questions.shift();
-    this.game.answers.shift();
-
-
-    console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.game.score;
-    this.questionToAsk = this.game.questions[0];
-    if (this.game.questions[0] === "GAME OVER") {
-      this.sendGameData();
-    }
-
-    this.questionText.text = this.questionString + this.questionToAsk;
   },
   collisionHandlerPlantCell: function(bullet, plantCell) {
+
     if (this.plantCell.value === this.game.answers[0]) {
-       this.game.score+=1;
+      this.bullet.kill();
+      this.plantCell.kill();
+      this.game.questions.shift();
+      this.game.answers.shift();
+
+      this.questionToAsk = this.game.questions[0];
+      this.questionText.text = this.questionString + this.questionToAsk;
+      if (this.game.attempts === 0){
+        this.game.score+=1;
+        this.scoreText.text = this.scoreString + this.game.score;
+      }
+      this.game.attempts = 0;
+      if (this.game.questions[0] === "GAME OVER") {
+        this.sendGameData();
+      }
+
+    } else {
+      this.bullet.kill();
+      this.game.attempts +=1;
+      if (this.game.attempts ===1) {
+        this.game.numWrong +=1;
+        this.scoreWrong.text = this.wrongString + this.game.numWrong;
+      }
     }
-    this.bullet.kill();
-    this.plantCell.kill();
-    this.game.questions.shift();
-    this.game.answers.shift();
-
-    console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.game.score;
-    this.questionToAsk = this.game.questions[0];
-    if (this.game.questions[0] === "GAME OVER") {
-      this.sendGameData();
-    }
-
-    this.questionText.text = this.questionString + this.questionToAsk;
-
   },
   collisionHandlerDna: function(bullet, dna) {
+
     if (this.dna.value === this.game.answers[0]) {
-       this.game.score+=1;
-    }
-    this.bullet.kill();
-    this.dna.kill();
-    this.game.questions.shift();
-    this.game.answers.shift();
+      this.bullet.kill();
+      this.dna.kill();
+      this.game.questions.shift();
+      this.game.answers.shift();
 
-    console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.game.score;
-    this.questionToAsk = this.game.questions[0];
-    if (this.game.questions[0] === "GAME OVER") {
-      this.sendGameData();
-    }
+      this.questionToAsk = this.game.questions[0];
+      this.questionText.text = this.questionString + this.questionToAsk;
+      if (this.game.attempts === 0){
+        this.game.score+=1;
+        this.scoreText.text = this.scoreString + this.game.score;
+      }
+      this.game.attempts = 0;
+      if (this.game.questions[0] === "GAME OVER") {
+        this.sendGameData();
+      }
 
-    this.questionText.text = this.questionString + this.questionToAsk;
+    } else {
+      this.bullet.kill();
+      this.game.attempts +=1;
+      if (this.game.attempts ===1) {
+        this.game.numWrong +=1;
+        this.scoreWrong.text = this.wrongString + this.game.numWrong;
+      }
+    }
   },
   collisionHandlerGolgiComplex: function(bullet, golgicomplex) {
+
     if (this.golgicomplex.value === this.game.answers[0]) {
-       this.game.score+=1;
-    }
-    this.bullet.kill();
-    this.golgicomplex.kill();
-    this.game.questions.shift();
-    this.game.answers.shift();
+      this.bullet.kill();
+      this.golgicomplex.kill();
+      this.game.questions.shift();
+      this.game.answers.shift();
 
-    console.log("Collision!");
-    this.scoreText.text = this.scoreString + this.game.score;
-    this.questionText.text = this.questionString + this.questionToAsk;
-    this.questionToAsk = this.game.questions[0];
-    if (this.game.questions[0] === "GAME OVER") {
-      this.sendGameData();
-    }
-    console.log(this.questionToAsk);
+      this.questionToAsk = this.game.questions[0];
+      this.questionText.text = this.questionString + this.questionToAsk;
+      if (this.game.attempts === 0){
+        this.game.score+=1;
+        this.scoreText.text = this.scoreString + this.game.score;
+      }
+      this.game.attempts = 0;
+      if (this.game.questions[0] === "GAME OVER") {
+        this.sendGameData();
+      }
 
+    } else {
+      this.bullet.kill();
+      this.game.attempts +=1;
+      if (this.game.attempts ===1) {
+        this.game.numWrong +=1;
+        this.scoreWrong.text = this.wrongString + this.game.numWrong;
+      }
+    }
   },
   collisionHandlerNucleus: function(bullet, nucleus) {
-    if (this.nucleus.value === this.game.answers[0]) {
-       this.game.score+=1;
-    }
-    this.bullet.kill();
-    this.nucleus.kill();
-    this.game.questions.shift();
-    this.game.answers.shift();
 
-    this.scoreText.text = this.scoreString + this.game.score;
-    this.questionToAsk = this.game.questions[0];
-    if (this.game.questions[0] === "GAME OVER") {
-      this.sendGameData();
+    if (this.nucleus.value === this.game.answers[0]) {
+      this.bullet.kill();
+      this.nucleus.kill();
+      this.game.questions.shift();
+      this.game.answers.shift();
+
+      this.questionToAsk = this.game.questions[0];
+      this.questionText.text = this.questionString + this.questionToAsk;
+      if (this.game.attempts === 0){
+        this.game.score+=1;
+        this.scoreText.text = this.scoreString + this.game.score;
+
+      }
+      this.game.attempts = 0;
+      if (this.game.questions[0] === "GAME OVER") {
+        this.sendGameData();
+      }
+
+    } else {
+      this.bullet.kill();
+      this.game.attempts +=1;
+      if (this.game.attempts ===1) {
+        this.game.numWrong +=1;
+        this.scoreWrong.text = this.wrongString + this.game.numWrong;
+      }
     }
-    this.questionText.text = this.questionString + this.questionToAsk;
   },
 
   sendGameData: function () {
   // creates data object containing all the data gathered by this game
   var data = {
     'livesUsed': 0,
-    'time': this.gameTime,
+    'time': parseInt(this.game.timerTest)/60,
     'pointsScored': this.game.score,
     'pointsAvailable': 7,
     'feeling': 0

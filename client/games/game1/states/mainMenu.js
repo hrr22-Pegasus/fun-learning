@@ -15,10 +15,10 @@ GameState.MainMenu = {
   update: function(){
     if(this.game.input.activePointer.justPressed()) {
 
-      var a = this.game.time.now;
+      var startTime = this.game.time.now;
 
-      this.game.state.start('Level1', null, null, a);
-      console.log("pressed at: ", a)
+      this.game.state.start('Level1', null, null, startTime); //goes through custom of next state
+      console.log("pressed at: ", startTime)
     }
   }
 

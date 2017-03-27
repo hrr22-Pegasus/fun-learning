@@ -29,18 +29,21 @@ angular.module('funLearning.game', [])
     /////////////////// Level1 Functions Using Factory //////////////////
 
     console.log("Gamestate they say is undefined: ", GameState);
-    GameState.Level1.prototype.getTeacherFromUser = function(){
+    GameState.Preload.prototype.getTeacherFromUser = function(){
       return UsersFactory.currentUser[0]["teacher"];
     };
 
-    GameState.Level1.prototype.getTestByTeacher = function(teacher, game, test){
-      var fullTestObj = TestsFactory.getTest(teacher);
-      var test = fullTestObj["games"][game][test];
-      console.log("test  dfadsfasfd", test);
-      return test;
+    GameState.Preload.prototype.loadTestByTeacher = function(teacher){
+      TestsFactory.getTest(teacher);
+      console.log("Test factor after getTest", TestsFactory);
     };
     /////////////////////////////////////////////////////////////////////
-
+    GameState.Level1.prototype.returnTest = function(game, test){
+      var testObj = TestsFactory.currentTest[0];
+      console.log("returning test in Level1", testObj);
+      var filteredTest = testObj["games"][game][test];
+      return filteredTest;
+    };
 
 
     /////////////////// Gameover Functions Using Factory //////////////////

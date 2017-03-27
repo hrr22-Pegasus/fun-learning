@@ -16,13 +16,11 @@ angular.module('funLearning.tests', [])
         method: 'GET',
         url: '/api/tests/' + teacher
       }).then(function(res){
-        console.log('testsFactory.js - getCurrentTest result', res);
         if (res.data) {
-          currentTest.push(res.data); //****** this may need to be currentTest = res.data
+          currentTest.push(res.data);
         } else {
           alert('This teacher does not exist');
         }
-        console.log("currentTest to be returned: ", currentTest);
         return currentTest;
       });
     }
@@ -35,31 +33,3 @@ angular.module('funLearning.tests', [])
     };
 
   });
-
-  // var userSchema = new Schema({
-  //   //user profile / demographic info
-  //   firstName: String,
-  //   lastName: String,
-  //   username: String,
-  //   password: String,
-  //   age: Number,
-  //   gender: String,
-  //   isAdministrator: Boolean,
-  //   grade: Number,
-  //   teacher: String,
-  //   school: String,
-  //   dateJoined: Date,
-  //   avatar: Array,
-
-  //   //game related logic
-  //   gameResults: Array,
-  //   badges: Array,
-  //   friends: Array,
-  //   sessionLength: Array
-
-  // });
-
-
-
-
-

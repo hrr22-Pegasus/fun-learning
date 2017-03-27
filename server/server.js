@@ -6,20 +6,16 @@ var routes = require('./router.js');
 var path = require("path");
 var mongoose = require('mongoose');
 
-
-
 var app = express();
 
 app.use(bodyParser.json());
 app.use(expressSanitizer());
 app.use(express.static(__dirname + '/../client'));
 app.use(routes);
-console.log("directory name: ", __dirname);
 
 var isAuthenticated = false;
 
-
-//mongodb://<dbuser>:<dbpassword>@ds133340.mlab.com:33340/teampegasus
+// login info for mlabs: username = teampegasus, password = roothrr22
 mongoose.connect('mongodb://test:test@ds133340.mlab.com:33340/teampegasus', function(err) {
   if(err) {
     console.log('connection error', err);
@@ -29,17 +25,9 @@ mongoose.connect('mongodb://test:test@ds133340.mlab.com:33340/teampegasus', func
   }
 });
 
-
 var port = process.env.PORT || 1339;
 
 app.listen(port);
-console.log('Hey!');
 console.log("Listening on port: ", port);
-
-
-////////SERVER going to be routing///////////
-
-
-
 
 module.exports = app;

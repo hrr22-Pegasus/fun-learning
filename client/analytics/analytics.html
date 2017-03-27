@@ -1,5 +1,5 @@
-<div ng-controller="AnalyticsCtrl" class="analytics text-center">
-<div class ="page-header dashboard">
+<div ng-controller="AnalyticsCtrl" class="analytics text-center" style="background-color:white">
+<div class ="page-header">
   <img src="./styles/img/bear.png" height="100" width="100">
   <h1>Analytics! </h1>
   <h3>Learn through Play</h3>
@@ -18,9 +18,9 @@
  </div>
 
   <div style="display: inline-block; width: 40%; height: 25%;">
-  <canvas id="line" class="chart chart-line"  chart-data="data"
-  chart-labels="labels" chart-series="series" chart-options="options"
-  chart-dataset-override="datasetOverride" chart-click="onClick" >
+  <canvas id="line" class="chart chart-line"  chart-data="compareData"
+  chart-labels="compareLabels" chart-series="compareSeries" chart-options="options"
+  chart-dataset-override="compareDatasetOverride" chart-click="onClick" >
   </canvas>
  </div>
 
@@ -91,7 +91,7 @@
 <br><br><br>
 
 
-    <div class='text-center'>
+    <div class='text-center' style="background-color:white" >
     <table class="table table-bordered table-striped">
    <thead>
       <tr>
@@ -123,6 +123,46 @@
     </thead>
   <tbody>
   <tr ng-repeat='data in dataTable | orderBy:sortType:sortReverse | filter:searchNames'>
+    <td>
+      {{data.studentName}}</td>
+    <td>{{data.studentGrade}}</td>
+    <td>{{data.studentAge}}</td>
+    <td>{{data.studentPerformance}}</td>
+  </tr>
+  </tbody>
+</table>
+
+ <table class="table table-bordered table-striped">
+   <thead>
+      <tr>
+        <td>
+          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+            Name
+            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-down"></span>
+          </a>
+        </td>
+        <td>
+          <a href="#" ng-click="sortType = 'subject'; sortReverse = !sortReverse">
+          <span ng-show="sortType == 'subject' && sortReverse " class="fa fa-caret-down"></span>
+          Age
+          </a>
+        </td>
+      <td>
+          <a href="#" ng-click="sortType = 'feeling'; sortReverse = !sortReverse">
+          <span ng-show="sortType == 'feeling' && sortReverse" class="fa fa-caret-down"></span>
+          Grade
+          </a>
+        </td>
+      <td>
+          <a href="#" ng-click="sortType = 'grade'; sortReverse = !sortReverse">
+          <span ng-show="sortType == 'grade' && sortReverse" class="fa fa-caret-down"></span>
+          Performance
+          </a>
+        </td>
+      </tr>
+    </thead>
+  <tbody>
+  <tr ng-repeat='data in compareDataTable | orderBy:sortType:sortReverse | filter:searchNames'>
     <td>
       {{data.studentName}}</td>
     <td>{{data.studentGrade}}</td>

@@ -114,6 +114,24 @@ angular.module('funLearning.profile', ['chart.js'])
     ];
 
 
+    $scope.game1labels = ["Attempt 1", "Attempt 2", "Attempt 3"];
+    $scope.game1series = ['Average', 'Feeling', 'Time'];
+    $scope.game1stats = [game1Scores, game1Feeling, game1Time
+    ];
+
+
+    $scope.game2labels = ["Attempt 1", "Attempt 2", "Attempt 3"];
+    $scope.game2series = ['Average', 'Feeling', 'Time'];
+    $scope.game2stats = [game2Scores, game2Feeling, game2Time
+    ];
+
+
+    $scope.game3labels = ["Attempt 1", "Attempt 2", "Attempt 3"];
+    $scope.game3series = ['Average', 'Feeling', 'Time'];
+    $scope.game3stats = [game3Scores, game3Feeling, game3Time
+    ];
+
+
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
 
     $scope.options = {

@@ -11,20 +11,20 @@
     "teacher": "Tre",
     "school": "Hrr",
     "dateJoined": "03-25-2017",
-    "avatar": ["assets/bear_animation_body.png","assets/bear_animation_head_only.png"],
+    "avatar": ["assets/bear_animation_body.png,assets/bear_animation_head_only.png"],
     "gameResults": {
       "game1": [
-        {"livesUsed": 3, "time": 15, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
-        {"livesUsed": 3, "time": 25, "pointsScored": 11, "pointsAvailable": 14, "feeling": 3},
-        {"livesUsed": 2, "time": 28, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
+        {"livesUsed": 3, "time": 20, "pointsScored": 5, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 3, "time": 25, "pointsScored": 4, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 2, "time": 18, "pointsScored": 11, "pointsAvailable": 14, "feeling": 4 }
       ],
       "game2": [
-        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
-        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+        {"livesUsed": 3, "time": 20, "pointsScored": 2, "pointsAvailable": 14, "feeling": 1},
+        {"livesUsed": 0, "time": 12, "pointsScored": 14, "pointsAvailable": 14, "feeling": 5 }
       ],
       "game3": [
-        {"livesUsed": 3, "time": 20, "pointsScored": 8, "pointsAvailable": 14, "feeling": 1},
-        {"livesUsed": 0, "time": 34, "pointsScored": 14, "pointsAvailable": 14, "feeling": 2 }
+        {"livesUsed": 3, "time": 20, "pointsScored": 10, "pointsAvailable": 14, "feeling": 2},
+        {"livesUsed": 0, "time": 17, "pointsScored": 13, "pointsAvailable": 14, "feeling": 4 }
       ]
     },
     "badges": [],

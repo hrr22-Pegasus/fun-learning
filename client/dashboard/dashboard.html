@@ -1,27 +1,29 @@
-<div class="game text-center">
-<div class ="page-header dashboard">
-  <img src="./styles/img/bear.png" height="100" width="100">
-  <h1> Dashboard </h1>
-  <h3>Learn through Play</h3>
-  <button ng-click="changeLocation('/analytics')" class="btn btn-warning">Analytics</button>
-  <button ng-click="changeLocation('/profile')" class="btn btn-warning">Profile</button>
+<div ng-controller="DashboardCtrl">
+  <div class="col-sm-3 sidenav hidden-xs" id="dashboardmenu">
 
-
-</div>
-
-<div class="row">
-  <div class="col-sm-4">
-  <button ng-click="changeLocation('/game')" class="btn btn-warning">Game 1</button>
-  <br><br>
-  <img src="assets/game1haunted.gif" height="400"></div>
-  <div class="col-sm-4">
-    <button ng-click="changeLocation('/game2')" class="btn btn-warning">Game 2</button>
-    <br><br>
-    <img src="assets/fractionfun.gif" height="400" >
-    </div>
-  <div class="col-sm-4">
-    <button ng-click="changeLocation('/game3')" class="btn btn-warning">Game 3</button>
-    <br><br>
-    <img src="assets/cellshootout.gif" height="400" ></div>
+    <img src="./styles/img/bear.png" height="100" width="100">
+    <h1> Dashboard </h1>
+    <br>
+    <ul class="nav nav-pills nav-stacked">
+      <li ng-click="changeLocation('/profile')" class="btn btn-warning" id="menubutton">Profile</li>
+      <br>
+      <li ng-click="changeLocation('/analytics')" class="btn btn-warning" id="menubutton">Analytics</li>
+      <br>
+      <li ng-click="changeLocation('/login')" class="btn btn-warning" id="menubutton">Logout</li>
+    </ul>
+    <br>
   </div>
+  <br>
+
+  <h1 style="text-align: center; color:#FFFF99;">Let's Learn Together️!</h1>
+  <h3 style="text-align: center; color:#FFFF99;">Click to play</h3>
+  <br>
+  <br>
+  <div class="col-sm-3">
+    <img src="assets/game1haunted.gif" id="gameimg" ng-click="changeLocation('/game')">
+   </div>
+  <div class="col-sm-3">
+    <img src="assets/fractionfun.gif" id="gameimg" ng-click="changeLocation('/game2')"></div>
+  <div class="col-sm-3">
+    <img src="assets/cellshootout.gif" id="gameimg" ng-click="changeLocation('/game3')"></div>
 </div>

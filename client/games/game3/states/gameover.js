@@ -3,10 +3,11 @@ GameState3.GameOver = function(game) {};
 
 GameState3.GameOver.prototype = {
   init: function(gameResults) {
+    // gets the data passed in from the level1 game file and sets it to as a property to be used in this game state
     this.data = gameResults;
   },
   create: function() {
-
+    // retrieves the current username from the database
     this.user = this.getUsername();
 
     // creates a new option from the options entity
@@ -39,11 +40,11 @@ GameState3.GameOver.prototype = {
     this.option5.events.onInputDown.add(this.sendData, this);
   },
   sendData: function(option) {
+    // gets the value of the option that was clicked and adds it to the data property
     this.data.feeling = option.value;
+    // adds the game results to the database
     this.addResult('game3', this.user, this.data);
+    // sets the game state back to mainmenu
     this.game.state.start('MainMenu');
-  },
-  setPicked: function() {
-    this.picked = this.game.option._text;
   }
 };

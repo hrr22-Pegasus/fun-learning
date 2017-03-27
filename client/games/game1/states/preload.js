@@ -5,14 +5,21 @@ GameState.Preload = function(game){};
 GameState.Preload.prototype = {
 
   preload: function(){
-    this.avatarPath = this.getAvatarFromUser();
+
+    this.teacher = this.getTeacherFromUser();
+    console.log("teacher success: ", this.teacher);
+    this.loadTestByTeacher(this.teacher);
+
+    // console.log("test success: ", this.test);
+    this.avatarPath = this.getAvatarFromUser()[0].split(",");
+    console.log("importing avatar [head, body]: ", this.avatarPath);
+
+    // this.avatarBody = "assets/bear_animation_body.png";
+    // this.avatarHead = "assets/bear_animation_head_only.png"
 
     this.avatarBody = this.avatarPath[0];
     this.avatarHead = this.avatarPath[1];
 
-
-    console.log("importing avatar...body", this.avatarPath[0]);
-    console.log("importing avatar...head", this.avatarPath[1]);
     //place all the booted items on the screen
     this.load.image('background', 'assets/haunted-mansion.png');
     this.load.spritesheet('kanye', this.avatarBody, 780/10, 190/2, 20,1,1);

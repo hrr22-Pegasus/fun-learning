@@ -15,10 +15,20 @@ GameState3.MainMenu.prototype = {
   },
 
   update: function(){
-    if(this.game.input.activePointer.justPressed()) {
+    if (this.game.input.activePointer.justPressed()) {
       this.game.state.start('Level1');
     }
+
+    if (this.game.input.activePointer.justPressed()) {
+
+      var startTime = this.game.time.now;
+
+      this.game.state.start('Level1', null, null, startTime); //goes through custom of next state
+    }
+
   }
+
+
 
 
 };

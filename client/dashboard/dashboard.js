@@ -1,5 +1,5 @@
 angular.module('funLearning.dashboard', [])
-  .controller('DashboardCtrl', function($scope, TestsFactory, $location) {
+  .controller('DashboardCtrl', function($scope, TestsFactory, $location, UsersFactory) {
 
     $scope.changeLocation = function(path) {
       console.log('clicked: ', path);
@@ -10,6 +10,8 @@ angular.module('funLearning.dashboard', [])
 
       return TestsFactory.getTest("Tre");
     };
+
+    UsersFactory.getAllUsers();
 
 
   });

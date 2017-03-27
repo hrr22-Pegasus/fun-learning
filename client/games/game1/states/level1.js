@@ -13,11 +13,7 @@ GameState.Level1.prototype = {
     this.kanye = new Player(this.game, 500, 350, 'kanye');
     this.kanyehead = this.game.add.sprite(455, 245, 'kanye-head');
 
-
-    this.teacher = this.getTeacherFromUser();
-    console.log("teacher success: ", this.teacher);
-    this.test= this.getTestByTeacher(this.teacher, "game1", "test1");
-    console.log("test success: ", this.test);
+    this.test = this.returnTest("game1", "test2");
 
     // this.test = [
     // [0,1], [5,5], [3,3], [0,0]
@@ -29,12 +25,10 @@ GameState.Level1.prototype = {
     // // [0,1], [5,5], [3,3], [0,0],
     // // [0,1], [5,5], [3,3], [0,0],
     // ];
+    this.pointsAvailable = this.test.length;
     this.questionsAsked = 0;
 
     this.guess = "";
-    // this.pointsScored = 0;
-    this.pointsAvailable = this.test.length;
-
     this.pointsScored_text = this.game.add.text(
       100,
       100,

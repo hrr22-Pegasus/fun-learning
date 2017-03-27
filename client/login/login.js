@@ -16,8 +16,9 @@ angular.module('funLearning.login', [])
 
     $scope.getLeaderBoard = function() {
     };
+        UsersFactory.getAllUsers();
 
-    UsersFactory.getAllUsers();
+
   });
 
 
