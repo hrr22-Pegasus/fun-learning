@@ -12,7 +12,5 @@ angular.module('funLearning.dashboard', [])
     };
 
 
-
-
   });
 

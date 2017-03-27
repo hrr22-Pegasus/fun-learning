@@ -1,5 +1,5 @@
 angular.module('funLearning.analytics', ['chart.js'])
-  .controller('AnalyticsCtrl', function($scope,GameResultsFactory, UsersFactory) {
+  .controller('AnalyticsCtrl', function($scope, GameResultsFactory, UsersFactory, $location) {
 
     $scope.dataTable = [];
 
@@ -7,22 +7,22 @@ angular.module('funLearning.analytics', ['chart.js'])
     var parameterToMonitor = "points";
     var gameName = "game1";
 
-    $scope.setGame = function($event) {
+    $scope.changeLocation = function(path) {
+      console.log('clicked: ', path);
+      $location.path(path);
+    };
 
+    $scope.setGame = function($event) {
       $scope.game= $event.target.getAttribute('value');
       gameName = $event.target.getAttribute('value');
       var parameterAverages = findClassAverage(allStudentsUnderCertainTeacher, parameterToMonitor, gameName);
-
       var combinedClassAverage = combineClassAverage(parameterAverages);
-       console.log(combinedClassAverage);
+      console.log(combinedClassAverage);
       setLabels(parameterAverages);
-
-
       if (dataTypeTrigger === "all"){
       setData(parameterAverages);
       setLabels(parameterAverages);
       setDataSetOverrideAndOptions(parameterAverages);
-
      } else if (dataTypeTrigger === "combined"){
       setData(combinedClassAverage);
       setLabels(combinedClassAverage);
@@ -114,8 +114,7 @@ angular.module('funLearning.analytics', ['chart.js'])
           for (var i = 0; i<studentGameResults.length; i++){
             var studentPointsScored = studentGameResults[i]["pointsScored"];
             var studentPointsAvailable = studentGameResults[i]["pointsAvailable"];
-            var performance = studentPointsScored/studentPointsAvailable;
-            console.log('performance is ', performance);
+            var performance = (studentPointsScored/studentPointsAvailable);
             scores.push(performance*100);
           }
       } else if (parameter === 'time'){
@@ -135,8 +134,7 @@ angular.module('funLearning.analytics', ['chart.js'])
           var studentPointsScored = studentGameResults[i]["pointsScored"];
           var studentPointsAvailable = studentGameResults[i]["pointsAvailable"];
           var performance = studentPointsScored /studentPointsAvailable;
-          var convertedNumber = parseFloat(Math.round(performance * 100) / 100).toFixed(2);
-          scores.push(convertedNumber);
+          scores.push(performance);
         }
       }
       return scores;
@@ -205,6 +203,8 @@ angular.module('funLearning.analytics', ['chart.js'])
       $scope.data = data;
     };
 
+
+
     var setDataSetOverrideAndOptions = function(numDataSets) {
       var dataSetOverrideArray = [];
       var dataSetOptions = {
@@ -258,7 +258,6 @@ angular.module('funLearning.analytics', ['chart.js'])
       console.log(rotatedScores)
       for (var i = 0; i<rotatedScores.length; i++){
         for (var j = 0; j<rotatedScores[i].length; j++){
-          // console.log(scores[i][j])
           if (j ===0){
             combinedScores[i] = rotatedScores[i][j]
           }
@@ -306,72 +305,8 @@ angular.module('funLearning.analytics', ['chart.js'])
         ]
       }
     };
-
-});
-
+  });
 
 
 
 
-
-    // var defaultOnStart = true;
-    // var defaultAfterJustSubjectClick = true;
-
-    // $scope.comparisons = [];
-    // $scope.hasBeenClicked= {
-    //   "Ryan's Algebra Adventure!": 0,
-    //   "Samy's Science Something": 0,
-    //   "Misaki's Math Mojo": 0,
-    //   "Jesse's Geography Bee!": 0
-    // };
-
-    // var identifier1 = '';
-    // var identifier2 = '';
-    // $scope.parameter = "Grade Average"
-
-    // var uniqueDataArrayOfArrays = [];
-
-   //  $scope.setGame = function($event) {
-   //    console.log("in HereZ");
-   //    $scope.game= $event.target.getAttribute('value');
-   //    var game = $event.target.getAttribute('value');
-   //    var clicked = $scope.hasBeenClicked[game]
-   //    console.log("Was it clicked?", clicked);
-   //    if (clicked <=0){
-   //      clicked+=1;
-   //      $scope.comparisons.push(game + "vs");
-   //      console.log(games[game]['subject']);
-   //      $scope.subject = games[game]['subject'];
-   //      var uniqueDataSingleArray = (games[game]['dataAvg']);
-   //      uniqueDataArrayOfArrays.push(uniqueDataSingleArray);
-   //      var numberOfDataSets = uniqueDataArrayOfArrays.length;
-   //      setData(uniqueDataArrayOfArrays);
-   //      setLabels(uniqueDataArrayOfArrays);
-   //      setDataSetOverrideAndOptions(numberOfDataSets);
-   //    }
-   //  };
-
-
-
-
-  // var findAverage = function(dataset){
-    //   var sum = 0;
-    //   var numEntries = dataset.length;
-    //   var average;
-
-    //   for (var i = 0; i<numEntries; i++){
-    //     var datapoint = numEntries[i];
-    //     sum+=datapoint;
-    //   }
-    //   average = sum/numEntries;
-    //   return average;
-    // };
-
-
-
-    // $scope.labels = ["Attempt 1", "Attempt 2", "Attempt 3", "Attempt 4", "Attempt 5", "Attempt 6", "Attempt 7"];
-    // $scope.series = ['Student X', 'Class Averages'];
-    // $scope.data = [
-    //   [65, 59, 80, 81, 56, 55, 40],
-    //   [28, 48, 40, 19, 86, 27, 90]
-    // ];

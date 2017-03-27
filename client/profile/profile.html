@@ -1,4 +1,103 @@
-<div>
-  <h2> Profile.html </h2>
-  <p>hello world!</p>
+<div class="game text-center">
+  <div class ="page-header dashboard">
+   <img src="./styles/img/bear.png" height="100" width="100">
+    <h1>Your Profile! </h1>
+    <h3>Learn through Play</h3>
+  </div><br>
+  <button ng-click="changeLocation('/dashboard')" class="btn btn-warning">Dashboard</button><br><br>
+  <div class = "container-fluid" style="background-color:white"><br><br>
+
+    <div class="row" style="background-color:white">
+
+      <div class="col-sm-3" style="background-color:white; display: inline-block; height: 100%;">
+        <h2>{{username}}</h2>
+        <h3>{{firstName}} {{lastName}}</h3>
+        <h3>Age {{age}}</h3>
+        <h3>Grade: {{grade}}</h3>
+
+        <img src="http://www.freeiconspng.com/uploads/profile-icon-9.png" height="100">
+      </div>
+      <div class="col-sm-4" style="background-color:white; display: inline-block; height: 100%;">
+        <h2>Play Pie</h2>
+        <canvas id="gamePlayPie" class="chart chart-pie"  style="background-color:white; display: inline-block; height: 100%;"
+          chart-data="gamePlayData" chart-labels="gameLabels">
+        </canvas>
+      </div>
+      <div class="col-sm-5" style="background-color:white;display: inline-block; height: 100%;">
+          <h2>Beastly Breakdown</h2>
+        <canvas id="gameScoreChart" class="chart chart-bar" style="background-color:white; display: inline-block; height: 100%;"
+          chart-data="barChartData" chart-labels="gameLabels" chart-series="series">
+        </canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3"  style="background-color:white;">
+        <h2>Pythagoras' Haunted House</h2>
+        <img src="assets/game1haunted.gif" height="150">
+        <h3>Your best score: </h3>
+         <h3>Average Rating: {{game1AverageFeeling}}</h3>
+        <h3>Average Grade: {{game1Average}}</h3>
+        <h3>Average Time: {{game1AverageTime}}</h3>
+      </div>
+      <div class="col-sm-4" style="background-color:white;">
+        <h2>Ghostly Good Data</h2>
+          <canvas id="line" class="chart chart-line" chart-data="game1data"
+          chart-labels="game1labels" chart-series="game1series" chart-options="options"
+          chart-dataset-override="datasetOverride" style="background-color:white;"></canvas>
+      </div>
+      <div class="col-sm-5" style="background-color:white;display: inline-block; height: 100%;">
+          <h2>Spooky Stats</h2>
+        <canvas id="gameScoreChart" class="chart chart-bar" style="background-color:white;"
+          chart-data="barChartData" chart-labels="gameLabels" chart-series="series">
+        </canvas>
+      </div>
+    </div>
+   <div class="row">
+      <div class="col-sm-3"  style="background-color:white;">
+        <h2>Fraction Fun!</h2>
+        <img src="assets/fractionfun.gif" height="150">
+        <h3>Your best score: </h3>
+        <h3>Times Played</h3>
+        <h3>Average Rating: {{game2AverageFeeling}}</h3>
+        <h3>Average Grade: {{game2Average}}</h3>
+        <h3>Average Time: {{game2AverageTime}}</h3>
+      </div>
+      <div class="col-sm-4" style="background-color:white;">
+        <h2>Fantastically Fun Data</h2>
+          <canvas id="line" class="chart chart-line" chart-data="game2data"
+          chart-labels="game2labels" chart-series="game2series" chart-options="options"
+          chart-dataset-override="datasetOverride" style="background-color:white;"></canvas>
+      </div>
+      <div class="col-sm-5" style="background-color:white;display: inline-block; height: 100%;">
+          <h2>Super Stats</h2>
+        <canvas id="gameScoreChart" class="chart chart-bar" style="background-color:white;"
+          chart-data="barChartData" chart-labels="gameLabels" chart-series="series">
+        </canvas>
+      </div>
+    </div>
+  <div class="row">
+      <div class="col-md-3"  style="background-color:white;">
+        <h2>Cellular Shootout</h2>
+        <img src="assets/cellshootout.gif" height="150">
+        <h3>Your best score: </h3>
+        <h3>Times Played</h3>
+        <h3>Average Rating: {{game3AverageFeeling}}</h3>
+        <h3>Average Grade {{game3Average}}</h3>
+        <h3>Average Time {{game3AverageTime}}</h3>
+      </div>
+      <div class="col-md-4" style="background-color:white;">
+        <h2>Cell-Shocking Data</h2>
+          <canvas id="line" class="chart chart-line" chart-data="game3data"
+          chart-labels="game3labels" chart-series="game3series" chart-options="options"
+          chart-dataset-override="datasetOverride" style="background-color:white;"></canvas>
+      </div>
+      <div class="col-md-5" style="background-color:white;display: inline-block; height: 100%;">
+          <h2>Stellar Stats</h2>
+        <canvas id="gameScoreChart" class="chart chart-bar" style="background-color:white;"
+          chart-data="barChartData" chart-labels="gameLabels" chart-series="series">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  </div>
 </div>

@@ -39,6 +39,12 @@ angular.module('funLearning.users', [])
       });
     };
 
+
+    var getUserProfile = function() {
+      console.log(currentUser);
+      return currentUser;
+    };
+
     var addNewUser = function(data) {
       return $http({
         method: 'POST',
@@ -60,31 +66,8 @@ angular.module('funLearning.users', [])
       getAllUsers: getAllUsers,
       getCurrentUser: getCurrentUser
     };
-
   });
 
-  // var userSchema = new Schema({
-  //   //user profile / demographic info
-  //   firstName: String,
-  //   lastName: String,
-  //   username: String,
-  //   password: String,
-  //   age: Number,
-  //   gender: String,
-  //   isAdministrator: Boolean,
-  //   grade: Number,
-  //   teacher: String,
-  //   school: String,
-  //   dateJoined: Date,
-  //   avatar: Array,
-
-  //   //game related logic
-  //   gameResults: Array,
-  //   badges: Array,
-  //   friends: Array,
-  //   sessionLength: Array
-
-  // });
 
 
 

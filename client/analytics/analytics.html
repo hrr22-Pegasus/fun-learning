@@ -4,6 +4,8 @@
   <h1>Analytics! </h1>
   <h3>Learn through Play</h3>
 </div>
+  <button ng-click="changeLocation('/dashboard')" class="btn btn-warning">Dashboard</button><br>
+
   <h1 ng-repeat="compare in comparisons">{{compare}}</h1>
   <h3>{{subject}}</h3>
   <h4>Evaluating {{parameter}}</h4>
@@ -60,9 +62,9 @@
 
  <button class="dropbtnCompare">Compare Against: Game?</button>
   <div class="dropdown-content">
-    <a value = "game1" ng-click= "setGame($event)">Pythagoras' Haunted House</a>
-    <a value = "game2" ng-click= "setGame($event)">Fraction Fun!</a>
-    <a value = "game3" ng-click= "setGame($event)">Cellular Shootout</a>
+    <a value = "game1" ng-click= "setCompareGame($event)">Pythagoras' Haunted House</a>
+    <a value = "game2" ng-click= "setCompareGame($event)">Fraction Fun!</a>
+    <a value = "game3" ng-click= "setCompareGame($event)">Cellular Shootout</a>
   </div>
 
 </div>
@@ -71,17 +73,17 @@
 
     <button class="dropbtnCompare">Compare Against: Data View?</button>
      <div class="dropdown-content">
-       <a value = "all" ng-click= "setDataViewType($event)">All Class</a>
-      <a value = "combined" ng-click= "setDataViewType($event)">Combined</a>
+       <a value = "all" ng-click= "setCompareDataViewType($event)">All Class</a>
+      <a value = "combined" ng-click= "setCompareDataViewType($event)">Combined</a>
     </div>
   </div>
   <div class="dropdown">
 
   <button class="dropbtnCompare">Compare Against: Parameter</button>
   <div class="dropdown-content">
-    <a value = "time" ng-click="setParameter($event)">Points</a>
-    <a value = "feeling" ng-click= "setParameter($event)">Feeling</a>
-    <a value = "points" ng-click= "setParameter($event)">Time</a>
+    <a value = "time" ng-click="setCompareParameter($event)">Points</a>
+    <a value = "feeling" ng-click= "setCompareParameter($event)">Feeling</a>
+    <a value = "points" ng-click= "setCompareParameter($event)">Time</a>
   </div>
 </div>
 

@@ -1,5 +1,5 @@
 angular.module('funLearning.game', [])
-  .controller('GameCtrl', function($scope, UsersFactory, GameResultsFactory, TestsFactory){
+  .controller('GameCtrl', function($scope, UsersFactory, GameResultsFactory, TestsFactory, $location){
 
     $scope.getGameResults = function() {
       return GameResultsFactory.getGameResults().then(function(data) {
@@ -15,6 +15,11 @@ angular.module('funLearning.game', [])
     game.state.add('MainMenu', GameState.MainMenu);
     game.state.add('Level1', GameState.Level1);
     game.state.add('GameOver', GameState.GameOver);
+
+    $scope.changeLocation = function(path) {
+      console.log('clicked: ', path);
+      $location.path(path);
+    };
 
 
     GameState.Preload.prototype.getAvatarFromUser = function(){
@@ -52,12 +57,17 @@ angular.module('funLearning.game', [])
     game.state.start('Boot');
 
   })
-  .controller('GameCtrl2', function($scope, UsersFactory, GameResultsFactory, TestsFactory){
+  .controller('GameCtrl2', function($scope, UsersFactory, GameResultsFactory, TestsFactory, $location){
     $scope.getGameResults = function() {
       return GameResultsFactory.getGameResults().then(function(data) {
         console.log('data response', data);
         console.log('all game data', GameResultsFactory.allGameData);
       });
+    };
+
+    $scope.changeLocation = function(path) {
+      console.log('clicked: ', path);
+      $location.path(path);
     };
 
     var game2 = new Phaser.Game(600, 600, Phaser.CANVAS, 'phaser-example', null, false);
@@ -78,17 +88,27 @@ angular.module('funLearning.game', [])
     game2.state.add('GameOver', GameState2.GameOver);
     game2.state.start('Boot');
   })
-  .controller('GameCtrl3', function($scope, UsersFactory, GameResultsFactory, TestsFactory){
+  .controller('GameCtrl3', function($scope, UsersFactory, GameResultsFactory, TestsFactory, $location){
 
 
     $scope.getGameResults = function() {
       return GameResultsFactory.getGameResults().then(function(data) {
         console.log('data response', data);
         console.log('all game data', GameResultsFactory.allGameData);
+
+
     });
 };
 
+
+    $scope.changeLocation = function(path) {
+          console.log('clicked: ', path);
+          $location.path(path);
+        };
+
 var game3 = new Phaser.Game(1200, 1000, Phaser.CANVAS, 'game-3', null, false);
+
+
 
   GameState3.GameOver.prototype.addResult = function(gameName, userName, data) {
       console.log('game: ', gameName, 'user: ', userName, 'data: ', data);

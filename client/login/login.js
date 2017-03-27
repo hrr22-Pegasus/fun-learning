@@ -18,7 +18,7 @@ angular.module('funLearning.login', [])
     };
 
     UsersFactory.getAllUsers();
-});
+  });
 
 
       // $scope.validateUser = function(){
