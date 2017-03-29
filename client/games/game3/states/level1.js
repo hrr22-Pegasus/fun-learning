@@ -5,46 +5,52 @@ GameState3.Level1.prototype = {
 
 
   create: function() {
+    //starts the time at 0 once the game is created
     this.game.timerTest = 0;
+    //adds a background which is scrollable
     this.background = this.game.add.tileSprite(0, 0, 1200, 1000, 'scrollingSpace');
+    //introduces a shape object at the base of the screen
     this.ship = new Ship(this.game, 600, 1000, 'ship');
+    //starts the phaser physics engine
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    this.game.questions = ["a dense organelle present in most eukaryotic cells, typically a single rounded \n structure bounded by a double membrane, containing the genetic material.", "Shares a similar construction motif with the typical eukaryote cell, but does not have centrioles, \n lysosomes, intermediate filaments, cilia, or flagella but does features a cell wall", "a molecule that carries the genetic instructions used in the growth, development, functioning\n and reproduction of all known living organisms and many viruses", "produce the energy currency of the cell, ATP (i.e., phosphorylation of ADP),\n through respiration, and to regulate cellular metabolism.", "a plastid that contains chlorophyll and \n in which photosynthesis takes place.", " a series of flattened, stacked pouches called cisternae, it is responsible for transporting, modifying, \nand packaging proteins", "cells contain a nucleus and other organelles enclosed \n within membranes but no cell wall.", "GAME OVER"],
+    //array of questions which shifts upon correct answer entry
+    this.game.questions = ["a dense organelle present in most eukaryotic cells, typically a single rounded \n structure bounded by a double membrane, containing the genetic material.", "Shares a similar construction motif with the typical eukaryote cell, but does not have centrioles, \n lysosomes, intermediate filaments, cilia, or flagella but does features a cell wall", "a molecule that carries the genetic instructions used in the growth, development, functioning\n and reproduction of all known living organisms and many viruses", "produce the energy currency of the cell, ATP (i.e., phosphorylation of ADP),\n through respiration, and to regulate cellular metabolism.", "a plastid that contains chlorophyll and \n in which photosynthesis takes place.", " a series of flattened, stacked pouches called cisternae, it is responsible for transporting, modifying, \nand packaging proteins", "cells contain a nucleus and other organelles enclosed \n within membranes but no cell wall.", "GAME OVER"];
+    //an array of answers which correlates to the same indexed question and shifts on correct responses
     this.game.answers = ["nucleus", "plantCell", "dna", "mitochondria", "chloroplast", "golgiComplex", "animalCell"];
 
-
+    //these are the individual "answer" properties. It is is given a random x and y position. The value is what is checked upon collision. If it is correct then the object is killed, the question and answer arrays are shifted.
     this.mitochondria = new Enemy(this.game, Math.random()*1200, Math.random()* 800, 'mitochondria');
     this.mitochondria.enableBody = true;
     this.mitochondria.physicsBodyType = Phaser.Physics.ARCADE;
     this.mitochondria.value = "mitochondria";
 
 
-
+    //these are the individual "answer" properties. It is is given a random x and y position. The value is what is checked upon collision. If it is correct then the object is killed, the question and answer arrays are shifted.
     this.chloroplast = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'chloroplast');
     this.chloroplast.enableBody = true;
     this.chloroplast.physicsBodyType = Phaser.Physics.ARCADE;
     this.chloroplast.value = "chloroplast";
 
-
+    //these are the individual "answer" properties. It is is given a random x and y position. The value is what is checked upon collision. If it is correct then the object is killed, the question and answer arrays are shifted.
     this.animalCell = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'animalCell');
     this.animalCell.enableBody = true;
     this.animalCell.physicsBodyType = Phaser.Physics.ARCADE;
     this.animalCell.value = "animalCell";
 
 
-
+    //these are the individual "answer" properties. It is is given a random x and y position. The value is what is checked upon collision. If it is correct then the object is killed, the question and answer arrays are shifted.
     this.plantCell = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'plantCell');
     this.plantCell.enableBody = true;
     this.plantCell.physicsBodyType = Phaser.Physics.ARCADE;
     this.plantCell.value = "plantCell";
 
-
+    //these are the individual "answer" properties. It is is given a random x and y position. The value is what is checked upon collision. If it is correct then the object is killed, the question and answer arrays are shifted.
     this.nucleus = new Enemy(this.game, Math.random()*1200, Math.random()*400, 'nucleus');
     this.nucleus.enableBody = true;
     this.nucleus.physicsBodyType = Phaser.Physics.ARCADE;
-    this.nucleus.value = "nucleus"
+    this.nucleus.value = "nucleus";
 
-
+    //these are the individual "answer" properties. It is is given a random x and y position. The value is what is checked upon collision. If it is correct then the object is killed, the question and answer arrays are shifted.
 
 
     this.golgicomplex = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'golgiComplex')
@@ -52,18 +58,19 @@ GameState3.Level1.prototype = {
     this.golgicomplex.physicsBodyType = Phaser.Physics.ARCADE;
     this.golgicomplex.value = "golgiComplex"
 
-
+    //these are the individual "answer" properties. It is is given a random x and y position. The value is what is checked upon collision. If it is correct then the object is killed, the question and answer arrays are shifted.
 
     this.dna = new Enemy(this.game, Math.random()*1200, Math.random()*800, 'dna');
     this.dna.enableBody = true;
     this.dna.physicsBodyType = Phaser.Physics.ARCADE;
-    this.dna.value = "dna"
+    this.dna.value = "dna";
 
 
-
+    //creates cursors for the keyboard allowing it to move left and right and fire
     this.cursors = this.game.input.keyboard.createCursorKeys();
     this.fireButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
+    //adds a group of bullets which all share the following properties.
     this.bullets = this.game.add.group();
     this.bullets.enableBody = true;
     this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
@@ -73,6 +80,8 @@ GameState3.Level1.prototype = {
     this.bullets.setAll('outOfBoundsKill', true);
     this.bullets.setAll('checkWorldBounds', true);
     this.bulletTime = 0;
+
+    //Here we are setting up our string, number of correct and incorrect questions which are dynamically rendered after points in either category (correct or incorrect) are allocated.
     this.scoreString = 'Score: ';
     this.wrongString = 'Incorrect: ';
     this.game.numWrong = 0;
@@ -83,31 +92,38 @@ GameState3.Level1.prototype = {
     this.questionToAsk = this.game.questions[0];
     this.questionText =  this.game.add.text(40, 750,  this.questionString + this.questionToAsk, { font: '24px Arial', fill: '#fff' });
 
+    //this is perhaps a better way of making our answers (instead of defining each separately). I like the way it was done above because it gives you a clear idea of how to modulate the behaviors, respectively.
+    // this.answers = this.game.add.group();
+    // this.answers.enableBody = true;
+    // this.answers.physicsBodyType = Phaser.Physics.ARCADE;
 
-    this.answers = this.game.add.group();
-    this.answers.enableBody = true;
-    this.answers.physicsBodyType = Phaser.Physics.ARCADE;
-
+    //this checks the attempts each time a collision happens. If the attempts are greater than 1 for example than points are allocated in the num wrong as to as a correct answer. The user can still attempt to get the question right but has in
     this.game.attempts = 0;
     this.moveAnswers();
   },
 
   update: function() {
 
+    //on update (which occurs at 60fps), this scrolls the background upwards.
     this.background.tilePosition.y += 2;
 
+    //timer is incremented by 1 every update; so when exporting by the time, since it is updating at 60fps, we divide by 60
     this.game.timerTest +=1;
-    console.log(this.game.timerTest/60);
-
+    //checking if this ship is alive is mainly important if somehow your enemies or answers can attack you, but it is still working because the ship never dies at the moment!
     if (this.ship.alive) {
+      //neutral velocity if no cursor is pressed
       this.ship.body.velocity.setTo(0, 0);
 
+
       if (this.cursors.left.isDown) {
+        //moves at 400 velocity to the left
         this.ship.body.velocity.x = -400;
+        //moves 400 to the right
       } else if (this.cursors.right.isDown) {
-        this.ship.body.velocity.x = 300;
+        this.ship.body.velocity.x = 400;
       }
       if (this.fireButton.isDown) {
+        //fires a bullet
         this.fireBullet();
       }
       if (this.game.time.now > this.firingTimer) {
@@ -115,6 +131,7 @@ GameState3.Level1.prototype = {
       }
     }
 
+    //this checks for collision every time update happens. A collision is essentially defined as overlap between two elements, in this case the bullet and the enemy.
     this.game.physics.arcade.overlap(this.bullets, this.mitochondria, this.collisionHandlerMitochondria, null, this);
     this.game.physics.arcade.overlap(this.bullets, this.chloroplast, this.collisionHandlerChloroplast, null, this);
     this.game.physics.arcade.overlap(this.bullets, this.nucleus, this.collisionHandlerNucleus, null, this);
@@ -146,6 +163,7 @@ GameState3.Level1.prototype = {
     this.bullet.kill();
   },
   moveAnswers: function() {
+    //tweens are basically motion patterns. Here we assign unique motion patterns to each of the elements.
     this.tween = this.game.add.tween(this.chloroplast).to( { x: 200 }, Math.random()*4000+1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
 
     this.tween2 = this.game.add.tween(this.golgicomplex).to( { x: 200 }, Math.random()*4000+1000, Phaser.Easing.Linear.None, true, 0, 1000, true);
@@ -162,7 +180,7 @@ GameState3.Level1.prototype = {
 
   },
 
-
+  //Each collision handler takes in two parameters, a bullet and an answer/enemy. On collision, if the value is equal to the game answer, it kills the bullet and the answer. If there have been no previous attempts, the positive score is incremented by one. if the answer is incorrect, attempts increases by one and also sets num wrong for that problem. This allows for a user to attempt the game and still try to get the correct answer even if having shot the wrong object.
   collisionHandlerMitochondria: function(bullet, mitochondria) {
 
     if (this.mitochondria.value === this.game.answers[0]) {
@@ -370,17 +388,17 @@ GameState3.Level1.prototype = {
 
   sendGameData: function () {
   // creates data object containing all the data gathered by this game
-  var data = {
-    'livesUsed': 0,
-    'time': parseInt(this.game.timerTest)/60,
-    'pointsScored': this.game.score,
-    'pointsAvailable': 7,
-    'feeling': 0
-  };
+    var data = {
+      'livesUsed': 0,
+      'time': parseInt(this.game.timerTest)/60,
+      'pointsScored': this.game.score,
+      'pointsAvailable': 7,
+      'feeling': 0
+    };
 
   //calls the gameover state to finish gathering data
-  this.game.state.start('GameOver', null, null, data);
-}
+    this.game.state.start('GameOver', null, null, data);
+  }
 
 };
 

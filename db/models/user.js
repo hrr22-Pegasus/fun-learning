@@ -14,7 +14,7 @@
     teacher: String,
     school: String,
     dateJoined: Date,
-    avatar: Array,
+    avatar: Object,
 
     //game related logic
     gameResults: Object,

@@ -12,10 +12,11 @@ router.post('/api/results/:gameName/:userName', function(req, res) {
   var userName = req.sanitize(req.params.userName);
   console.log('adding results still works');
   // builds game data object with sanitized values
-  var gameData = {};
-  for(var key in req.body) {
-    gameData[key] = req.sanitize(req.body[key]);
-  }
+  var gameData = req.body;
+  // for(var key in req.body) {
+  //   gameData[key] = req.sanitize(req.body[key]);
+  // }
+  // console.log(gameData);
   // builds query string for dynamically selecting the game to insert the results into
   var query = {};
   query['gameResults.' + gameName] = gameData;
@@ -49,12 +50,16 @@ router.get('/api/results', function(req, res) {
 router.post('/api/users', function(req, res){
 
   // sanitizes new user input and then adds it to the database
-  var userInfo = {};
-  for(var key in req.body) {
-    userInfo[key] = req.sanitize(req.body[key]);
-  }
+  // var userInfo = {};
+  // for(var key in req.body) {
+  //   if (typeof userInfo[key] === 'object') {
+  //     userInfo[key] = req.body[key];
+  //   } else {
+  //     userInfo[key] = req.sanitize(req.body[key]);
+  //   }
+  // }
 
-  var newUser = new User(userInfo);
+  var newUser = new User(req.body);
 
   newUser.save(function(err, result){
   if (err) {
@@ -74,6 +79,7 @@ router.get('/api/users/:username/:password', function(req, res) {
       console.log(err);
     } else if (users) {
       console.log('User and Password is in the database!');
+      console.log(users);
       res.status(200).send(users);
     } else {
       console.log('This user and/or password not in database or is incorrect');

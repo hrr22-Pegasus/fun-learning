@@ -14,6 +14,8 @@ angular.module('funLearning')
         })
       };
 
+
+
       var getGameResults = function() {
         return $http({
           method: 'GET',

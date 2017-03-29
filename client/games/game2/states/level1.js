@@ -4,7 +4,7 @@ GameState2.Level1 = function(game) {};
 GameState2.Level1.prototype = {
   create: function () {
 
-    // set the data for the game questions and available choices
+    // set the data for the game questions and available choices, these three lines could potentially be replaced with a call to the teachers service to get the specific test from the database.
     this.testArray = [[1, 2], [1, 3], [3, 4]];
     this.choices = [['1/2', '3/4', '1/3'], ['5/8', '3/4', '1/3'], ['4/7', '3/4', '2/3']];
     this.answerArray = ['1/2', '1/3', '3/4'];

@@ -1,6 +1,5 @@
 <div ng-controller="DashboardCtrl">
-  <div class="col-sm-3 sidenav hidden-xs" id="dashboardmenu">
-
+  <div class="column menu" id="dashboardmenu">
     <img src="./styles/img/bear.png" height="100" width="100">
     <h1> Dashboard </h1>
     <br>
@@ -14,16 +13,13 @@
     <br>
   </div>
   <br>
-
+  <div class="column gamecontainer">
   <h1 style="text-align: center; color:#FFFF99;">Let's Learn Together️!</h1>
   <h3 style="text-align: center; color:#FFFF99;">Click to play</h3>
   <br>
   <br>
-  <div class="col-sm-3">
     <img src="assets/game1haunted.gif" id="gameimg" ng-click="changeLocation('/game')">
-   </div>
-  <div class="col-sm-3">
-    <img src="assets/fractionfun.gif" id="gameimg" ng-click="changeLocation('/game2')"></div>
-  <div class="col-sm-3">
-    <img src="assets/cellshootout.gif" id="gameimg" ng-click="changeLocation('/game3')"></div>
+    <img src="assets/fractionfun.gif" id="gameimg" ng-click="changeLocation('/game2')">
+    <img src="assets/cellshootout.gif" id="gameimg" ng-click="changeLocation('/game3')">
+  </div>
 </div>

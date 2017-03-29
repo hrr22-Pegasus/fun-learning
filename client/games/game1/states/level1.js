@@ -36,22 +36,17 @@ GameState.Level1.prototype = {
       { fontSize: '14px', fill: '#000' }
     );
 
-
     this.ghostsGroup = new GhostsGroup(this.game, this.test);
     console.log("ghostsGroup", this.ghostsGroup);
-
 
     this.myInput = this.createInput(this.game.world.centerX, 50);
     this.myInput.anchor.set(0.5);
     this.myInput.canvasInput.value('');
 
-
-    // this.testText = this.myInput.canvasInput.selectText();
-
   },
 
   update: function(){
-    // console.log("canvas text", this.myInput.canvasInput._value);
+
     this.game.physics.arcade.overlap(this.kanye, this.ghost, this.ghostCollisionHandler);
     this.game.physics.arcade.overlap(this.kanye, this.ghostsGroup, this.ghostCollisionHandler);
 
@@ -72,24 +67,21 @@ GameState.Level1.prototype = {
     }
 
     if(this.input.keyboard.pressEvent){
-      // this.enemyFires();
-      // this.enemyFires(this.ghost);
-      // this.ghost.moveToPlayer(this.kanye);
 
-          for (var i = 0; i < this.ghostsGroup.children.length; i++) {
-            // console.log(this.ghostsGroup.children[i]);
-            // console.log(this.kanye)
-            var ghost = this.ghostsGroup.children[i]
-            if(ghost.moving){
-              this.guess = this.myInput.canvasInput.value();
-              ghost.checkValue(this.guess);
-              if(ghost.checkValue(this.guess)){
-                console.log("MATCHING UPDATE SCORE")
-                this.kanye.score += 1;
-                this.updateScore();
-              }
-            }
+      for (var i = 0; i < this.ghostsGroup.children.length; i++) {
+
+        var ghost = this.ghostsGroup.children[i]
+        if(ghost.moving){
+          this.guess = this.myInput.canvasInput.value();
+          ghost.checkValue(this.guess);
+          if(ghost.checkValue(this.guess)){
+            console.log("MATCHING UPDATE SCORE")
+            this.kanye.score += 1;
+            this.updateScore();
+            this.myInput.canvasInput.value('');
           }
+        }
+      }
     }
     this.input.keyboard.pressEvent = null;
 
@@ -99,9 +91,6 @@ GameState.Level1.prototype = {
     }
   },
 
-  // enemyFires: function(){
-  //   this.game.physics.arcade.moveToObject(this.ghost,this.kanye,120);
-  // },
   enemyFires: function(ghost){
     this.game.physics.arcade.moveToObject(ghost,this.kanye,60);
   },
@@ -170,7 +159,7 @@ GameState.Level1.prototype = {
     var data = {
       'livesUsed': 0,
       'time': 9,
-      'pointsScored': 220,
+      'pointsScored': 3,
       'pointsAvailable': this.test.length
     };
     this.game.state.start('GameOver', null, null, data);

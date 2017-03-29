@@ -1,5 +1,5 @@
 angular.module('funLearning.game', [])
-  .controller('GameCtrl', function($scope, UsersFactory, GameResultsFactory, TestsFactory, $location){
+  .controller('GameCtrl1', function($scope, UsersFactory, GameResultsFactory, TestsFactory, $location){
 
     $scope.getGameResults = function() {
       return GameResultsFactory.getGameResults().then(function(data) {

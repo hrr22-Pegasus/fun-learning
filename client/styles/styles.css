@@ -220,12 +220,23 @@ canvas {
 
 /*dashboard*/
 
-#dashboardmenu {
+.column {
+  float: left;
+}
+
+.menu {
   background-color: white;
   height: 1000px;
   text-align: center;
   border-radius: 0.1rem;
   padding: 60px;
+  width: 30%;
+  float: left; 
+}
+
+.gamecontainer{
+  float: none; 
+  width: auto;
 }
 
 .ng-scope {
@@ -248,5 +259,7 @@ canvas {
   height: 200px;
   width: 200px;
   border-radius: 0.8rem;
+  margin: 40px;
+
 }
 

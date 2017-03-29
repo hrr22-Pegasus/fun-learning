@@ -6,21 +6,27 @@ angular.module('funLearning.profile', ['chart.js'])
       $location.path(path);
     };
 
+    //this can be used if you want to make a table of rows and columns with the data
     $scope.dataTable = [];
 
-
+    //we pull the current user from our user factory.
     var userProfile = UsersFactory.currentUser[0];
+
+
+    //dynamically select the properties from that current user.
     $scope.firstName = userProfile["firstName"];
     $scope.lastName = userProfile["lastName"];
     $scope.username = userProfile["username"];
     $scope.age = userProfile["age"];
     $scope.grade = userProfile["grade"];
 
+    //pull in the game results and divide by type of game.
     var userGameResults = userProfile["gameResults"];
     var game1 = userGameResults["game1"];
     var game2 = userGameResults["game2"];
     var game3 = userGameResults["game3"];
 
+    //simple function which calculates the game average based on which game and which parameter.
     var findGameAverage = function(dataset, parameter) {
       var sum = 0;
       var plays = dataset.length;
@@ -40,35 +46,37 @@ angular.module('funLearning.profile', ['chart.js'])
       return average;
     };
 
+    //Average points for each game
     var game1Average = findGameAverage(game1, "pointsScored");
     var game2Average = findGameAverage(game2, "pointsScored");
     var game3Average = findGameAverage(game3, "pointsScored");
 
-    console.log("Game2 average is! ", game2Average);
-    console.log("Game3 average is! ", game3Average);
+
+    //average time for each game
     var game1AverageTime = findGameAverage(game1, "time");
-
-
     var game2AverageTime = findGameAverage(game2, "time");
     var game3AverageTime = findGameAverage(game3, "time");
-    console.log("Game3 Average time is ", game3AverageTime);
+
+    //average feeling for each game
     var game1AverageFeeling = findGameAverage(game1, "feeling");
     var game2AverageFeeling = findGameAverage(game2, "feeling");
     var game3AverageFeeling = findGameAverage(game3, "feeling");
 
+    //the labbels for our graph
     $scope.gameLabels = ["Pythagoras' Haunted House", "Fraction Fun", "Cellular Shootouts"];
 
+    //the data used by the pie chart
     $scope.gamePlayData = [game1.length, game2.length, game3.length];
 
     $scope.series = ['Game Plays', 'Game Average'];
 
+    //the data used by the bar chart
     $scope.barChartData = [
       [game1.length, game2.length, game3.length],
       [game1Average, game2Average, game3Average]
     ];
 
-
-
+    //we use this to select the unique performance for a certain parameter.
     var performanceForParameter = function(game, parameter) {
       var dataSet = userGameResults[game];
       var parameterSpecificDataSet = [];
@@ -77,11 +85,10 @@ angular.module('funLearning.profile', ['chart.js'])
         var datum = dataSet[i][parameter];
         parameterSpecificDataSet.push(datum);
       }
-      console.log("Inside!", parameterSpecificDataSet);
-
       return parameterSpecificDataSet;
     };
 
+    //feeling scores, time scores and points scores.
     var game1Feeling = performanceForParameter("game1", "feeling");
     var game2Feeling = performanceForParameter("game2", "feeling");
     var game3Feeling = performanceForParameter("game3", "feeling");
@@ -92,10 +99,7 @@ angular.module('funLearning.profile', ['chart.js'])
     var game2Scores = performanceForParameter("game2", "pointsScored");
     var game3Scores = performanceForParameter("game3", "pointsScored");
 
-    console.log("Game 1 average is this, Samy!", [ game1Scores, game1Feeling, game1Time
-    ]);
-
-
+    //setting the unique data for the specific canvas it relates to (Crossreference the html and it will make a lot more sense!)
     $scope.game1labels = ["Attempt 1", "Attempt 2", "Attempt 3"];
     $scope.game1series = ['Average', 'Feeling', 'Time'];
     $scope.game1data = [game1Scores, game1Feeling, game1Time

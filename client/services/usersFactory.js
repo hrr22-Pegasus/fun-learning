@@ -12,7 +12,7 @@ angular.module('funLearning.users', [])
         url: '/api/users',
       }).then(function(res){
         allUsers.push(res.data);
-      })
+      });
     };
 
     var getCurrentUser = function(username, password){
@@ -59,9 +59,3 @@ angular.module('funLearning.users', [])
       getCurrentUser: getCurrentUser
     };
   });
-
-
-
-
-
-

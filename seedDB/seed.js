@@ -1,9 +1,8 @@
   var mongoose = require('mongoose');
   var UserData = require('./data.json');
-  var User = require('./db/models/user.js');
-
   var TestData = require('./testData.json')
-  var Test =require('./db/models/test.js')
+  var User = require('../db/models/user.js');
+  var Test =require('../db/models/test.js')
 
 
   var mongoose = require('mongoose');
